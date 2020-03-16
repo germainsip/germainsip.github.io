@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mes ressources</title>
+    <link>/</link>
+    <description>Recent content on Mes ressources</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr</language>
+    <lastBuildDate>Mon, 16 Mar 2020 14:21:05 +0100</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Premier article de bienvenue</title>
+      <link>/post/cours/test2/</link>
+      <pubDate>Mon, 16 Mar 2020 14:21:05 +0100</pubDate>
+      
+      <guid>/post/cours/test2/</guid>
+      <description>J&amp;rsquo;ai décidé d&amp;rsquo;héberger ici quelques cours pour optimiser l&amp;rsquo;accès à mes ressources.</description>
+    </item>
+    
+  </channel>
+</rss>
