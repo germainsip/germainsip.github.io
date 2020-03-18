@@ -6,9 +6,37 @@
     <description>Recent content in Tags on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
+    <lastBuildDate>Mon, 16 Mar 2020 15:05:18 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Jackson</title>
+      <link>/tags/jackson/</link>
+      <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
+      
+      <guid>/tags/jackson/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaFX</title>
+      <link>/tags/javafx/</link>
+      <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
+      
+      <guid>/tags/javafx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Json</title>
+      <link>/tags/json/</link>
+      <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
+      
+      <guid>/tags/json/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

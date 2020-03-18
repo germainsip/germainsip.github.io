@@ -6,10 +6,20 @@
     <description>Recent content on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Mon, 16 Mar 2020 14:21:05 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 15:05:18 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaFX et sauvegarde Partie 1</title>
+      <link>/post/cours/javafx/</link>
+      <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
+      
+      <guid>/post/cours/javafx/</guid>
+      <description>❗ ❗ ❗ en cours de rédaction ❗ ❗ ❗
+Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.</description>
+    </item>
     
     <item>
       <title>Premier article de bienvenue</title>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Mes ressources</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Mes ressources</description>
+    <title>JavaFX on Mes ressources</title>
+    <link>/categories/javafx/</link>
+    <description>Recent content in JavaFX on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
     <lastBuildDate>Mon, 16 Mar 2020 15:05:18 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/javafx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/post/cours/javafx/</guid>
       <description>❗ ❗ ❗ en cours de rédaction ❗ ❗ ❗
 Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.</description>
-    </item>
-    
-    <item>
-      <title>Premier article de bienvenue</title>
-      <link>/post/cours/test2/</link>
-      <pubDate>Mon, 16 Mar 2020 14:21:05 +0100</pubDate>
-      
-      <guid>/post/cours/test2/</guid>
-      <description>J&amp;rsquo;ai décidé d&amp;rsquo;héberger ici quelques cours pour optimiser l&amp;rsquo;accès à mes ressources.</description>
     </item>
     
   </channel>
