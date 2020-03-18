@@ -6,23 +6,10 @@
     <description>Recent content in Posts on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Mon, 16 Mar 2020 16:05:18 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2020 14:21:05 +0100</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>JavaFX et sauvegarde</title>
-      <link>/post/cours/javafx/</link>
-      <pubDate>Mon, 16 Mar 2020 16:05:18 +0100</pubDate>
-      
-      <guid>/post/cours/javafx/</guid>
-      <description>❗ ❗ ❗ en cours de rédaction ❗ ❗ ❗
-Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2.
-Commenceons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix. J&amp;rsquo;utiliserai IntelliJ mais les manipulations sont les mêmes dans Netbeans.
-Le projet est un projet maven suivant l&amp;rsquo;archetype (javafx-archetype-fxml) habituel maintenant:
- Supprimez les fichiers inutiles: App.java, PrimaryController.java,SecondaryController.java, primary.</description>
-    </item>
     
     <item>
       <title>Premier article de bienvenue</title>
