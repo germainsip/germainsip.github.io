@@ -18,7 +18,7 @@
       
       <guid>/post/cours/javafx/</guid>
       <description>Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.
-  Commenceons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix.</description>
+  Commençons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix.</description>
     </item>
     
   </channel>
