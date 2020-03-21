@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JavaFX on Mes ressources</title>
-    <link>/tags/javafx/</link>
-    <description>Recent content in JavaFX on Mes ressources</description>
+    <title>JSON.simple on Mes ressources</title>
+    <link>/tags/json.simple/</link>
+    <description>Recent content in JSON.simple on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
     <lastBuildDate>Thu, 19 Mar 2020 10:32:50 +0000</lastBuildDate>
     
-	<atom:link href="/tags/javafx/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/json.simple/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,16 +22,6 @@
  Prérequis: avoir suivi la première partie JavaFX et sauvegarde Partie 1
 Comme promis, nous allons d&amp;rsquo;abord utiliser JSON.simple. Le but ici est uniquement de vous montrer comment sauvegarder quelques information sur notre application, dans la prochaine partie nous les importerons.
 Importons Json.simple Il faut tout d&amp;rsquo;abord importer la bibliothèque. Dans le pom fait un ajout de dépendance, soit avec clique droit sur &amp;lt;dependencies&amp;gt; et Generate&amp;hellip; ou avec le raccourcit clavier puis Depedency.</description>
-    </item>
-    
-    <item>
-      <title>JavaFX et sauvegarde Partie 1</title>
-      <link>/post/cours/javafx/</link>
-      <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
-      
-      <guid>/post/cours/javafx/</guid>
-      <description>Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.
-  Commençons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix.</description>
     </item>
     
   </channel>
