@@ -63,6 +63,31 @@
   </url>
   
   <url>
+    <loc>/tags/android/</loc>
+    <lastmod>2020-03-19T10:25:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/android/</loc>
+    <lastmod>2020-03-19T10:25:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/android-studio/</loc>
+    <lastmod>2020-03-19T10:25:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/ide/</loc>
+    <lastmod>2020-03-19T10:25:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/instal_androidstudio/</loc>
+    <lastmod>2020-03-19T10:25:49+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/cours/javafx/</loc>
     <lastmod>2020-03-16T15:05:18+00:00</lastmod>
   </url>

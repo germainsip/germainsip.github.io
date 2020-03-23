@@ -29,5 +29,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Android</title>
+      <link>/categories/android/</link>
+      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
+      
+      <guid>/categories/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IDE</title>
+      <link>/categories/ide/</link>
+      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
+      
+      <guid>/categories/ide/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

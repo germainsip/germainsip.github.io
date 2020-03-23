@@ -56,5 +56,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Android</title>
+      <link>/tags/android/</link>
+      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
+      
+      <guid>/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android Studio</title>
+      <link>/tags/android-studio/</link>
+      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
+      
+      <guid>/tags/android-studio/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

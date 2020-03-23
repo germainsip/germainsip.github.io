@@ -25,6 +25,17 @@ Importons Json.simple Il faut tout d&amp;rsquo;abord importer la bibliothèque. 
     </item>
     
     <item>
+      <title>Installation d&#39;Android Studio</title>
+      <link>/post/cours/instal_androidstudio/</link>
+      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
+      
+      <guid>/post/cours/instal_androidstudio/</guid>
+      <description>Android Studio, c&amp;rsquo;est quoi? L&amp;rsquo;IDE Android Studio est financé par Google pour le développement sur ses plateformes Android (mobile, tablette, TV, montre, OS&amp;hellip;). Mais cet IDE est basé sur IntelliJ IDEA développé par Jetbrain. Vous pourriez donc aussi bien travailler sur IntelliJ. Je vous conseil néanmoins de télécharger et d&amp;rsquo;installer Android Studio que je trouve beaucoup plus stable.
+Téléchargement et installation prérequis: avoir un jdk installé sur sa machine
+Tout d&amp;rsquo;abord, il faut télécharger l&amp;rsquo;installeur sur le site developer.</description>
+    </item>
+    
+    <item>
       <title>JavaFX et sauvegarde Partie 1</title>
       <link>/post/cours/javafx/</link>
       <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
