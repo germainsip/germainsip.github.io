@@ -6,10 +6,22 @@
     <description>Recent content in Android on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:25:49 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2020 08:26:26 +0000</lastBuildDate>
     
 	<atom:link href="/categories/android/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notre première appli Android</title>
+      <link>/post/cours/android1/</link>
+      <pubDate>Tue, 24 Mar 2020 08:26:26 +0000</pubDate>
+      
+      <guid>/post/cours/android1/</guid>
+      <description>Notre première Appli Nous allons ici commencer par faire ensemble une application très simple avec un champ où nous remplirons du texte et qui va se reporter dans un label après avoir appuyé sur un bouton.
+    Commencez par créer un projet Android dans Android Studio et nommez le tutoAnd1
+Après le travail de Gradle, vous devriez obtenir l&amp;rsquo;arborescence suivante
+Le layout Le layout est la vue. Vous le trouverez dans res/layout.</description>
+    </item>
     
     <item>
       <title>Installation d&#39;Android Studio</title>

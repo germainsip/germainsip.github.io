@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:32:50 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2020 08:26:26 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Android</title>
+      <link>/categories/android/</link>
+      <pubDate>Tue, 24 Mar 2020 08:26:26 +0000</pubDate>
+      
+      <guid>/categories/android/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>JavaFX</title>
@@ -26,15 +35,6 @@
       <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
       
       <guid>/categories/persistance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Android</title>
-      <link>/categories/android/</link>
-      <pubDate>Thu, 19 Mar 2020 10:25:49 +0000</pubDate>
-      
-      <guid>/categories/android/</guid>
       <description></description>
     </item>
     
