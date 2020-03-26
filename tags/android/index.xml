@@ -6,10 +6,19 @@
     <description>Recent content in Android on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Tue, 24 Mar 2020 08:26:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2020 09:37:44 +0000</lastBuildDate>
     
 	<atom:link href="/tags/android/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TextView et scroll</title>
+      <link>/post/cours/android2/</link>
+      <pubDate>Thu, 26 Mar 2020 09:37:44 +0000</pubDate>
+      
+      <guid>/post/cours/android2/</guid>
+      <description>Les TextView     L&amp;rsquo;application Texte défilant illustre le ScrollView composant d&amp;rsquo;interface utilisateur. ScrollViewest un ViewGroup qui dans cet exemple contient un TextView. Il affiche une longue page de texte (dans ce cas, une critique d&amp;rsquo;album musical) que l&amp;rsquo;utilisateur peut faire défiler verticalement pour lire en faisant glisser vers le haut et vers le bas. Une barre de défilement apparaît dans la marge de droite. L&amp;rsquo;application montre comment utiliser du texte formaté avec un minimum de balises HTML pour définir le texte en gras ou en italique, et avec des caractères de nouvelle ligne pour séparer les paragraphes.</description>
+    </item>
     
     <item>
       <title>Notre première appli Android</title>
