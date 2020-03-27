@@ -71,6 +71,7 @@
     <li><a href="#notre-projet">Notre projet</a></li>
     <li><a href="#ajoutons-un-article">Ajoutons un article</a></li>
     <li><a href="#et-le-scroll-alors-">Et le Scroll alors ?</a></li>
+    <li><a href="#inclusion-dans-un-viewgroup">Inclusion dans un <code>ViewGroup</code></a></li>
   </ul>
 </nav>
 	</div>
@@ -175,6 +176,61 @@ Pour plus d\'informations, consultez la Beatles Time Capsule sur www.rockument.c
 <span style="color:#f92672">&lt;/ScrollView&gt;</span>
 </code></pre></div><p>Ajoutez aussi l&rsquo;attribut dans les attributs du <code>TextView</code></p>
 <p>A partir de maintenant notre article scroll et le lien hypertext est actif.</p>
+<p>Le sous titre ne scroll pas avec le reste! Le <code>ScrollView</code> ne peut prendre qu&rsquo;un seul enfant, cependant nous pouvons imbriquer un <code>ViewGroup</code> dans le <code>ScrollView</code>.</p>
+<h2 id="inclusion-dans-un-viewgroup">Inclusion dans un <code>ViewGroup</code></h2>
+<p>C&rsquo;est très simple nous allons ajouter une balise ouvrante et fermante <!-- raw HTML omitted --> y inclure nos 2 <code>TextView</code> enlever la contrainte du sous-titre et modifier celle du <code>ScrollView</code>. Enfin définissez le <code>LinearLayout</code>sur vertical.</p>
+<p>Voici le xml que vous devriez avoir:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;RelativeLayout</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:tools=</span><span style="color:#e6db74">&#34;http://schemas.android.com/tools&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">tools:context=</span><span style="color:#e6db74">&#34;.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_heading&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:background=</span><span style="color:#e6db74">&#34;@color/colorPrimary&#34;</span>
+        <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/titre_de_l_article&#34;</span>
+        <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault.Large&#34;</span>
+        <span style="color:#a6e22e">android:textColor=</span><span style="color:#e6db74">&#34;@android:color/white&#34;</span>
+        <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+
+    <span style="color:#f92672">&lt;ScrollView</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_below=</span><span style="color:#e6db74">&#34;@id/article_heading&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;LinearLayout</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span><span style="color:#f92672">&gt;</span>
+
+            <span style="color:#f92672">&lt;TextView</span>
+                <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_sub_heading&#34;</span>
+                <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+                <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+                <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/sous_titre_article&#34;</span>
+                <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+            <span style="color:#f92672">&lt;TextView</span>
+                <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article&#34;</span>
+                <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+                <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                <span style="color:#a6e22e">android:autoLink=</span><span style="color:#e6db74">&#34;web&#34;</span>
+                <span style="color:#a6e22e">android:lineSpacingExtra=</span><span style="color:#e6db74">&#34;@dimen/line_spacing&#34;</span>
+                <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+                <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/texte_de_l_article&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+    <span style="color:#f92672">&lt;/ScrollView&gt;</span>
+
+<span style="color:#f92672">&lt;/RelativeLayout&gt;</span>
+</code></pre></div><p>Lancez l&rsquo;app et le tour est Joué.</p>
 
 		</div>
 		<footer class="post__footer">
@@ -183,6 +239,7 @@ Pour plus d\'informations, consultez la Beatles Time Capsule sur www.rockument.c
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item"><a class="tags__link btn" href="/tags/android/" rel="tag">Android</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/scrollview/" rel="tag">ScrollView</a></li>
 	</ul>
 </div>
 		</footer>
