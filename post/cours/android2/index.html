@@ -46,7 +46,7 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">TextView et scroll</h1>
-			<p class="post__lead">Vues texte et défilements en android (en cours de rédaction)</p>
+			<p class="post__lead">Vues texte et défilements en android</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
@@ -156,9 +156,13 @@ Pour plus d\'informations, consultez la Beatles Time Capsule sur www.rockument.c
 <p>N&rsquo;oubliez pas de modifier le titre et le sous titre de l&rsquo;article !</p>
 </blockquote>
 <h2 id="et-le-scroll-alors-">Et le Scroll alors ?</h2>
-<blockquote>
-<p>La vidéo arrive bientôt ici</p>
-</blockquote>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/VSBjfV6ttzI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<hr>
+<hr>
 <p>Si vous avez testé votre application, vous avez surement remarqué que pour le moment rien ne scroll et que le lien vers <a href="http://www.rockument.com">www.rockument.com</a> et inactif.</p>
 <p>L&rsquo;outil que nous allons utiliser est le <code>ScrollView</code>. Celà fonctionne comme des poupées gigognes.</p>
 <p>Insérez une balise <code>&lt;ScrolView&gt;</code>et mettez le TextView de l&rsquo;article dedans. Puis déplacez la contrainte placement au niveau du <code>ScrollView</code></p>
