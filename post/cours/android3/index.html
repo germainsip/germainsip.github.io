@@ -73,6 +73,7 @@
     <li><a href="#petite-mise-en-page">Petite mise en page</a></li>
     <li><a href="#définissons-lintent">Définissons l&rsquo;Intent</a></li>
     <li><a href="#envoyons-un-message-partie-2">Envoyons un message (partie 2)</a></li>
+    <li><a href="#de-lautre-côté">De l&rsquo;autre côté</a></li>
   </ul>
 </nav>
 	</div>
@@ -155,7 +156,27 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
 <blockquote>
 <p>les indications du champ text sont dans l&rsquo;attribut <code>android:hint=&quot; ... &quot;</code></p>
 </blockquote>
-<p>Définissez la clé de &ldquo;Extra&rdquo; l&rsquo;intent en haut de la classe <code>MainActivity</code></p>
+<p>Définissez la clé &ldquo;Extra&rdquo; de l&rsquo;intent et l'<code>EditText</code> en haut de la classe <code>MainActivity</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String EXTRA_MESSAGE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;deuxActivite.extra.MESSAGE&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#66d9ef">private</span> EditText mEditTextMessage<span style="color:#f92672">;</span>
+</code></pre></div><p>Dans la méthode <code>onCreate()</code> on va récupérer notre EditText:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> mEditTextMessage <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">edit_text_message</span><span style="color:#f92672">);</span>
+</code></pre></div><p>Et dans la méthode <code>launchSecondActivity()</code> on va créer notre message &ldquo;extra&rdquo; et l&rsquo;ajouter à l&rsquo;intent</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String message <span style="color:#f92672">=</span> mEditTextMessage<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+Intent intent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> SecondActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+intent<span style="color:#f92672">.</span><span style="color:#a6e22e">putExtra</span><span style="color:#f92672">(</span>EXTRA_MESSAGE<span style="color:#f92672">,</span>message<span style="color:#f92672">);</span>
+startActivity<span style="color:#f92672">(</span>intent<span style="color:#f92672">);</span>
+</code></pre></div><h2 id="de-lautre-côté">De l&rsquo;autre côté</h2>
+<p>Dans <code>activity_second.xml</code> ajoutez un <code>TextView</code> afin de pouvoir répondre. Nommez le <code>text_message</code></p>
+<p>Dans <code>SecondActivity.java</code>, dans la méthode onCreate(), récupérons notre intent ainsi que son contenu et mettons le dans le TextView:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Intent intent <span style="color:#f92672">=</span> getIntent<span style="color:#f92672">();</span>
+
+String message <span style="color:#f92672">=</span> intent<span style="color:#f92672">.</span><span style="color:#a6e22e">getStringExtra</span><span style="color:#f92672">(</span>MainActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">EXTRA_MESSAGE</span><span style="color:#f92672">);</span>
+
+TextView textView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_message</span><span style="color:#f92672">);</span>
+
+textView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+</code></pre></div><p>Vous pouvez tester votre appli.</p>
 
 		</div>
 		<footer class="post__footer">
