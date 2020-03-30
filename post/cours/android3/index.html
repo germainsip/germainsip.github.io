@@ -72,6 +72,7 @@
     <li><a href="#créons-la-seconde-activité">Créons la seconde activité</a></li>
     <li><a href="#petite-mise-en-page">Petite mise en page</a></li>
     <li><a href="#définissons-lintent">Définissons l&rsquo;Intent</a></li>
+    <li><a href="#envoyons-un-message-partie-2">Envoyons un message (partie 2)</a></li>
   </ul>
 </nav>
 	</div>
@@ -79,9 +80,13 @@
 <div class="content post__content clearfix">
 			<h2 id="les-activités-et-les-intent">Les Activités et les <code>Intent</code></h2>
 <p>Nous avons vue que les vues étaient appelées des activités en Android. Afin d&rsquo;ouvrir une nouvelle activité et transférer des information d&rsquo;une activité à l&rsquo;autre nous allons avoir besoin des <code>Intent</code> qui vont permettre de faire naviguer des informations d&rsquo;une vue à l&rsquo;autre.</p>
-<blockquote>
-<p>vidéo en cours d&rsquo;upload</p>
-</blockquote>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/I7FUF1ROA5g" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<hr>
+<hr>
 <p>Nous allons faire une simple application qui dans un premier temps ouvrira une deuxième activité au clique sur un bouton et dans un deuxième temps nous verrons comment envoyer un message sur la deuxième activité puis enfin renvoyer une réponse sur la première.</p>
 <h2 id="cest-partie">C&rsquo;est partie</h2>
 <p>De la manière que nous l&rsquo;avons fait créons un projet nommé DeuxActivites.
@@ -136,10 +141,21 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
     <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span><span style="color:#f92672">/&gt;</span>
 </code></pre></div><h2 id="définissons-lintent">Définissons l&rsquo;Intent</h2>
 <p>Enfin dans <code>MainActivity.java</code> créez l&rsquo;<strong>intent</strong> dan la méthode <code>launchSecondActivity()</code></p>
-<p>L&rsquo;intent prend deux paramètres, le context et la classe de l&rsquo;activité à charger.</p>
+<p>L'<code>intent</code> prend deux paramètres, le <code>context</code> et la classe de l&rsquo;activité à charger.</p>
 <p><code>Intent intent = new Intent(this, SecondActivity.class);</code></p>
 <p>Il faut ensuite démarrer l&rsquo;activité: <code>startActivity(intent);</code></p>
 <p>Vous pouvez maintenant lancer votre activité.</p>
+<h2 id="envoyons-un-message-partie-2">Envoyons un message (partie 2)</h2>
+<blockquote>
+<p>video partie 2</p>
+</blockquote>
+<p>Notre objet d&rsquo;intention peut transmettre des données à l&rsquo;activité cible de deux manières: dans le champ de données ou dans les extras d&rsquo; intention . Les données d&rsquo;intention sont un URI indiquant les données spécifiques sur lesquelles agir. Si les informations que vous souhaitez transmettre à une activité via une intention ne sont pas un URI, ou si vous avez plusieurs informations à envoyer, vous pouvez mettre ces informations supplémentaires dans les extras à la place.</p>
+<p>Les <strong>extras</strong> d&rsquo; intention sont des paires <strong>clé / valeur</strong> dans un Bundle (paquet). Un <code>Bundle</code> est une collection de données, stockées sous forme de paires <strong>clé / valeur</strong>. Pour transmettre des informations d&rsquo;une activité à une autre, vous mettez des clés et des valeurs dans l&rsquo;extra de l&rsquo;intention de l&rsquo;activité d&rsquo;envoi, puis vous les récupérez dans l&rsquo;activité de réception.</p>
+<p>Commencez par ajouter un <code>EditText</code> à notre premier layout et nommez le <code>editText_main</code></p>
+<blockquote>
+<p>les indications du champ text sont dans l&rsquo;attribut <code>android:hint=&quot; ... &quot;</code></p>
+</blockquote>
+<p>Définissez la clé de &ldquo;Extra&rdquo; l&rsquo;intent en haut de la classe <code>MainActivity</code></p>
 
 		</div>
 		<footer class="post__footer">
