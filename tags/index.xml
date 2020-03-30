@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 26 Mar 2020 09:37:44 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2020 10:57:32 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Android</title>
       <link>/tags/android/</link>
-      <pubDate>Thu, 26 Mar 2020 09:37:44 +0000</pubDate>
+      <pubDate>Fri, 27 Mar 2020 10:57:32 +0000</pubDate>
       
       <guid>/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Intent</title>
+      <link>/tags/intent/</link>
+      <pubDate>Fri, 27 Mar 2020 10:57:32 +0000</pubDate>
+      
+      <guid>/tags/intent/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Voyage entre les Intent - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Les intent d&#39;android">
+	<meta property="og:title" content="Voyage entre les Intent" />
+<meta property="og:description" content="Les intent d&#39;android" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/android3/" />
+<meta property="article:published_time" content="2020-03-27T10:57:32+00:00" />
+<meta property="article:modified_time" content="2020-03-27T10:57:32+00:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Voyage entre les Intent"/>
+<meta name="twitter:description" content="Les intent d&#39;android"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Voyage entre les Intent</h1>
+			<p class="post__lead">Voyage entre les Intent</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2020-03-27T10:57:32Z">27-03-2020</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/img/androidbase.png" alt="Voyage entre les Intent">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#les-activités-et-les-intent">Les Activités et les <code>Intent</code></a></li>
+    <li><a href="#cest-partie">C&rsquo;est partie</a></li>
+    <li><a href="#créons-la-seconde-activité">Créons la seconde activité</a></li>
+    <li><a href="#petite-mise-en-page">Petite mise en page</a></li>
+    <li><a href="#définissons-lintent">Définissons l&rsquo;Intent</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="les-activités-et-les-intent">Les Activités et les <code>Intent</code></h2>
+<p>Nous avons vue que les vues étaient appelées des activités en Android. Afin d&rsquo;ouvrir une nouvelle activité et transférer des information d&rsquo;une activité à l&rsquo;autre nous allons avoir besoin des <code>Intent</code> qui vont permettre de faire naviguer des informations d&rsquo;une vue à l&rsquo;autre.</p>
+<blockquote>
+<p>vidéo en cours d&rsquo;upload</p>
+</blockquote>
+<p>Nous allons faire une simple application qui dans un premier temps ouvrira une deuxième activité au clique sur un bouton et dans un deuxième temps nous verrons comment envoyer un message sur la deuxième activité puis enfin renvoyer une réponse sur la première.</p>
+<h2 id="cest-partie">C&rsquo;est partie</h2>
+<p>De la manière que nous l&rsquo;avons fait créons un projet nommé DeuxActivites.
+Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à qui on donnera le nom <code>button_main</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
+  <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_main&#34;</span>
+  <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+  <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+  <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/button_main&#34;</span>
+  <span style="color:#a6e22e">android:layout_marginBottom=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+  <span style="color:#a6e22e">android:layout_marginRight=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+  <span style="color:#a6e22e">android:onClick=</span><span style="color:#e6db74">&#34;launchSecondActivity&#34;</span>
+  <span style="color:#a6e22e">app:layout_constraintBottom_toBottomOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+  <span style="color:#a6e22e">app:layout_constraintRight_toRightOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+  <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Pensez bien à renvoyer le text dans <code>strings.xml</code>. Pour le moment est souligné en rouge car la méthode n&rsquo;existe pas. A l&rsquo;aide de l&rsquo;ampoule rouge créez la méthode dans <code>MainActivity.java</code>.</p>
+<p>Dans <code>MainActivity.java</code> ajoutez <code>Log.d(LOG_TAG,&quot;clique sur bouton&quot;);</code> dans la méthode <code>launchSecondActivity()</code> et ajoutez <code>private static final String LOG_TAG = MainActivity.class.getSimpleName();</code> en haut de la classe.</p>
+<p>Exécutez votre appli. Si tout se déroule bien au clique sur le bouton vous devriez lire dans l&rsquo;onglet run en bas de l&rsquo;IDE</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">D/MainActivity: clique sur bouton
+</code></pre></div><blockquote>
+<p>la méthode log est l'équivalent en Java du println que nous utilisons pour faire des impressions en console. La grosse différence est que nous signons nos événements par une String.</p>
+</blockquote>
+<h2 id="créons-la-seconde-activité">Créons la seconde activité</h2>
+<p>Pour android, il ya deux façons de faire du lien entre les activités:</p>
+<ul>
+<li>explicite: nous connaissons déjà la classe cible de l&rsquo;intent.</li>
+<li>implicite: nous ne connaissons pas nécessairement le nom de la cible mais nous avons une action générale à effectuer.</li>
+</ul>
+<p>Cliquez droit sur le dossier <strong>app</strong> puis <strong>new -&gt; activity -&gt; Empty Activity</strong> et nommez la nouvelle activité <code>SecondActivity</code>.</p>
+<p>Dans <strong>AndroidManifest</strong> nous définissons plus précisément notre activité. Ces information seront utilisées pour afficher la navigation en haut dans la barre de navigation.</p>
+<p>dans la Manifest remplacez</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.SecondActivity&#34;</span><span style="color:#f92672">&gt;&lt;/activity&gt;</span>
+</code></pre></div><p>par</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span>
+  <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.SecondActivity&#34;</span>
+  <span style="color:#a6e22e">android:label=</span><span style="color:#e6db74">&#34;Seconde Activité&#34;</span>
+  <span style="color:#a6e22e">android:parentActivityName=</span><span style="color:#e6db74">&#34;.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;/activity&gt;</span>
+</code></pre></div><p>Puis extrayez le label dans <code>strings.xml</code></p>
+<h2 id="petite-mise-en-page">Petite mise en page</h2>
+<p>dans <code>activity_second.xml</code> faite la mise en page suivante en ajoutant un TextView</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+    <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/text_header&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+    <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+    <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Message reçu&#34;</span>
+    <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@style/TextAppearance.AppCompat.Medium&#34;</span>
+    <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span><span style="color:#f92672">/&gt;</span>
+</code></pre></div><h2 id="définissons-lintent">Définissons l&rsquo;Intent</h2>
+<p>Enfin dans <code>MainActivity.java</code> créez l&rsquo;<strong>intent</strong> dan la méthode <code>launchSecondActivity()</code></p>
+<p>L&rsquo;intent prend deux paramètres, le context et la classe de l&rsquo;activité à charger.</p>
+<p><code>Intent intent = new Intent(this, SecondActivity.class);</code></p>
+<p>Il faut ensuite démarrer l&rsquo;activité: <code>startActivity(intent);</code></p>
+<p>Vous pouvez maintenant lancer votre activité.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/android/" rel="tag">Android</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/intent/" rel="tag">Intent</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuelement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/android2/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">TextView et scroll</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
