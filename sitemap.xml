@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/javafx/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/javafx/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/maven/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/javafxprems/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/android/</loc>
     <lastmod>2020-03-27T10:57:32+00:00</lastmod>
   </url>
@@ -13,27 +53,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/intent/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-03-27T10:57:32+00:00</lastmod>
   </url>
   
@@ -64,16 +84,6 @@
   
   <url>
     <loc>/tags/jackson/</loc>
-    <lastmod>2020-03-19T10:32:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/javafx/</loc>
-    <lastmod>2020-03-19T10:32:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/javafx/</loc>
     <lastmod>2020-03-19T10:32:50+00:00</lastmod>
   </url>
   

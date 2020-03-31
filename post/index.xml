@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Fri, 27 Mar 2020 10:57:32 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2020 13:32:09 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Notre première fenêtre JavaFX</title>
+      <link>/post/cours/javafxprems/</link>
+      <pubDate>Tue, 31 Mar 2020 13:32:09 +0000</pubDate>
+      
+      <guid>/post/cours/javafxprems/</guid>
+      <description>Notre tout premier projet en JavaFX Dans cette vidéo je vous montre comment créer un premier projet JavaFX FXML. Je vais utiliser l&amp;rsquo;architecture maven pour ce projet car depuis le jdk 9 JavaFX n&amp;rsquo;est plus intégré nativement à la jvm et au jdk ce qui nou oblige à l&amp;rsquo;ajouter à nos projets.
+Une option aurait été d&amp;rsquo;ajouter manuellement les librairies nécessaires mais maven peut faire le travail pour nous. De plus maven va gérer les dépendances du projet pour nous et rendre le projet migrable d&amp;rsquo;un poste de développement à l&amp;rsquo;autre.</description>
+    </item>
     
     <item>
       <title>Voyage entre les Intent</title>

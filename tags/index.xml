@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Fri, 27 Mar 2020 10:57:32 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Mar 2020 13:32:09 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaFX</title>
+      <link>/tags/javafx/</link>
+      <pubDate>Tue, 31 Mar 2020 13:32:09 +0000</pubDate>
+      
+      <guid>/tags/javafx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maven</title>
+      <link>/tags/maven/</link>
+      <pubDate>Tue, 31 Mar 2020 13:32:09 +0000</pubDate>
+      
+      <guid>/tags/maven/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Android</title>
@@ -53,15 +71,6 @@
       <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
       
       <guid>/tags/jackson/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaFX</title>
-      <link>/tags/javafx/</link>
-      <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
-      
-      <guid>/tags/javafx/</guid>
       <description></description>
     </item>
     
