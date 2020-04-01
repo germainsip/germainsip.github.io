@@ -74,7 +74,9 @@
     <li><a href="#définissons-lintent">Définissons l&rsquo;Intent</a></li>
     <li><a href="#envoyons-un-message-partie-2">Envoyons un message (partie 2)</a></li>
     <li><a href="#de-lautre-côté">De l&rsquo;autre côté</a></li>
-    <li><a href="#le-sens-retour">Le sens retour</a></li>
+    <li><a href="#le-sens-retour-partie-3">Le sens retour (Partie 3)</a></li>
+    <li><a href="#il-nous-reste-à-recevoir-la-réponse">Il nous reste à recevoir la réponse</a></li>
+    <li><a href="#dernière-chose-à-faire">Dernière chose à faire&hellip;</a></li>
   </ul>
 </nav>
 	</div>
@@ -182,12 +184,143 @@ TextView textView <span style="color:#f92672">=</span> findViewById<span style="
 
 textView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
 </code></pre></div><p>Vous pouvez tester votre appli.</p>
-<h2 id="le-sens-retour">Le sens retour</h2>
+<h2 id="le-sens-retour-partie-3">Le sens retour (Partie 3)</h2>
 <blockquote>
 <p>video partie 3</p>
 </blockquote>
 <hr>
 <hr>
+<p>Nous allons maintenant faire le sens retour. Ajoutons un champ <code>EditText</code> et un <code>Button</code> à notre second layout (<code>activity_second.xml</code>).
+Vous pouvez simplement copier coller les deux éléments de la première acitvité et corriger les id et actions pour obtenir ceci:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_second&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginBottom=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+        <span style="color:#a6e22e">android:onClick=</span><span style="color:#e6db74">&#34;returnReply&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/repondre&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintBottom_toBottomOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintRight_toRightOf=</span><span style="color:#e6db74">&#34;parent&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;EditText</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/edit_text_reponse&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;0dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginBottom=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+        <span style="color:#a6e22e">android:ems=</span><span style="color:#e6db74">&#34;10&#34;</span>
+        <span style="color:#a6e22e">android:hint=</span><span style="color:#e6db74">&#34;@string/entrez_votre_reponse&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintBottom_toBottomOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintEnd_toStartOf=</span><span style="color:#e6db74">&#34;@+id/button_second&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintHorizontal_bias=</span><span style="color:#e6db74">&#34;0.0&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">android:inputType=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><blockquote>
+<p><strong>Attention ✋ :</strong> j&rsquo;ai intégré les textes dans <code>strings.xml</code>
+votre strings.xml doit ressembler à :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;resources&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;app_name&#34;</span><span style="color:#f92672">&gt;</span>DeuxActivites<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;button_main&#34;</span><span style="color:#f92672">&gt;</span>Envoyer<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;activity2_name&#34;</span><span style="color:#f92672">&gt;</span>Seconde Activité<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;message_recu&#34;</span><span style="color:#f92672">&gt;</span>Message reçu<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;entrez_votre_message&#34;</span><span style="color:#f92672">&gt;</span>Entrez votre message<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;repondre&#34;</span><span style="color:#f92672">&gt;</span>Répondre<span style="color:#f92672">&lt;/string&gt;</span>
+   <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;entrez_votre_reponse&#34;</span><span style="color:#f92672">&gt;</span>Entrez votre réponse<span style="color:#f92672">&lt;/string&gt;</span>
+<span style="color:#f92672">&lt;/resources&gt;</span>
+</code></pre></div><p>D&rsquo;ailleurs ce fichier est essentiel si on veut traduire notre application mais on verra ça plus tard.</p>
+</blockquote>
+<p>Dans notre contrôleur nous allons ajouter un <code>Itent</code> et son extra ainsi que l&rsquo;action à effectuer:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String EXTRA_REPLY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;deuxActivite.extra.REPLY&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> EditText mReply<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">);</span>
+        setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_second</span><span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">// reception du message du main
+</span><span style="color:#75715e"></span>        Intent intent <span style="color:#f92672">=</span> getIntent<span style="color:#f92672">();</span>
+        String message <span style="color:#f92672">=</span> intent<span style="color:#f92672">.</span><span style="color:#a6e22e">getStringExtra</span><span style="color:#f92672">(</span>MainActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">EXTRA_MESSAGE</span><span style="color:#f92672">);</span>
+        TextView textView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_message</span><span style="color:#f92672">);</span>
+        textView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+
+        mReply <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">edit_text_reponse</span><span style="color:#f92672">);</span>
+
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">returnReply</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// récupération de la réponse de l&#39;utilisateur
+</span><span style="color:#75715e"></span>        String reply <span style="color:#f92672">=</span> mReply<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+        <span style="color:#75715e">// Instanciation d&#39;un nouvel intent
+</span><span style="color:#75715e"></span>        Intent replyIntent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">();</span>
+        replyIntent<span style="color:#f92672">.</span><span style="color:#a6e22e">putExtra</span><span style="color:#f92672">(</span>EXTRA_REPLY<span style="color:#f92672">,</span>reply<span style="color:#f92672">);</span>
+        <span style="color:#75715e">// mise à jour de l&#39;état de la réponse
+</span><span style="color:#75715e"></span>        setResult<span style="color:#f92672">(</span>RESULT_OK<span style="color:#f92672">,</span>replyIntent<span style="color:#f92672">);</span>
+        <span style="color:#75715e">// on termine l&#39;activité 2
+</span><span style="color:#75715e"></span>        finish<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<p><strong>Attention ✋ :</strong> Vous remarquerez que l&rsquo;on instancie un <strong>nouvel</strong> <code>Intent</code> et que nous <strong>terminons</strong> l&rsquo;activité avec <code>finish()</code></p>
+</blockquote>
+<h2 id="il-nous-reste-à-recevoir-la-réponse">Il nous reste à recevoir la réponse</h2>
+<p>Ajoutez le <code>Textview</code> pour la réponse par copié collé et modification adéquate.</p>
+<p>Vous devriez obtenir le xml suivant à ajouter dans <code>activity_main.xml</code> :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/text_header_reply&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;16dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/reponse_de_la_2eme_vue&#34;</span>
+        <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@style/TextAppearance.AppCompat.Medium&#34;</span>
+        <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span><span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/text_message_reply&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/reponse_vue2&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toBottomOf=</span><span style="color:#e6db74">&#34;@id/text_header_reply&#34;</span><span style="color:#f92672">/&gt;</span>
+</code></pre></div><blockquote>
+<p><strong>Remarque:</strong> ne copiez pas mon code et essayer de faire la manipulation vous même.</p>
+</blockquote>
+<p>Modifiez la visibilité des deux <code>TextView</code> en ajoutant l&rsquo;attribut <code>android:visibility=&quot;invisible&quot;</code> à chacun d&rsquo;eux. Ainsi ces textes ne s&rsquo;afficherons que quand on aura fait notre passage par la deuxième vue.</p>
+<h2 id="dernière-chose-à-faire">Dernière chose à faire&hellip;</h2>
+<p>Déclarons et activons tout ça dans le <code>MainActivity.java</code></p>
+<p>Les déclarations d&rsquo;usage maintenant en haut de notre classe:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> TextView mReplyHeadTextView<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">private</span> TextView mReplyTextView<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> TEXT_REQUEST <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</code></pre></div><p>en haut de notre classe et une nouveauté <code>TEXT_REQUEST</code> (suspens&hellip;)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">mReplyHeadTextView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_header_reply</span><span style="color:#f92672">);</span>
+mReplyTextView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_message_reply</span><span style="color:#f92672">);</span>
+</code></pre></div><p>Dans la méthode <code>onCreate()</code>.</p>
+<p>Modifiez la méthode de lancement de l&rsquo;activité de <code>startActivity(intent)</code> en <code>startActivityForResult(intent,TEXT_REQUEST);</code>.</p>
+<p>Maintenant surchargeons la méthode <code>onActivityResult</code> avec nos conditions. C&rsquo;est elle qui va récupérer notre réponse s&rsquo;il y en a une et afficher le message.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onActivityResult</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> requestCode<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> resultCode<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> Intent data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onActivityResult</span><span style="color:#f92672">(</span>requestCode<span style="color:#f92672">,</span> resultCode<span style="color:#f92672">,</span> data<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>requestCode <span style="color:#f92672">==</span> TEXT_REQUEST<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>resultCode <span style="color:#f92672">==</span> RESULT_OK<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                String reply <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span><span style="color:#a6e22e">getStringExtra</span><span style="color:#f92672">(</span>SecondActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">EXTRA_REPLY</span><span style="color:#f92672">);</span>
+
+                mReplyHeadTextView<span style="color:#f92672">.</span><span style="color:#a6e22e">setVisibility</span><span style="color:#f92672">(</span>View<span style="color:#f92672">.</span><span style="color:#a6e22e">VISIBLE</span><span style="color:#f92672">);</span>
+
+                mReplyTextView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>reply<span style="color:#f92672">);</span>
+                mReplyTextView<span style="color:#f92672">.</span><span style="color:#a6e22e">setVisibility</span><span style="color:#f92672">(</span>View<span style="color:#f92672">.</span><span style="color:#a6e22e">VISIBLE</span><span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+</code></pre></div><p>Et c&rsquo;est tout! Maintenant, si vous lancez l&rsquo;application vous devez pouvoir faire voyager des messages d&rsquo;un côté à l&rsquo;autre.</p>
 
 		</div>
 		<footer class="post__footer">
