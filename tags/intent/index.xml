@@ -13,10 +13,10 @@
     
     <item>
       <title>Voyage entre les Intent</title>
-      <link>/post/cours/android3/</link>
+      <link>/post/cours/android/android3/</link>
       <pubDate>Fri, 27 Mar 2020 10:57:32 +0000</pubDate>
       
-      <guid>/post/cours/android3/</guid>
+      <guid>/post/cours/android/android3/</guid>
       <description>Les Activités et les Intent Nous avons vue que les vues étaient appelées des activités en Android. Afin d&amp;rsquo;ouvrir une nouvelle activité et transférer des information d&amp;rsquo;une activité à l&amp;rsquo;autre nous allons avoir besoin des Intent qui vont permettre de faire naviguer des informations d&amp;rsquo;une vue à l&amp;rsquo;autre.
     Nous allons faire une simple application qui dans un premier temps ouvrira une deuxième activité au clique sur un bouton et dans un deuxième temps nous verrons comment envoyer un message sur la deuxième activité puis enfin renvoyer une réponse sur la première.</description>
     </item>

@@ -13,10 +13,10 @@
     
     <item>
       <title>JavaFX et sauvegarde Partie 2</title>
-      <link>/post/cours/javafx2/</link>
+      <link>/post/cours/java/javafx2/</link>
       <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
       
-      <guid>/post/cours/javafx2/</guid>
+      <guid>/post/cours/java/javafx2/</guid>
       <description>🎥 La vidéo arrive! Juste le temps de la faire 🎥
  maj: 21/03/2020
  Prérequis: avoir suivi la première partie JavaFX et sauvegarde Partie 1
@@ -26,10 +26,10 @@ Importons Json.simple Il faut tout d&amp;rsquo;abord importer la bibliothèque. 
     
     <item>
       <title>JavaFX et sauvegarde Partie 1</title>
-      <link>/post/cours/javafx/</link>
+      <link>/post/cours/java/javafx/</link>
       <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
       
-      <guid>/post/cours/javafx/</guid>
+      <guid>/post/cours/java/javafx/</guid>
       <description>Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.
   Commençons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix.</description>
     </item>

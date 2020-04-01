@@ -13,20 +13,20 @@
     
     <item>
       <title>Notre première fenêtre JavaFX</title>
-      <link>/post/cours/javafxprems/</link>
+      <link>/post/cours/java/javafxprems/</link>
       <pubDate>Tue, 31 Mar 2020 13:32:09 +0000</pubDate>
       
-      <guid>/post/cours/javafxprems/</guid>
+      <guid>/post/cours/java/javafxprems/</guid>
       <description>Notre tout premier projet en JavaFX Dans cette vidéo je vous montre comment créer un premier projet JavaFX FXML. Je vais utiliser l&amp;rsquo;architecture maven pour ce projet car depuis le jdk 9 JavaFX n&amp;rsquo;est plus intégré nativement à la jvm et au jdk ce qui nous oblige à l&amp;rsquo;ajouter à nos projets.
 Une option aurait été d&amp;rsquo;ajouter manuellement les librairies nécessaires mais maven peut faire le travail pour nous. De plus maven va gérer les dépendances du projet pour nous et rendre le projet migrable d&amp;rsquo;un poste de développement à l&amp;rsquo;autre.</description>
     </item>
     
     <item>
       <title>JavaFX et sauvegarde Partie 2</title>
-      <link>/post/cours/javafx2/</link>
+      <link>/post/cours/java/javafx2/</link>
       <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
       
-      <guid>/post/cours/javafx2/</guid>
+      <guid>/post/cours/java/javafx2/</guid>
       <description>🎥 La vidéo arrive! Juste le temps de la faire 🎥
  maj: 21/03/2020
  Prérequis: avoir suivi la première partie JavaFX et sauvegarde Partie 1
@@ -36,10 +36,10 @@ Importons Json.simple Il faut tout d&amp;rsquo;abord importer la bibliothèque. 
     
     <item>
       <title>JavaFX et sauvegarde Partie 1</title>
-      <link>/post/cours/javafx/</link>
+      <link>/post/cours/java/javafx/</link>
       <pubDate>Mon, 16 Mar 2020 15:05:18 +0000</pubDate>
       
-      <guid>/post/cours/javafx/</guid>
+      <guid>/post/cours/java/javafx/</guid>
       <description>Sauvegardons des données en Json Plusieurs bibliothèques existent pour exploiter le Json avec Java. Je vous propose d&amp;rsquo;en essayer 2. Nous utiliserons Json.simple et Jackson. La première est très simple d&amp;rsquo;utilisation comme son nom l&amp;rsquo;indique et la deuxième nous donnera plus d&amp;rsquo;outils pour la gestion de nos objets. Je prend le partie de vous montrer l&amp;rsquo;application de ces outils avec JavaFX car le bind sera particulier dans ce cas.
   Commençons par l&amp;rsquo;interface graphique Créez un projet dans l&amp;rsquo;IDE de votre choix.</description>
     </item>

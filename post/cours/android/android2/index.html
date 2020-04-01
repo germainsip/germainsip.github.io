@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>TextView et scroll - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="vues texte et défilements en android">
+	<meta property="og:title" content="TextView et scroll" />
+<meta property="og:description" content="vues texte et défilements en android" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/android/android2/" />
+<meta property="article:published_time" content="2020-03-26T09:37:44+00:00" />
+<meta property="article:modified_time" content="2020-03-26T09:37:44+00:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TextView et scroll"/>
+<meta name="twitter:description" content="vues texte et défilements en android"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">TextView et scroll</h1>
+			<p class="post__lead">Vues texte et défilements en android</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2020-03-26T09:37:44Z">26-03-2020</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/img/androidbase.png" alt="TextView et scroll">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#les-textview">Les <code>TextView</code></a></li>
+    <li><a href="#notre-projet">Notre projet</a></li>
+    <li><a href="#ajoutons-un-article">Ajoutons un article</a></li>
+    <li><a href="#et-le-scroll-alors-">Et le Scroll alors ?</a></li>
+    <li><a href="#inclusion-dans-un-viewgroup">Inclusion dans un <code>ViewGroup</code></a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="les-textview">Les <code>TextView</code></h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/D5EjqPIbFIU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<hr>
+<hr>
+<p>L&rsquo;application Texte défilant illustre le <code>ScrollView</code> composant d&rsquo;interface utilisateur. <code>ScrollView</code>est un <code>ViewGroup</code> qui dans cet exemple contient un <code>TextView</code>. Il affiche une longue page de texte (dans ce cas, une critique d&rsquo;album musical) que l&rsquo;utilisateur peut faire défiler verticalement pour lire en faisant glisser vers le haut et vers le bas. Une barre de défilement apparaît dans la marge de droite. L&rsquo;application montre comment utiliser du texte formaté avec un minimum de balises HTML pour définir le texte en gras ou en italique, et avec des caractères de nouvelle ligne pour séparer les paragraphes. Vous pouvez également inclure des liens Web actifs dans le texte.</p>
+<p><img src="/img/android/textView.png" alt="textView1"></p>
+<h2 id="notre-projet">Notre projet</h2>
+<ul>
+<li>Commencez par créer un nouveau projet.</li>
+<li>Ouvrez <code>activity_main.xml</code> et remplacez <code>android.support.constraint.ConstraintLayout</code> par <code>RelativeLayout</code>.</li>
+<li>Supprimez la ligne <code>xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</code></li>
+<li>Et faites les modifications suivantes dans le TextView <code>Hello world</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+  <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+  <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+  <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_heading&#34;</span>
+  <span style="color:#a6e22e">android:background=</span><span style="color:#e6db74">&#34;@color/colorPrimary&#34;</span>
+  <span style="color:#a6e22e">android:textColor=</span><span style="color:#e6db74">&#34;@android:color/white&#34;</span>
+  <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;10dp&#34;</span>
+  <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault.Large&#34;</span>
+  <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span>
+  <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Titre de l&#39;article&#34;</span>
+<span style="color:#f92672">/&gt;</span>
+</code></pre></div><blockquote>
+<p>Il est recommandé de mettre nos textes et nos paramètres dans les ressources alors c&rsquo;est ce que nous allons faire.</p>
+</blockquote>
+<p>cliquez sur le <code>&quot;Titre de l'article&quot;</code> et une ampoule devrait apparaître (ou alt-entrée) et <code>Extract string resource</code>.</p>
+<p>Faites de même pour le <strong>padding</strong>  <code>Extract dimension resource</code> et nommez la ressource <code>padding_regular</code>.</p>
+<p>Nous allons continuer avec un autre TextView pour le sous titre:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_sub_heading&#34;</span>
+        <span style="color:#a6e22e">android:layout_below=</span><span style="color:#e6db74">&#34;@+id/article_heading&#34;</span>
+        <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+        <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Sous titre article&#34;</span>
+        <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>et on ajoute le contenu de l&rsquo;article:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_below=</span><span style="color:#e6db74">&#34;@id/article_sub_heading&#34;</span>
+        <span style="color:#a6e22e">android:lineSpacingExtra=</span><span style="color:#e6db74">&#34;@dimen/line_spacing&#34;</span>
+        <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/texte_de_l_article&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Normalement vous avez ça:</p>
+<p><img src="/img/android/textview2.png" alt="textview2"></p>
+<h2 id="ajoutons-un-article">Ajoutons un article</h2>
+<p>Dans la pratique, une application irait chercher le contenu de l&rsquo;article via un site externe ou une source type base de donnée.
+Ici nous allons tricher un peu.</p>
+<p>Ouvrez le fichier <code>res-&gt;values-&gt;strings.xml</code> et remplacez le contenue de <code>&lt;string name=&quot;texte_de_l_article&quot;&gt;...&lt;/string&gt;</code> par</p>
+<pre><code>Dans un coffre-fort au cœur des studios Abbey Road à Londres - protégés par une porte banalisée, à triple verrouillage et alarmée par la police - se trouvent quelque chose comme 400 heures d\'enregistrements inédits des Beatles, à partir du 2 juin 1962 et se terminant par les toutes dernières pistes enregistrées pour l\'album &lt;i&gt; Let It Be &lt;/i&gt;. Le meilleur des meilleurs a été publié par Apple Records sous la forme de la série Anthology en 3 volumes.
+Pour plus d\'informations, consultez la Beatles Time Capsule sur www.rockument.com.
+\n\n Ce volume commence par la première nouvelle chanson des Beatles, &quot;Free as a Bird&quot; (basé sur une démo de John Lennon, trouvée uniquement sur &lt;i&gt; The Lost Lennon Tapes Vol. 28 &lt;/i&gt;, et couvre les tout premiers enregistrements historiques, les sorties des premiers albums et les enregistrements en direct des premiers concerts et des sessions de la radio BBC.
+\n\n
+&lt;b&gt; Les points forts incluent: &lt;/b&gt;\n\n
+&lt;b&gt; &lt;i&gt; Cry for a Shadow &lt;/i&gt; &lt;/b&gt; - Beaucoup de fanatiques des Beatles ont commencé la route de la sortie, comme moi, avec une première écoute de cette chanson. Initialement intitulé &quot;Beatle Bop&quot; et enregistré en une seule session qui a produit quatre chansons (les trois autres avec Tony Sheridan avec les Beatles comme groupe d\'accompagnement), &quot;Cry for a Shadow&quot; est un instrument écrit par Lennon et Harrison, ce qui en fait unique à ce jour. John Lennon joue de la guitare rythmique, George Harrison joue de la guitare solo, Paul McCartney joue de la basse et Pete Best joue de la batterie. Les sessions ont été produites par Bert Kaempfert à Hambourg, en Allemagne, lors de la deuxième visite des Beatles d\'avril à juillet 1961 pour jouer dans les clubs de la section Reeperbahn.
+\n\n
+&lt;b&gt; &lt;i&gt; My Bonnie &lt;/i&gt; &lt;/b&gt; et &lt;b&gt; &lt;i&gt; Ain\'t She Sweet &lt;/i&gt; &lt;/b&gt; - À la même session, les Beatles ont joué sur &quot;My Bonnie&quot; (le premier single jamais joué par les Beatles), en tant que groupe d\'accompagnement du chanteur anglais Tony Sheridan, à l\'origine membre des Jets. La popularité de ce single à Liverpool a attiré l\'attention des Beatles sur Brian Epstein, qui a travaillé dans le magasin de disques NEMS et a tenté de répondre à la demande pour le disque. John Lennon chante ensuite une belle chanson &quot;Ain\’t She Sweet&quot; (sa toute première voix sortie).
+\n\n
+&lt;b&gt;&lt;i&gt;Searchin&lt;/i&gt; &lt;/b&gt; - Une chanson de comédie Jerry Leiber - Mike Stoller qui a été un succès pour les Coasters en 1957 et un favori populaire des Beatles. Les Coasters ont également eu un succès avec &quot;Besame Mucho&quot; et les Beatles ont également repris cette chanson. Ringo Starr avait désormais remplacé Pete Best à la batterie. Le fausset haut est George, qui joue également une guitare solo hésitante. Ceci est de leur première audition pour Decca Records à Londres le 1er janvier 1962, en direct dans le studio. The Grateful Dead couvrira plus tard &quot;Searchin&quot; avec un arrangement similaire, Pigpen faisant la voix de Paul. Une version live est disponible sur les records de sortie avec les Dead rejoint par les Beach Boys!\n\n&lt;b&gt; &lt;i&gt; Love Me Do &lt;/i&gt; &lt;/b&gt; - Une première version de la chanson, jouée un peu plus lentement et avec plus de blues, et un beat bossa-nova cool au milieu. Paul a dû chanter pendant que John jouait de l\'harmonica - une première pour le groupe. Pete Best a joué de la batterie sur cette version.
+\n\n
+&lt;b&gt; &lt;i&gt; She Loves You - Till There Was You - Twist and Shout &lt;/i&gt; &lt;/b&gt; - Live au Princess Wales Theatre de Leicester Square à Londres, en présence de la reine. &quot;Till There Was You&quot; (de Meredith Wilson) est tiré de la comédie musicale The Music Man et un hit pour Peggy Lee en 1961. Avant de le jouer, Paul a dit qu\'il avait été enregistré par son groupe américain préféré, &quot;Sophie Tucker&quot; (qui a obtenu des rires). À la fin, John dit aux gens sur les sièges les moins chers de taper dans leurs mains et aux autres de «faire vibrer vos bijoux», puis annonce «Twist and Shout» (une chanson de Bert Russell et Phil Medley qui a été enregistrée pour la première fois en 1962 par les Isley Brothers). Un film de la représentation montre la reine souriant à la remarque de John.
+\n\n
+&lt;b&gt; &lt;i&gt; Leave My Kitten Alone &lt;/i&gt; &lt;/b&gt; - Une des chansons perdues des Beatles enregistrées pendant les sessions &quot;Beatles For Sale&quot; mais jamais sorties. Cette chanson, écrite par Little Willie John, Titus Turner et James McDougal, était un hit R &amp;amp; B de 1959 pour Little Willie John et reprise par Johnny Preston avant que les Beatles ne l\'essayent et ne la mettent de côté. Une référence à un «gros gros bouledogue» a peut-être influencé «Hey Bulldog» de John (album Yellow Submarine), qui est un rockeur similaire.
+\n\n
+&lt;b&gt; &lt;i&gt; One After 909 &lt;/i&gt; &lt;/b&gt; - Une chanson enregistrée pour l\'album &lt;i&gt; Let It Be &lt;/i&gt; a en fait été reprise au début, six ans plus tôt. Cette prise montre comment ils l\'ont fait beaucoup plus lentement, avec une sensation R &amp;amp; B.
+</code></pre><p>Cette chaine est similaire à du <strong>html</strong> pour le gras et l&rsquo;italique, faites bien attention à ce que vos caractères spéciaux soient échapés.</p>
+<blockquote>
+<p>N&rsquo;oubliez pas de modifier le titre et le sous titre de l&rsquo;article !</p>
+</blockquote>
+<h2 id="et-le-scroll-alors-">Et le Scroll alors ?</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/VSBjfV6ttzI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<hr>
+<hr>
+<p>Si vous avez testé votre application, vous avez surement remarqué que pour le moment rien ne scroll et que le lien vers <a href="http://www.rockument.com">www.rockument.com</a> et inactif.</p>
+<p>L&rsquo;outil que nous allons utiliser est le <code>ScrollView</code>. Celà fonctionne comme des poupées gigognes.</p>
+<p>Insérez une balise <code>&lt;ScrolView&gt;</code>et mettez le TextView de l&rsquo;article dedans. Puis déplacez la contrainte placement au niveau du <code>ScrollView</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;ScrollView</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_below=</span><span style="color:#e6db74">&#34;@id/article_sub_heading&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:lineSpacingExtra=</span><span style="color:#e6db74">&#34;@dimen/line_spacing&#34;</span>
+        <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/texte_de_l_article&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/ScrollView&gt;</span>
+</code></pre></div><p>Ajoutez aussi l&rsquo;attribut dans les attributs du <code>TextView</code></p>
+<p>A partir de maintenant notre article scroll et le lien hypertext est actif.</p>
+<p>Le sous titre ne scroll pas avec le reste! Le <code>ScrollView</code> ne peut prendre qu&rsquo;un seul enfant, cependant nous pouvons imbriquer un <code>ViewGroup</code> dans le <code>ScrollView</code>.</p>
+<h2 id="inclusion-dans-un-viewgroup">Inclusion dans un <code>ViewGroup</code></h2>
+<p>C&rsquo;est très simple nous allons ajouter une balise ouvrante et fermante <!-- raw HTML omitted --> y inclure nos 2 <code>TextView</code> enlever la contrainte du sous-titre et modifier celle du <code>ScrollView</code>. Enfin définissez le <code>LinearLayout</code>sur vertical.</p>
+<p>Voici le xml que vous devriez avoir:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;RelativeLayout</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:tools=</span><span style="color:#e6db74">&#34;http://schemas.android.com/tools&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">tools:context=</span><span style="color:#e6db74">&#34;.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_heading&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:background=</span><span style="color:#e6db74">&#34;@color/colorPrimary&#34;</span>
+        <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/titre_de_l_article&#34;</span>
+        <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault.Large&#34;</span>
+        <span style="color:#a6e22e">android:textColor=</span><span style="color:#e6db74">&#34;@android:color/white&#34;</span>
+        <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+
+    <span style="color:#f92672">&lt;ScrollView</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_below=</span><span style="color:#e6db74">&#34;@id/article_heading&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;LinearLayout</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span><span style="color:#f92672">&gt;</span>
+
+            <span style="color:#f92672">&lt;TextView</span>
+                <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article_sub_heading&#34;</span>
+                <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+                <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+                <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/sous_titre_article&#34;</span>
+                <span style="color:#a6e22e">android:textAppearance=</span><span style="color:#e6db74">&#34;@android:style/TextAppearance.DeviceDefault&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+            <span style="color:#f92672">&lt;TextView</span>
+                <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/article&#34;</span>
+                <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+                <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+                <span style="color:#a6e22e">android:autoLink=</span><span style="color:#e6db74">&#34;web&#34;</span>
+                <span style="color:#a6e22e">android:lineSpacingExtra=</span><span style="color:#e6db74">&#34;@dimen/line_spacing&#34;</span>
+                <span style="color:#a6e22e">android:padding=</span><span style="color:#e6db74">&#34;@dimen/padding_regular&#34;</span>
+                <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;@string/texte_de_l_article&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+    <span style="color:#f92672">&lt;/ScrollView&gt;</span>
+
+<span style="color:#f92672">&lt;/RelativeLayout&gt;</span>
+</code></pre></div><blockquote>
+<p>Remarquez que j&rsquo;ai aussi ajouté l&rsquo;attribut <code>android:autoLink=&quot;web&quot;</code> dans l&rsquo;article afin que le lien web soit actif.</p>
+</blockquote>
+<p>Lancez l&rsquo;app et le tour est Joué.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/android/" rel="tag">Android</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/scrollview/" rel="tag">ScrollView</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuelement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/android/android1/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">Notre première appli Android</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next">
+		<a class="post-nav__link" href="/post/cours/android/android3/" rel="next"><span class="post-nav__caption">Suivant&thinsp;»</span><p class="post-nav__post-title">Voyage entre les Intent</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
