@@ -83,7 +83,7 @@
 <hr>
 <hr>
 <p>⏳  Article en cours de rédaction  ⏳</p>
-<p>Téléchargez ces <a href="/download/droidCafe.zip">images</a> ou utilisez les votres. Nous allons les intégrer à une application avec des images cliquables.</p>
+<p>Téléchargez ces <a href="/download/droidCafe.zip">images</a> ou utilisez les vôtres. Nous allons les intégrer à une application avec des images cliquables.</p>
 <p>Créez un projet qui s&rsquo;appel &ldquo;Droid Cafe&rdquo; en choisissant <strong>Basic Activity</strong> cette fois ci.</p>
 <p>Nous ne toucherons pas à <code>activity_main.xml</code> mais à <code>content_main.xml</code>.</p>
 <p>Dans <code>content_main.xml</code> commencez par supprimer le <code>fragment</code> (nous aborderons ces notions bien plus tard).</p>
@@ -208,8 +208,25 @@ L&rsquo;IDE devrait vous proposer de choisir une ressource à lui associer. Choi
 <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ice_cream_order_message&#34;</span><span style="color:#f92672">&gt;</span>Vous avez commandé une Glace<span style="color:#f92672">&lt;/string&gt;</span>
 <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;froyo_order_message&#34;</span><span style="color:#f92672">&gt;</span>Vous avez commandé un Froyo<span style="color:#f92672">&lt;/string&gt;</span>
 </code></pre></div><p>Dans <code>MainActivity</code> ajoutons la métohde <code>displayToast()</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
-</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">displayToast</span><span style="color:#f92672">(</span>String message<span style="color:#f92672">){</span>
+    Toast<span style="color:#f92672">.</span><span style="color:#a6e22e">makeText</span><span style="color:#f92672">(</span>getApplicationContext<span style="color:#f92672">(),</span> message<span style="color:#f92672">,</span>Toast<span style="color:#f92672">.</span><span style="color:#a6e22e">LENGTH_SHORT</span><span style="color:#f92672">).</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Cette méthode va afficher un toast en bas de l'écran reprenant le message que nous voulons afficher.</p>
+<blockquote>
+<p>Remarquez que makeText prend 3 paramètres: le <code>context</code>, le message et le type d&rsquo;alerte.</p>
+</blockquote>
+<p>On va maintenant définir les méthodes liées à nos boutons. J&rsquo;en écris une, à vous d'écrire les autres.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Affiche un message disant que le donut a été sélectionné
+</span><span style="color:#75715e">     * @param view
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showDonutOrder</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">){</span>
+        displayToast<span style="color:#f92672">(</span>getString<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">string</span><span style="color:#f92672">.</span><span style="color:#a6e22e">donut_order_message</span><span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Enfin nous allons lier nos images aux méthodes en ajoutant l&rsquo;attribut <code>onClick</code> à nos images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">android:onClick=&#34;showDonutOrder&#34;
+</code></pre></div><p>Faites ça pour les 3 images</p>
+
 		</div>
 		<footer class="post__footer">
 			
