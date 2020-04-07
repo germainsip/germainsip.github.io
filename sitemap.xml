@@ -3,8 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/android/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/android/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/android/android_images/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/design/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
   </url>
   
   <url>
@@ -23,33 +58,8 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/cours/java/javafxprems/</loc>
     <lastmod>2020-03-31T13:32:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/android/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/android/</loc>
-    <lastmod>2020-03-27T10:57:32+00:00</lastmod>
   </url>
   
   <url>

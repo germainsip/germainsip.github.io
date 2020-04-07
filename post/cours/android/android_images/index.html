@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android et les images - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Android et les images">
+	<meta property="og:title" content="Android et les images" />
+<meta property="og:description" content="Android et les images" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/android/android_images/" />
+<meta property="article:published_time" content="2020-04-02T09:10:15+00:00" />
+<meta property="article:modified_time" content="2020-04-02T09:10:15+00:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Android et les images"/>
+<meta name="twitter:description" content="Android et les images"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android et les images</h1>
+			<p class="post__lead">Ajoutons des images à nos applications (en cours de rédaction)</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2020-04-02T09:10:15Z">02-04-2020</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/android/" rel="category">Android</a>
+	</span>
+</div></div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/img/androidbase.png" alt="Android et les images">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ajoutons-des-images-à-tout-ça">Ajoutons des images à tout ça</a></li>
+    <li><a href="#un-peu-daction">Un peu d&rsquo;action</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="ajoutons-des-images-à-tout-ça">Ajoutons des images à tout ça</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/O8OaBudUmXY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<hr>
+<hr>
+<p>⏳  Article en cours de rédaction  ⏳</p>
+<p>Téléchargez ces <a href="/download/droidCafe.zip">images</a> ou utilisez les votres. Nous allons les intégrer à une application avec des images cliquables.</p>
+<p>Créez un projet qui s&rsquo;appel &ldquo;Droid Cafe&rdquo; en choisissant <strong>Basic Activity</strong> cette fois ci.</p>
+<p>Nous ne toucherons pas à <code>activity_main.xml</code> mais à <code>content_main.xml</code>.</p>
+<p>Dans <code>content_main.xml</code> commencez par supprimer le <code>fragment</code> (nous aborderons ces notions bien plus tard).</p>
+<p>Remplacez le par un TextView :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+    <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/textintro&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+    <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Les Desserts du Café&#34;</span>
+    <span style="color:#a6e22e">android:textSize=</span><span style="color:#e6db74">&#34;24sp&#34;</span>
+    <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintEnd_toEndOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Copiez collez les 3 images dans le dossier res/drawable puis glissez depuis la palette une <code>ImageView</code>
+L&rsquo;IDE devrait vous proposer de choisir une ressource à lui associer. Choisissez le donuts. Ajoutez une contrainte liée au titre et réglez les 2 contraintes à 24dp.</p>
+<p>Vous devriez avoir:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;ImageView</span>
+    <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/donut&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+    <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+    <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+    <span style="color:#a6e22e">app:layout_constraintTop_toBottomOf=</span><span style="color:#e6db74">&#34;@+id/textintro&#34;</span>
+    <span style="color:#a6e22e">app:srcCompat=</span><span style="color:#e6db74">&#34;@drawable/donut_circle&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>et visuellement</p>
+<p><img src="/img/android/ajoutDonut.png" alt="donut1"></p>
+<p>Ajoutez une description en attribut et envoyez la dans les <code>strings.xml</code>. Vous pourrez ensuite ajouter un <code>TextView</code> et reprendre cette déscription directement. Je vous laisse faire la mise en page. Mais je vous donne quand même le résultat en xml si vous êtes bloqués.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/textintro&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;8dp&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Les Desserts du Café&#34;</span>
+        <span style="color:#a6e22e">android:textSize=</span><span style="color:#e6db74">&#34;24sp&#34;</span>
+        <span style="color:#a6e22e">android:textStyle=</span><span style="color:#e6db74">&#34;bold&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintEnd_toEndOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/donut&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:contentDescription=</span><span style="color:#e6db74">&#34;Les Donuts sont fourrés et avec un joli glaçage&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toBottomOf=</span><span style="color:#e6db74">&#34;@+id/textintro&#34;</span>
+        <span style="color:#a6e22e">app:srcCompat=</span><span style="color:#e6db74">&#34;@drawable/donut_circle&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/ice_cream_sandwich&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:contentDescription=</span><span style="color:#e6db74">&#34;Les sandwiches à la crème glacée ont des gaufrettes au chocolat et une garniture à la vanille.&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toBottomOf=</span><span style="color:#e6db74">&#34;@+id/donut&#34;</span>
+        <span style="color:#a6e22e">app:srcCompat=</span><span style="color:#e6db74">&#34;@drawable/icecream_circle&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;ImageView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/froyo&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:contentDescription=</span><span style="color:#e6db74">&#34;Le FroYo est un yogourt glacé libre-service de première qualité.&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toBottomOf=</span><span style="color:#e6db74">&#34;@+id/ice_cream_sandwich&#34;</span>
+        <span style="color:#a6e22e">app:srcCompat=</span><span style="color:#e6db74">&#34;@drawable/froyo_circle&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/donut_Description&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;TextView&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintEnd_toEndOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintHorizontal_bias=</span><span style="color:#e6db74">&#34;0.503&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toEndOf=</span><span style="color:#e6db74">&#34;@+id/donut&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;@+id/donut&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/ice_cream_sandwichs_description&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;TextView&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintEnd_toEndOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toEndOf=</span><span style="color:#e6db74">&#34;@+id/ice_cream_sandwich&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;@+id/ice_cream_sandwich&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/froyo_decription&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginStart=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginTop=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:layout_marginEnd=</span><span style="color:#e6db74">&#34;24dp&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;TextView&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintEnd_toEndOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintStart_toEndOf=</span><span style="color:#e6db74">&#34;@+id/froyo&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;@+id/froyo&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Pensez bien à extraire les textes dans <code>strings.xml</code> et de les récupérer dans vos <code>TextView</code> pour obtenir le visuel suivant:</p>
+<p><img src="/img/android/donytcafe.png" alt="visuel droid cafe"></p>
+<h2 id="un-peu-daction">Un peu d&rsquo;action</h2>
+<hr>
+<blockquote>
+<p>vidéo à venir</p>
+</blockquote>
+<hr>
+<p>Dans un premier temps, nous allons afficher un <code>Toast</code> qui affiche quelle image a été cliquée.</p>
+<p>Commençons par écrire nos messages dans <code>strings.xml</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;donut_order_message&#34;</span><span style="color:#f92672">&gt;</span>Vous avez commandé un Donut<span style="color:#f92672">&lt;/string&gt;</span>
+<span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ice_cream_order_message&#34;</span><span style="color:#f92672">&gt;</span>Vous avez commandé une Glace<span style="color:#f92672">&lt;/string&gt;</span>
+<span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;froyo_order_message&#34;</span><span style="color:#f92672">&gt;</span>Vous avez commandé un Froyo<span style="color:#f92672">&lt;/string&gt;</span>
+</code></pre></div><p>Dans <code>MainActivity</code> ajoutons la métohde <code>displayToast()</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+</code></pre></div>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/android/" rel="tag">Android</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/design/" rel="tag">design</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuelement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/java/javafxprems/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">Notre première fenêtre JavaFX</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
