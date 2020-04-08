@@ -46,7 +46,7 @@
 	<article class="post">
 		<header class="post__header">
 			<h1 class="post__title">Android et les images</h1>
-			<p class="post__lead">Ajoutons des images à nos applications (en cours de rédaction)</p>
+			<p class="post__lead">Ajoutons des images à nos applications</p>
 			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
@@ -69,6 +69,7 @@
   <ul>
     <li><a href="#ajoutons-des-images-à-tout-ça">Ajoutons des images à tout ça</a></li>
     <li><a href="#un-peu-daction">Un peu d&rsquo;action</a></li>
+    <li><a href="#une-nouvelle-activité">Une nouvelle activité</a></li>
   </ul>
 </nav>
 	</div>
@@ -82,7 +83,6 @@
 
 <hr>
 <hr>
-<p>⏳  Article en cours de rédaction  ⏳</p>
 <p>Téléchargez ces <a href="/download/droidCafe.zip">images</a> ou utilisez les vôtres. Nous allons les intégrer à une application avec des images cliquables.</p>
 <p>Créez un projet qui s&rsquo;appel &ldquo;Droid Cafe&rdquo; en choisissant <strong>Basic Activity</strong> cette fois ci.</p>
 <p>Nous ne toucherons pas à <code>activity_main.xml</code> mais à <code>content_main.xml</code>.</p>
@@ -225,7 +225,22 @@ L&rsquo;IDE devrait vous proposer de choisir une ressource à lui associer. Choi
     <span style="color:#f92672">}</span>
 </code></pre></div><p>Enfin nous allons lier nos images aux méthodes en ajoutant l&rsquo;attribut <code>onClick</code> à nos images.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">android:onClick=&#34;showDonutOrder&#34;
-</code></pre></div><p>Faites ça pour les 3 images</p>
+</code></pre></div><p>Faites ça pour les 3 images.</p>
+<h2 id="une-nouvelle-activité">Une nouvelle activité</h2>
+<p>Pour le principe, nous avons un <code>FloatingActionButton</code> alors on va l&rsquo;utiliser.
+Ajoutez une nouvelle activité et nommez la <code>OrderActivity.java</code></p>
+<p>Modifiez la méthode onClick() pour obtenir:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> fab<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> View<span style="color:#f92672">.</span><span style="color:#a6e22e">OnClickListener</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View view<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Intent intent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">(</span>MainActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">this</span><span style="color:#f92672">,</span>OrderActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+        startActivity<span style="color:#f92672">(</span>intent<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+</code></pre></div><p>Ainsi, maintenant, quand on clique sur le fab. On ouvre une nouvelle activité.</p>
+<blockquote>
+<p>Dans la vidéo je vous montre comment changer son aspect également.</p>
+</blockquote>
 
 		</div>
 		<footer class="post__footer">
