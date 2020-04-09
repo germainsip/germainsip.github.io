@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/api/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/api/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/php/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/php/api/</loc>
+    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/android/</loc>
     <lastmod>2020-04-02T09:10:15+00:00</lastmod>
   </url>
@@ -18,27 +58,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/design/</loc>
-    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-04-02T09:10:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-04-02T09:10:15+00:00</lastmod>
   </url>
   
