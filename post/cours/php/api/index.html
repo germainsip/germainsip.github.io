@@ -67,12 +67,12 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#-en-cours-de-rédaction-">✋ en cours de rédaction ✋</a></li>
     <li><a href="#ça-sert-à-quoi-une-api">Ça sert à quoi une API?</a></li>
     <li><a href="#quallons-nous-faire-ici">Qu&rsquo;allons nous faire ici?</a></li>
     <li><a href="#les-prérequis-et-environnement-de-développement">Les prérequis et environnement de développement</a></li>
     <li><a href="#cest-partie">C&rsquo;est partie</a></li>
     <li><a href="#connectons-nous-à-la-base-donnée">Connectons nous à la base donnée</a></li>
+    <li><a href="#accédons-à-nos-produits">Accédons à nos produits</a></li>
   </ul>
 </nav>
 	</div>
@@ -84,7 +84,8 @@
 </div>
 
 <hr>
-<h2 id="-en-cours-de-rédaction-">✋ en cours de rédaction ✋</h2>
+<p>✋ en cours de rédaction ✋</p>
+<hr>
 <h2 id="ça-sert-à-quoi-une-api">Ça sert à quoi une API?</h2>
 <p>Tout d&rsquo;abord API c&rsquo;est &ldquo;Application Programming Interface&rdquo;. En d&rsquo;autre termes c&rsquo;est une interface qui permet le transfert de données d&rsquo;une application à une (des) autre(s).</p>
 <p>C&rsquo;est une technique importante puisque nous avons besoin de faire interagir nos sites web avec nos applications desktop et nos application mobiles.</p>
@@ -102,7 +103,7 @@
 <p>On va commencer par créer une base une base de donnée.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> api_db;
 
-USE api_db
+USE api_db;
 </code></pre></div><p>Créer la table <code>categories</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>categories<span style="color:#f92672">`</span> (
   <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT,
@@ -155,7 +156,57 @@ USE api_db
 <p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
 Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous connecter.</p>
 <p><strong>database.php</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span> {
+   <span style="color:#75715e">// On spécifie les coordonnées de connexion
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> $host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;locahost&#34;</span>;
+   <span style="color:#66d9ef">private</span> $db_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;api_db&#34;</span>;
+   <span style="color:#66d9ef">private</span> $dsn ;
+   <span style="color:#66d9ef">private</span> $username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span>;
+   <span style="color:#66d9ef">private</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Grm1&#34;</span>;
+   <span style="color:#66d9ef">public</span> $conn;
+
+   <span style="color:#75715e">// connection à la base
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getConnection</span>() {
+
+       $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+       $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dsn</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mysql:host=&#34;</span><span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">host</span><span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;;dbname=&#34;</span> <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">db_name</span>;
+       <span style="color:#66d9ef">try</span>{
+           $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PDO</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">dsn</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">username</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">password</span>);
+       $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">exec</span>(<span style="color:#e6db74">&#34;set names utf8&#34;</span>);
+       } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">PDOException</span> $exception) {
+           <span style="color:#66d9ef">echo</span> <span style="color:#e6db74">&#34;Conneciton error: &#34;</span> <span style="color:#f92672">.</span> $exception<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getMessage</span>();
+       }
+       <span style="color:#66d9ef">return</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span>;
+   }
+}
+</code></pre></div><h2 id="accédons-à-nos-produits">Accédons à nos produits</h2>
+<p>On va créer une classe pour nos produits:</p>
+<ul>
+<li>Dans le dossier <code>api</code> créez un dossier <code>objects</code> et dans ce dossier créez la classe <code>product.php</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">product</span> {
+
+    <span style="color:#75715e">// connexion à la base
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> $conn;
+    <span style="color:#66d9ef">private</span> $table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;products&#34;</span>;
+
+    <span style="color:#75715e">// membres de l&#39;objet
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> $id;
+    <span style="color:#66d9ef">public</span> $name;
+    <span style="color:#66d9ef">public</span> $description;
+    <span style="color:#66d9ef">public</span> $price;
+    <span style="color:#66d9ef">public</span> $categorie_id;
+    <span style="color:#66d9ef">public</span> $category_name;
+    <span style="color:#66d9ef">public</span> $created;
+
+    <span style="color:#75715e">// un constructeur avec $db comme connexion à la base
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __construct($db) {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> $db;
+    }
+}
+<span style="color:#75715e">?&gt;</span>
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
