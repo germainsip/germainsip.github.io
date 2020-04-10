@@ -151,7 +151,7 @@ USE api_db;
 (<span style="color:#ae81ff">42</span>, <span style="color:#e6db74">&#39;Nike Shoes for Men&#39;</span>, <span style="color:#e6db74">&#39;Nike Shoes&#39;</span>, <span style="color:#e6db74">&#39;12999&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;2015-12-12 06:47:08&#39;</span>, <span style="color:#e6db74">&#39;2015-12-12 05:47:08&#39;</span>),
 (<span style="color:#ae81ff">48</span>, <span style="color:#e6db74">&#39;Bristol Shoes&#39;</span>, <span style="color:#e6db74">&#39;Awesome shoes.&#39;</span>, <span style="color:#e6db74">&#39;999&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;2016-01-08 06:36:37&#39;</span>, <span style="color:#e6db74">&#39;2016-01-08 05:36:37&#39;</span>),
 (<span style="color:#ae81ff">60</span>, <span style="color:#e6db74">&#39;Rolex Watch&#39;</span>, <span style="color:#e6db74">&#39;Luxury watch.&#39;</span>, <span style="color:#e6db74">&#39;25000&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2016-01-11 15:46:02&#39;</span>, <span style="color:#e6db74">&#39;2016-01-11 14:46:02&#39;</span>);
-</code></pre></div><p>Vous pouvez aussi télécharger le script de création <a href="download/ma_base.sql">ici</a>.</p>
+</code></pre></div><p>Vous pouvez aussi télécharger le script de création <a href="/download/ma_base.sql">ici</a>.</p>
 <h2 id="connectons-nous-à-la-base-donnée">Connectons nous à la base donnée</h2>
 <p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
 Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous connecter.</p>
@@ -207,6 +207,13 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
     }
 }
 <span style="color:#75715e">?&gt;</span>
+</code></pre></div><p>Il nous faut aussi un fichier pour lire nos objets:</p>
+<p>Ajoutez dans le dossier <code>product</code> un fichier <code>read.php</code></p>
+<p>D&rsquo;abord il nous faut les headers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">// Les headers dont nous avons besoin
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
