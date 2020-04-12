@@ -71,7 +71,7 @@
     <li><a href="#quallons-nous-faire-ici">Qu&rsquo;allons nous faire ici?</a></li>
     <li><a href="#les-prérequis-et-environnement-de-développement">Les prérequis et environnement de développement</a></li>
     <li><a href="#cest-partie">C&rsquo;est partie</a></li>
-    <li><a href="#connectons-nous-à-la-base-donnée">Connectons nous à la base donnée</a></li>
+    <li><a href="#connectons-nous-à-la-base-donnée-partie-2">Connectons nous à la base donnée (Partie 2)</a></li>
     <li><a href="#accédons-à-nos-produits">Accédons à nos produits</a></li>
   </ul>
 </nav>
@@ -152,21 +152,32 @@ USE api_db;
 (<span style="color:#ae81ff">48</span>, <span style="color:#e6db74">&#39;Bristol Shoes&#39;</span>, <span style="color:#e6db74">&#39;Awesome shoes.&#39;</span>, <span style="color:#e6db74">&#39;999&#39;</span>, <span style="color:#ae81ff">5</span>, <span style="color:#e6db74">&#39;2016-01-08 06:36:37&#39;</span>, <span style="color:#e6db74">&#39;2016-01-08 05:36:37&#39;</span>),
 (<span style="color:#ae81ff">60</span>, <span style="color:#e6db74">&#39;Rolex Watch&#39;</span>, <span style="color:#e6db74">&#39;Luxury watch.&#39;</span>, <span style="color:#e6db74">&#39;25000&#39;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;2016-01-11 15:46:02&#39;</span>, <span style="color:#e6db74">&#39;2016-01-11 14:46:02&#39;</span>);
 </code></pre></div><p>Vous pouvez aussi télécharger le script de création <a href="/download/ma_base.sql">ici</a>.</p>
-<h2 id="connectons-nous-à-la-base-donnée">Connectons nous à la base donnée</h2>
-<p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
+<h2 id="connectons-nous-à-la-base-donnée-partie-2">Connectons nous à la base donnée (Partie 2)</h2>
+<p>{{ partie 2}}</p>
+<p>Notre projet aura cette forme à la fin de cette partie:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">api
+├── config
+│   └── database.php
+├── objects
+│   └── product.php
+└── product
+    └── read.php
+
+</code></pre></div><p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
 Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous connecter.</p>
 <p><strong>database.php</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">&lt;?php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span> {
    <span style="color:#75715e">// On spécifie les coordonnées de connexion
-</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> $host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;locahost&#34;</span>;
+</span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> $host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>;
    <span style="color:#66d9ef">private</span> $db_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;api_db&#34;</span>;
    <span style="color:#66d9ef">private</span> $dsn ;
    <span style="color:#66d9ef">private</span> $username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span>;
-   <span style="color:#66d9ef">private</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Grm1&#34;</span>;
+   <span style="color:#66d9ef">private</span> $password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;VOTRE_MOT_DE_PASSE&#34;</span>;
    <span style="color:#66d9ef">public</span> $conn;
 
-   <span style="color:#75715e">// connection à la base
+
+   <span style="color:#75715e">// connexion à la base
 </span><span style="color:#75715e"></span>   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getConnection</span>() {
 
        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
@@ -186,7 +197,7 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
 <li>Dans le dossier <code>api</code> créez un dossier <code>objects</code> et dans ce dossier créez la classe <code>product.php</code></li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">product</span> {
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span> {
 
     <span style="color:#75715e">// connexion à la base
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> $conn;
@@ -214,7 +225,94 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
 <span style="color:#75715e">// Les headers dont nous avons besoin
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
-</code></pre></div>
+</code></pre></div><p>On prépare la connection en incluant nos import et en instanciant nos objets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#75715e">// ... le code qui précède dans read.php
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// inclusion de database et product
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../config/database.php&#39;</span>;
+<span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../objects/product.php&#39;</span>;
+
+<span style="color:#75715e">// instanciation de database et de product
+</span><span style="color:#75715e"></span>$database <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Database</span>();
+$db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getConnection</span>();
+
+<span style="color:#75715e">// On initialise product
+</span><span style="color:#75715e"></span>$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
+</code></pre></div><p>On va lire les résultats de la méthode <code>read()</code>de <code>Product</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// le query
+$stmt = $product-&gt;read();
+$num = $stmt-rowCount();
+
+// on regarde si on a plus d&#39;un résultat
+if($num&gt;0){
+
+    // tableau de produits
+    $products_arr = array();
+    $products_arr[&#34;records&#34;]=array();
+
+    // on récupère le contenu de la table
+    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+
+        $product_item = array(
+            &#34;id&#34; =&gt; $id,
+            &#34;name&#34; =&gt; $name,
+            &#34;description&#34; =&gt; $price,
+            &#34;category_id&#34; =&gt; $category_id,
+            &#34;category_name&#34; =&gt; $category_name
+        );
+
+        array_push($products_arr[&#34;records&#34;], $product_item);
+    }
+
+    // on envoie la réponse http à 200 OK
+    http_response_code(200);
+
+    // on renvoie la réponse en Json
+    echo json_encode($products_arr);
+
+}
+</code></pre></div><p>Il nous faut maintenant ajouter la méthode <code>read()</code> à <code>Product.php</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#f92672">...</span>
+
+<span style="color:#75715e">// lecture des produits
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">read</span>() {
+  <span style="color:#75715e">// requête select avec jointure
+</span><span style="color:#75715e"></span>  $query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT
+</span><span style="color:#e6db74">            c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+</span><span style="color:#e6db74">            FROM&#34;</span>
+           <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table_name</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; p
+</span><span style="color:#e6db74">            LEFT JOIN
+</span><span style="color:#e6db74">            categories c ON p.category_id = c.id
+</span><span style="color:#e6db74">            ORDER BY
+</span><span style="color:#e6db74">            p.created DESC&#34;</span>;
+
+  <span style="color:#75715e">// on prépare la requête
+</span><span style="color:#75715e"></span>  $stmt <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prepare</span>($query);
+
+  <span style="color:#75715e">// on execute la requête
+</span><span style="color:#75715e"></span>  $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">execute</span>();
+
+  <span style="color:#66d9ef">return</span> $stmt;
+}
+</code></pre></div><p>Et on va avertir l&rsquo;utilisateur si aucun produit n&rsquo;a été trouvé.</p>
+<p>A la suite de notre <code>if</code> dans <code>read.php</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#75715e">//fin du if
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">else</span> {
+<span style="color:#75715e">// on renvoie le code 404 Not found
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">404</span>);
+
+<span style="color:#75715e">// On averti l&#39;utilisateur
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span><span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Aucun produits trouvés.&#34;</span>));
+}
+
+</code></pre></div><p>Il ne vous reste qu'à tester tout ça avec Postman ou Insomnia.</p>
+
 		</div>
 		<footer class="post__footer">
 			
