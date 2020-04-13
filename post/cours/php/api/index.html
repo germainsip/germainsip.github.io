@@ -73,6 +73,7 @@
     <li><a href="#cest-partie">C&rsquo;est partie</a></li>
     <li><a href="#connectons-nous-à-la-base-donnée-partie-2">Connectons nous à la base donnée (Partie 2)</a></li>
     <li><a href="#accédons-à-nos-produits">Accédons à nos produits</a></li>
+    <li><a href="#créons-des-produits-partie-3">Créons des produits (Partie 3)</a></li>
   </ul>
 </nav>
 	</div>
@@ -241,37 +242,39 @@ $db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&
 <span style="color:#75715e">// On initialise product
 </span><span style="color:#75715e"></span>$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
 </code></pre></div><p>On va lire les résultats de la méthode <code>read()</code>de <code>Product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">// le query
-$stmt = $product-&gt;read();
-$num = $stmt-rowCount();
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#f92672">...</span>
+<span style="color:#75715e">// le query
+</span><span style="color:#75715e"></span>$stmt <span style="color:#f92672">=</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">read</span>();
+$num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-</span><span style="color:#a6e22e">rowCount</span>();
 
-// on regarde si on a plus d&#39;un résultat
-if($num&gt;0){
+<span style="color:#75715e">// on regarde si on a plus d&#39;un résultat
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>($num<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){
 
-    // tableau de produits
-    $products_arr = array();
-    $products_arr[&#34;records&#34;]=array();
+    <span style="color:#75715e">// tableau de produits
+</span><span style="color:#75715e"></span>    $products_arr <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>();
+    $products_arr[<span style="color:#e6db74">&#34;records&#34;</span>]<span style="color:#f92672">=</span><span style="color:#66d9ef">array</span>();
 
-    // on récupère le contenu de la table
-    while ($row = $stmt-&gt;fetch(PDO::FETCH_ASSOC)){
-        extract($row);
+    <span style="color:#75715e">// on récupère le contenu de la table
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">while</span> ($row <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">PDO</span><span style="color:#f92672">::</span><span style="color:#a6e22e">FETCH_ASSOC</span>)){
+        <span style="color:#a6e22e">extract</span>($row);
 
-        $product_item = array(
-            &#34;id&#34; =&gt; $id,
-            &#34;name&#34; =&gt; $name,
-            &#34;description&#34; =&gt; $price,
-            &#34;category_id&#34; =&gt; $category_id,
-            &#34;category_name&#34; =&gt; $category_name
+        $product_item <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(
+            <span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=&gt;</span> $id,
+            <span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#f92672">=&gt;</span> $name,
+            <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">=&gt;</span> $price,
+            <span style="color:#e6db74">&#34;category_id&#34;</span> <span style="color:#f92672">=&gt;</span> $category_id,
+            <span style="color:#e6db74">&#34;category_name&#34;</span> <span style="color:#f92672">=&gt;</span> $category_name
         );
 
-        array_push($products_arr[&#34;records&#34;], $product_item);
+        <span style="color:#a6e22e">array_push</span>($products_arr[<span style="color:#e6db74">&#34;records&#34;</span>], $product_item);
     }
 
-    // on envoie la réponse http à 200 OK
-    http_response_code(200);
+    <span style="color:#75715e">// on envoie la réponse http à 200 OK
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">200</span>);
 
-    // on renvoie la réponse en Json
-    echo json_encode($products_arr);
+    <span style="color:#75715e">// on renvoie la réponse en Json
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>($products_arr);
 
 }
 </code></pre></div><p>Il nous faut maintenant ajouter la méthode <code>read()</code> à <code>Product.php</code></p>
@@ -312,6 +315,64 @@ if($num&gt;0){
 }
 
 </code></pre></div><p>Il ne vous reste qu'à tester tout ça avec Postman ou Insomnia.</p>
+<h2 id="créons-des-produits-partie-3">Créons des produits (Partie 3)</h2>
+<p>C&rsquo;est le <strong>C</strong> de CRUD.</p>
+<p>L&rsquo;accès va se faire via le fichier <code>create.php</code> dans le dossier <code>product</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Methods:POST&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Max-Age: 3600&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Headers: Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-Width&#34;</span>);
+
+
+<span style="color:#75715e">// on se connecte à la base
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../config/database.php&#39;</span>;
+
+<span style="color:#75715e">// l&#39;objet product
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../objects/product.php&#39;</span>;
+
+$database <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Database</span>();
+$db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getConnection</span>();
+
+$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
+
+<span style="color:#75715e">// on récupère les données du post
+</span><span style="color:#75715e"></span>$data <span style="color:#f92672">=</span> <span style="color:#a6e22e">json_decode</span>(<span style="color:#a6e22e">file_get_contents</span>(<span style="color:#e6db74">&#34;php://input&#34;</span>));
+
+<span style="color:#75715e">// on s&#39;assure que ce n&#39;est pas vide
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> (
+        <span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>) <span style="color:#f92672">&amp;&amp;</span>
+        <span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>) <span style="color:#f92672">&amp;&amp;</span>
+        <span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>) <span style="color:#f92672">&amp;&amp;</span>
+        <span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>)
+) {
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">categorie_id</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>(<span style="color:#e6db74">&#39;Y-m-d H:i:s&#39;</span>);
+
+    <span style="color:#66d9ef">if</span> ($product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">create</span>()) {
+
+        <span style="color:#75715e">//on envoie le code 201
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">201</span>);
+
+        <span style="color:#75715e">// on averti l&#39;utilisateur
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Produit Créé.&#34;</span>));
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">// on envoie le code 503
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">503</span>);
+        <span style="color:#75715e">// on averti l&#39;utilisateur
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit!&#34;</span>));
+    }
+} <span style="color:#66d9ef">else</span> {
+    <span style="color:#75715e">// on envoie le code 400 - bad request
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">400</span>);
+    <span style="color:#75715e">// on averti l&#39;utilisateur
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit! les données sont incomplètes!&#34;</span>));
+}
+</code></pre></div><p>On va aussi ajouter la méthode <code>create()</code> à <code>product.php</code></p>
 
 		</div>
 		<footer class="post__footer">
