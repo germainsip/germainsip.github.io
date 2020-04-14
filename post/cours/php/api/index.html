@@ -315,6 +315,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-</sp
 }
 
 </code></pre></div><p>Il ne vous reste qu'à tester tout ça avec Postman ou Insomnia.</p>
+<p>Dans le client entre l&rsquo;adresse <code>localhost/api/product/read.php</code> et validez par <strong>send</strong></p>
 <h2 id="créons-des-produits-partie-3">Créons des produits (Partie 3)</h2>
 <p>C&rsquo;est le <strong>C</strong> de CRUD.</p>
 <p>L&rsquo;accès va se faire via le fichier <code>create.php</code> dans le dossier <code>product</code></p>
@@ -350,7 +351,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
     $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>;
     $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>;
     $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>;
-    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">categorie_id</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>;
     $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">date</span>(<span style="color:#e6db74">&#39;Y-m-d H:i:s&#39;</span>);
 
     <span style="color:#66d9ef">if</span> ($product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">create</span>()) {
@@ -364,15 +365,58 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
         <span style="color:#75715e">// on envoie le code 503
 </span><span style="color:#75715e"></span>        <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">503</span>);
         <span style="color:#75715e">// on averti l&#39;utilisateur
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit!&#34;</span>));
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit!&#34;</span>]);
     }
 } <span style="color:#66d9ef">else</span> {
     <span style="color:#75715e">// on envoie le code 400 - bad request
 </span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">400</span>);
     <span style="color:#75715e">// on averti l&#39;utilisateur
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit! les données sont incomplètes!&#34;</span>));
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit! les données sont incomplètes!&#34;</span>]);
 }
-</code></pre></div><p>On va aussi ajouter la méthode <code>create()</code> à <code>product.php</code></p>
+</code></pre></div><p>On va aussi ajouter la méthode <code>create()</code> à `product.php</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#f92672">...</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">create</span>() {
+        <span style="color:#75715e">// requête d&#39;insertion
+</span><span style="color:#75715e"></span>        $query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;INSERT INTO
+</span><span style="color:#e6db74">                &#34;</span> <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table_name</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">            SET
+</span><span style="color:#e6db74">                name=:name, price=:price, description=:description, category_id=:category_id, created=:created&#34;</span>;
+        <span style="color:#75715e">// on prépare la requête
+</span><span style="color:#75715e"></span>        $stmt <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prepare</span>($query);
+
+        <span style="color:#75715e">//nettoyage
+</span><span style="color:#75715e"></span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created</span>));
+
+        <span style="color:#75715e">// on bind
+</span><span style="color:#75715e"></span>        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#34;:name&#34;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#34;:price&#34;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#34;:description&#34;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#34;:category_id&#34;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#34;:created&#34;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">created</span>);
+
+        <span style="color:#75715e">// on lance la requête
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> ($stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">execute</span>()) {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    }
+</code></pre></div><p>Verifiez que tout fonctionne avec postman ou insomnia à l&rsquo;adresse <code>localhost/api/product/create.php</code> en ajoutant au body le Json:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Mega oreiller 2.0&#34;</span>,
+    <span style="color:#f92672">&#34;price&#34;</span> : <span style="color:#e6db74">&#34;199&#34;</span>,
+    <span style="color:#f92672">&#34;description&#34;</span> : <span style="color:#e6db74">&#34;Le meilleur oreiller pour des programmeurs incroyables.&#34;</span>,
+    <span style="color:#f92672">&#34;category_id&#34;</span> : <span style="color:#ae81ff">2</span>,
+    <span style="color:#f92672">&#34;created&#34;</span> : <span style="color:#e6db74">&#34;2018-06-01 00:35:07&#34;</span>
+}
+</code></pre></div><p>Et voilà !!!</p>
+<p><img src="/img/insomnia.png" alt="insomnia"></p>
 
 		</div>
 		<footer class="post__footer">
