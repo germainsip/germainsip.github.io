@@ -74,6 +74,7 @@
     <li><a href="#connectons-nous-à-la-base-donnée-partie-2">Connectons nous à la base donnée (Partie 2)</a></li>
     <li><a href="#accédons-à-nos-produits">Accédons à nos produits</a></li>
     <li><a href="#créons-des-produits-partie-3">Créons des produits (Partie 3)</a></li>
+    <li><a href="#un-seul-objet-partie-4">Un seul objet (Partie 4)</a></li>
   </ul>
 </nav>
 	</div>
@@ -417,6 +418,92 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 }
 </code></pre></div><p>Et voilà !!!</p>
 <p><img src="/img/insomnia.png" alt="insomnia"></p>
+<h2 id="un-seul-objet-partie-4">Un seul objet (Partie 4)</h2>
+<p>Afin de lire un seul enregistrement, on va se donner un accé.
+Créons le fichier <code>read_one.php</code> dans le dossier <code>product</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+
+
+<span style="color:#75715e">// les headers
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Headers: access&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Methods: GET&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Credentials: true&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span>);
+
+<span style="color:#75715e">// les inclusions
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../config/database.php&#39;</span>;
+<span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../objects/product.php&#39;</span>;
+
+<span style="color:#75715e">// on se connecte
+</span><span style="color:#75715e"></span>$database <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Database</span>();
+$db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getConnection</span>();
+
+$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
+
+<span style="color:#75715e">// Récupérons l&#39;id de l&#39;objet à lire
+</span><span style="color:#75715e"></span>$product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#39;id&#39;</span>]) <span style="color:#f92672">?</span> $_GET[<span style="color:#e6db74">&#39;id&#39;</span>] <span style="color:#f92672">:</span> <span style="color:#66d9ef">die</span>();
+
+<span style="color:#75715e">// on lit les détails du produit
+</span><span style="color:#75715e"></span>$product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">readOne</span>();
+<span style="color:#66d9ef">if</span> ($product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+    <span style="color:#75715e">// création d&#39;un tableau
+</span><span style="color:#75715e"></span>    $product_arr[] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;id&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>,
+        <span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>,
+        <span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>,
+        <span style="color:#e6db74">&#34;price&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>,
+        <span style="color:#e6db74">&#34;category&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>,
+        <span style="color:#e6db74">&#34;category_name&#34;</span> <span style="color:#f92672">=&gt;</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_name</span>];
+    <span style="color:#75715e">// requête ok 200
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">200</span>);
+
+    <span style="color:#75715e">//On traduit ça en Json
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>($product_arr);
+} <span style="color:#66d9ef">else</span>{
+    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">404</span>);
+    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#34;Ce produit n&#39;éxiste pas!&#34;</span>]);
+
+}
+</code></pre></div><p>En résumé, on récupère l&rsquo;id de l&rsquo;objet dans l&rsquo;URL puis on lance la requête avec la méthode <code>readOne()</code>. Si nous avons trouvé un produit, on met le infos dans un tableau et on renvoie en json.</p>
+<p>Si pas d'éléments trouvés, on avertis l&rsquo;utilisateur.</p>
+<p>Il nous manque la méthode <code>readOne()</code> dans <code>product.php</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">readOne</span>() {
+  <span style="color:#75715e">// requête pour lire 1 enregistrement
+</span><span style="color:#75715e"></span>  $query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT
+</span><span style="color:#e6db74">      c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+</span><span style="color:#e6db74">      FROM
+</span><span style="color:#e6db74">         &#34;</span> <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table_name</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; p
+</span><span style="color:#e6db74">      LEFT JOIN
+</span><span style="color:#e6db74">         categories c
+</span><span style="color:#e6db74">      ON p.category_id = c.id
+</span><span style="color:#e6db74">      WHERE
+</span><span style="color:#e6db74">         p.id = ?
+</span><span style="color:#e6db74">      LIMIT
+</span><span style="color:#e6db74">         0,1&#34;</span>;
+  <span style="color:#75715e">// on prépare la requête
+</span><span style="color:#75715e"></span>  $stmt <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prepare</span>($query);
+  <span style="color:#75715e">// on met l&#39;id à sa place
+</span><span style="color:#75715e"></span>  $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#ae81ff">1</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>);
+  <span style="color:#75715e">// on execute
+</span><span style="color:#75715e"></span>  $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">execute</span>();
+  <span style="color:#75715e">// on récupère le résultat
+</span><span style="color:#75715e"></span>  $row <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">PDO</span><span style="color:#f92672">::</span><span style="color:#a6e22e">FETCH_ASSOC</span>);
+
+  <span style="color:#75715e">// on renvoie ça dans l&#39;objet
+</span><span style="color:#75715e"></span>  $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> $row[<span style="color:#e6db74">&#39;name&#39;</span>];
+  $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> $row[<span style="color:#e6db74">&#39;price&#39;</span>];
+  $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> $row[<span style="color:#e6db74">&#39;description&#39;</span>];
+  $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span> <span style="color:#f92672">=</span> $row[<span style="color:#e6db74">&#39;category_id&#39;</span>];
+  $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_name</span> <span style="color:#f92672">=</span> $row[<span style="color:#e6db74">&#39;category_name&#39;</span>];
+    }
+</code></pre></div><p>Voilà&hellip;On définie la requête préparée de recherche. On injecte l&rsquo;id recherchée. On lance et on récupère les données dans l&rsquo;objet.</p>
+<p>Testez avec l&rsquo;URL <code>http://localhost/api/product/read_one.php?id=60</code> par exemple dans <strong>insomnia</strong> ou <strong>postman</strong>.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Ce cours n&rsquo;est pas terminé. Revennez régulièrement pour la suite du CRUD.</p>
 
 		</div>
 		<footer class="post__footer">
