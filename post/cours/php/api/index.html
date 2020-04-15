@@ -75,6 +75,7 @@
     <li><a href="#accédons-à-nos-produits">Accédons à nos produits</a></li>
     <li><a href="#créons-des-produits-partie-3">Créons des produits (Partie 3)</a></li>
     <li><a href="#un-seul-objet-partie-4">Un seul objet (Partie 4)</a></li>
+    <li><a href="#lupdate-partie-5">L&rsquo;UPDATE (Partie 5)</a></li>
   </ul>
 </nav>
 	</div>
@@ -505,6 +506,94 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
     }
 </code></pre></div><p>Voilà&hellip;On définie la requête préparée de recherche. On injecte l&rsquo;id recherchée. On lance et on récupère les données dans l&rsquo;objet.</p>
 <p>Testez avec l&rsquo;URL <code>http://localhost/api/product/read_one.php?id=60</code> par exemple dans <strong>insomnia</strong> ou <strong>postman</strong>.</p>
+<h2 id="lupdate-partie-5">L&rsquo;UPDATE (Partie 5)</h2>
+<p>On a fait <strong>CR</strong>, faisons le <strong>U</strong> du Update.</p>
+<p>On ajoute donc <code>update.php</code> à notre dossier <code>product</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+
+<span style="color:#75715e">// les headers
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Methods:POST&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Max-Age: 3600&#34;</span>);
+<span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Headers: Content-Type,Access-Control-Allow-Headers,Authorization,X-Requested-Width&#34;</span>);
+
+<span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../config/database.php&#39;</span>;
+<span style="color:#66d9ef">include_once</span> <span style="color:#e6db74">&#39;../objects/product.php&#39;</span>;
+
+$database <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Database</span>();
+$db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getConnection</span>();
+
+$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
+
+<span style="color:#75715e">// on récupère les données du post
+</span><span style="color:#75715e"></span>$data <span style="color:#f92672">=</span> <span style="color:#a6e22e">json_decode</span>(<span style="color:#a6e22e">file_get_contents</span>(<span style="color:#e6db74">&#34;php://input&#34;</span>));
+<span style="color:#66d9ef">if</span> ($data <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>;
+    $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span> <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>;
+
+    <span style="color:#66d9ef">if</span> ($product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">update</span>()) {
+        <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">200</span>);
+
+        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Produit mis à jour&#34;</span>]);
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">503</span>);
+
+        <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Le produit n&#39;a pas été mis à jour.&#34;</span>]);
+    }
+} <span style="color:#66d9ef">else</span> {
+    <span style="color:#a6e22e">http_response_code</span>(<span style="color:#ae81ff">503</span>);
+
+    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Nous n&#39;avons pas compris votre demande&#34;</span>]);
+}
+</code></pre></div><p>C&rsquo;est sensiblement le même code que pour le Create.</p>
+<p>On ajoute la méthode <code>update()</code> à notre <code>product.php</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#f92672">...</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update</span>() {
+        $query <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPDATE
+</span><span style="color:#e6db74">                &#34;</span> <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table_name</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">            SET
+</span><span style="color:#e6db74">                name = :name,
+</span><span style="color:#e6db74">                price = :price,
+</span><span style="color:#e6db74">                description = :description,
+</span><span style="color:#e6db74">                category_id = :category_id
+</span><span style="color:#e6db74">            WHERE
+</span><span style="color:#e6db74">                id = :id&#34;</span>;
+
+        $stmt <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">prepare</span>($query);
+
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>));
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">htmlspecialchars</span>(<span style="color:#a6e22e">strip_tags</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>));
+
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#39;:name&#39;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">name</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#39;:price&#39;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">price</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#39;:description&#39;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">description</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#39;:category_id&#39;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">category_id</span>);
+        $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">bindParam</span>(<span style="color:#e6db74">&#39;:id&#39;</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">id</span>);
+
+        <span style="color:#66d9ef">if</span>($stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">execute</span>()){
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+        }
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    }
+</code></pre></div><p>Testez (comme d&rsquo;habitude) avec votre client à l&rsquo;adresse <code>http://localhost/api/product/update.php</code> et ajoutez le json suivant dans le body:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;66&#34;</span>,
+    <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Mega oreiller 2.0&#34;</span>,
+    <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Le meilleur oreiller pour des programmeurs incroyables.&#34;</span>,
+    <span style="color:#f92672">&#34;price&#34;</span>: <span style="color:#e6db74">&#34;300&#34;</span>,
+    <span style="color:#f92672">&#34;category_id&#34;</span>: <span style="color:#e6db74">&#34;2&#34;</span>,
+    <span style="color:#f92672">&#34;category_name&#34;</span>: <span style="color:#e6db74">&#34;Electronics&#34;</span>
+  }
+</code></pre></div><p>J&rsquo;ai juste changé le prix !!!</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>Ce cours n&rsquo;est pas terminé. Revennez régulièrement pour la suite du CRUD.</p>
