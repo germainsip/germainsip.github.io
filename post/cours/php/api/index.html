@@ -247,7 +247,7 @@ $db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&
 <span style="color:#f92672">...</span>
 <span style="color:#75715e">// le query
 </span><span style="color:#75715e"></span>$stmt <span style="color:#f92672">=</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">read</span>();
-$num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-</span><span style="color:#a6e22e">rowCount</span>();
+$num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">rowCount</span>();
 
 <span style="color:#75715e">// on regarde si on a plus d&#39;un résultat
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span>($num<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){
@@ -288,7 +288,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-</sp
   <span style="color:#75715e">// requête select avec jointure
 </span><span style="color:#75715e"></span>  $query <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SELECT
 </span><span style="color:#e6db74">            c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-</span><span style="color:#e6db74">            FROM&#34;</span>
+</span><span style="color:#e6db74">            FROM &#34;</span>
            <span style="color:#f92672">.</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">table_name</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; p
 </span><span style="color:#e6db74">            LEFT JOIN
 </span><span style="color:#e6db74">            categories c ON p.category_id = c.id
