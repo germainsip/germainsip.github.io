@@ -71,6 +71,7 @@
     <li><a href="#dabord-lapi">D&rsquo;abord l&rsquo;API</a></li>
     <li><a href="#je-vais-commencer-par-laspect-graphique-du-widget">Je vais commencer par l&rsquo;aspect graphique du widget</a></li>
     <li><a href="#un-peu-de-design">Un peu de design</a></li>
+    <li><a href="#rendre-la-fenêtre-sans-bordure-et-draggable">Rendre la fenêtre sans bordure et draggable</a></li>
   </ul>
 </nav>
 	</div>
@@ -204,6 +205,53 @@ Son utilisation est simple vous allez voire</p>
 }
 </code></pre></div><p>Si tout est bien en place chez vous, après compilation et lancement on devrait obtenir ça:</p>
 <p><img src="/img/JavaFX_Json/widget1.png" alt="wiget1"></p>
+<h2 id="rendre-la-fenêtre-sans-bordure-et-draggable">Rendre la fenêtre sans bordure et draggable</h2>
+<p>On va d&rsquo;abord transformer l&rsquo;affichage pour avoir une fenêtre un peu transparente et sans bordure.</p>
+<p>Je vais ajouter une autre scene, un peu comme un conteneur qui sera utilisé plus tard. Ensuite, je vais définir la transparence et cacher la bordure.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Le primaryStage devient le conteneur
+</span><span style="color:#75715e"></span>primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UTILITY</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//On le rend transparent
+</span><span style="color:#75715e"></span>primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+
+<span style="color:#75715e">//On défini un nouveau stage
+</span><span style="color:#75715e"></span>Stage secondaryStage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Stage<span style="color:#f92672">();</span>
+<span style="color:#75715e">//On enlève les bordures
+</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">//On l&#39;attache à primaryStage
+</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initOwner</span><span style="color:#f92672">(</span>primaryStage<span style="color:#f92672">);</span>
+Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>App<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;widget.fxml&#34;</span><span style="color:#f92672">));</span>
+Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
+<span style="color:#75715e">//On règle la transparence à 0.8
+</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">);</span>
+secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setScene</span><span style="color:#f92672">(</span>scene<span style="color:#f92672">);</span>
+secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Vous devriez avoir maintenant une fenêtre au centre de l'écran.
+Par contre, nous avons 2 problèmes&hellip; On ne peut plus la déplacer et on ne peut plus la fermer non plus.</p>
+<p>On met la fenêtre en haut à droite en ajoutant ça</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Aligner la fenêtre en haut à droite
+</span><span style="color:#75715e">//on repère les limites de l&#39;écran
+</span><span style="color:#75715e"></span>Rectangle2D visualBounds <span style="color:#f92672">=</span> Screen<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrimary</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getVisualBounds</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// on change les coordonnées de la fenêtre
+</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMaxX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 25 <span style="color:#f92672">-</span> scene<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">());</span>
+secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMinY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> 25<span style="color:#f92672">);</span>
+</code></pre></div><p>Pour faire glisser la fenêtre on va définir le décalage avec:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> xOffset<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> yOffset<span style="color:#f92672">;</span>
+</code></pre></div><p>en haut de la classe et ajouter l'évenement dans la méthode start:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//On fait glisser la fenêtre avec la souris
+</span><span style="color:#75715e">//On récupère les offsets
+</span><span style="color:#75715e"></span>scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMousePressed</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+    xOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">();</span>
+    yOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">});</span>
+<span style="color:#75715e">//On fait bouger la fenêtre
+</span><span style="color:#75715e"></span>scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMouseDragged</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+    secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> xOffset<span style="color:#f92672">);</span>
+    secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
+<span style="color:#f92672">});</span>
+</code></pre></div><p>Testez, ça bouge&hellip;</p>
+<p><img src="/img/JavaFX_Json/widget1.gif" alt="widget gif"></p>
 
 		</div>
 		<footer class="post__footer">
