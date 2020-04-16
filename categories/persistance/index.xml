@@ -6,10 +6,21 @@
     <description>Recent content in Persistance on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:32:50 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 08:10:03 +0000</lastBuildDate>
     
 	<atom:link href="/categories/persistance/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Covid_widget</title>
+      <link>/post/cours/java/covid_widget/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/post/cours/java/covid_widget/</guid>
+      <description>Un Widget pour connaître les chiffres du covid J&amp;rsquo;ai découvert grâce à Muhammed Afsal Villan une api et une méthode pour faire un widget qui nous donnera les stats du COVID-19 en direct.
+D&amp;rsquo;abord l&amp;rsquo;API A l&amp;rsquo;adresse suivant https://coronavirus-19-api.herokuapp.com vous avez une api faite par Javier Aviles qui nous donne les chiffres du covid-19. Son utilisation est simple vous allez voire
+Entrez https://coronavirus-19-api.herokuapp.com/countries/france dans insomnia et vous allez recevoir le json suivant:</description>
+    </item>
     
     <item>
       <title>JavaFX et sauvegarde Partie 2</title>

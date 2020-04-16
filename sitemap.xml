@@ -3,6 +3,66 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/covid-19/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/java/covid_widget/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/gson/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/javafx/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/javafx/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/json/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/persistance/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/retrofit/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-04-16T08:10:03+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/api/</loc>
     <lastmod>2020-04-09T09:29:38+00:00</lastmod>
   </url>
@@ -13,27 +73,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/php/</loc>
-    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-04-09T09:29:38+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-04-09T09:29:38+00:00</lastmod>
   </url>
   
@@ -60,16 +100,6 @@
   <url>
     <loc>/tags/design/</loc>
     <lastmod>2020-04-02T09:10:15+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/javafx/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/javafx/</loc>
-    <lastmod>2020-03-31T13:32:09+00:00</lastmod>
   </url>
   
   <url>
@@ -123,17 +153,7 @@
   </url>
   
   <url>
-    <loc>/tags/json/</loc>
-    <lastmod>2020-03-19T10:32:50+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/json.simple/</loc>
-    <lastmod>2020-03-19T10:32:50+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/persistance/</loc>
     <lastmod>2020-03-19T10:32:50+00:00</lastmod>
   </url>
   
