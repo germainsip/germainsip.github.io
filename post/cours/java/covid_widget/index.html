@@ -252,6 +252,41 @@ secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">se
 <span style="color:#f92672">});</span>
 </code></pre></div><p>Testez, ça bouge&hellip;</p>
 <p><img src="/img/JavaFX_Json/widget1.gif" alt="widget gif"></p>
+<p>Réglons maintenant le problème de fermeture de l&rsquo;appli.</p>
+<ul>
+<li>On ajoute un menu contextuel à ma fenêtre dans le controlleur.</li>
+<li>On ajoute l&rsquo;interface <code>Initializable</code> à notre controlleur et dans la méthode <code>initialize()</code> et on lance le menu.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
+   <span style="color:#75715e">// N&#39;oubliez pas de nommer l&#39;AnchorPane qui sert d&#39;ancre à notre menu
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@FXML</span>
+    <span style="color:#66d9ef">public</span> AnchorPane rootPane<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        initializeContextMenu<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+   <span style="color:#75715e">// le bouton quitter et son action
+</span><span style="color:#75715e"></span>       MenuItem exitItem <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuItem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Quitter&#34;</span><span style="color:#f92672">);</span>
+       exitItem<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnAction</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+           System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+       <span style="color:#f92672">});</span>
+   <span style="color:#75715e">// le menu qui s&#39;active au clique droit et se cache au clique gauche
+</span><span style="color:#75715e"></span>       <span style="color:#66d9ef">final</span> ContextMenu contextMenu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ContextMenu<span style="color:#f92672">(</span>exitItem<span style="color:#f92672">);</span>
+       rootPane<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventHandler</span><span style="color:#f92672">(</span>MouseEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">MOUSE_PRESSED</span><span style="color:#f92672">,</span> event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+           <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">isSecondaryButtonDown</span><span style="color:#f92672">()){</span>
+               contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">(</span>rootPane<span style="color:#f92672">,</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">(),</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">());</span>
+           <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">isShowing</span><span style="color:#f92672">()){</span>
+                contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">hide</span><span style="color:#f92672">();</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">});</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Maintenant vous avez la possibilité de quitter l&rsquo;appli.</p>
 
 		</div>
 		<footer class="post__footer">
