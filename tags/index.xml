@@ -6,10 +6,64 @@
     <description>Recent content in Tags on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 09 Apr 2020 09:29:38 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 08:10:03 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Covid-19</title>
+      <link>/tags/covid-19/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/covid-19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gradle</title>
+      <link>/tags/gradle/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/gradle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Gson</title>
+      <link>/tags/gson/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/gson/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaFX</title>
+      <link>/tags/javafx/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/javafx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Json</title>
+      <link>/tags/json/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Retrofit</title>
+      <link>/tags/retrofit/</link>
+      <pubDate>Thu, 16 Apr 2020 08:10:03 +0000</pubDate>
+      
+      <guid>/tags/retrofit/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>API</title>
@@ -44,15 +98,6 @@
       <pubDate>Thu, 02 Apr 2020 09:10:15 +0000</pubDate>
       
       <guid>/tags/design/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaFX</title>
-      <link>/tags/javafx/</link>
-      <pubDate>Tue, 31 Mar 2020 13:32:09 +0000</pubDate>
-      
-      <guid>/tags/javafx/</guid>
       <description></description>
     </item>
     
@@ -98,15 +143,6 @@
       <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
       
       <guid>/tags/jackson/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Json</title>
-      <link>/tags/json/</link>
-      <pubDate>Thu, 19 Mar 2020 10:32:50 +0000</pubDate>
-      
-      <guid>/tags/json/</guid>
       <description></description>
     </item>
     

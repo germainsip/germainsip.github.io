@@ -69,9 +69,8 @@
   <ul>
     <li><a href="#un-widget-pour-connaître-les-chiffres-du-covid">Un Widget pour connaître les chiffres du covid</a></li>
     <li><a href="#dabord-lapi">D&rsquo;abord l&rsquo;API</a></li>
-    <li><a href="#je-vais-commencer-par-laspect-graphique-du-widget">Je vais commencer par l&rsquo;aspect graphique du widget</a></li>
-    <li><a href="#un-peu-de-design">Un peu de design</a></li>
-    <li><a href="#rendre-la-fenêtre-sans-bordure-et-draggable">Rendre la fenêtre sans bordure et draggable</a></li>
+    <li><a href="#commençons-par-notre-projet-javafx">Commençons par notre projet JavaFX</a></li>
+    <li><a href="#utilisons-retrofit">Utilisons Retrofit</a></li>
   </ul>
 </nav>
 	</div>
@@ -97,196 +96,52 @@ Son utilisation est simple vous allez voire</p>
   <span style="color:#f92672">&#34;totalTests&#34;</span>: <span style="color:#ae81ff">333807</span>,
   <span style="color:#f92672">&#34;testsPerOneMillion&#34;</span>: <span style="color:#ae81ff">5114</span>
 }
-</code></pre></div><h2 id="je-vais-commencer-par-laspect-graphique-du-widget">Je vais commencer par l&rsquo;aspect graphique du widget</h2>
-<ul>
-<li>Créez un nouveau projet Maven javaFX</li>
-<li>Vous allez supprimer les fichiers du modèle et suivez le schema suivant:</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">.
-├── java
-│   └── org
-│       └── gerblog
-│           ├── gui
-│           │   ├── widget
-│           │   │   └── WidgetController.java
-│           │   └── Launch.java
-│           └── App.java
-└── resources
+</code></pre></div><h2 id="commençons-par-notre-projet-javafx">Commençons par notre projet JavaFX</h2>
+<p>Créez un projet Gradle et modifiez le fichier <code>build.gradle</code> comme ceci</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
+    id <span style="color:#e6db74">&#39;java&#39;</span>
+    id <span style="color:#e6db74">&#39;application&#39;</span>
+    id <span style="color:#e6db74">&#39;org.openjfx.javafxplugin&#39;</span> version <span style="color:#e6db74">&#39;0.0.8&#39;</span>
+<span style="color:#f92672">}</span>
+
+group <span style="color:#e6db74">&#39;org.gerblog&#39;</span>
+version <span style="color:#e6db74">&#39;1.0-SNAPSHOT&#39;</span>
+
+repositories <span style="color:#f92672">{</span>
+    mavenCentral<span style="color:#f92672">()</span>
+<span style="color:#f92672">}</span>
+
+dependencies <span style="color:#f92672">{</span>
+    testCompile group: <span style="color:#e6db74">&#39;junit&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;junit&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;4.12&#39;</span>
+
+<span style="color:#f92672">}</span>
+javafx <span style="color:#f92672">{</span>
+    version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;14&#34;</span>
+    modules <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;javafx.controls&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.base&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.graphics&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.fxml&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Ce sera grâce aux plugins <code>application</code> et <code>org.openjfx.javafxplugin</code> qui vont nous permettre de faire du javafx ainsi que la déclaration des modules nécessaires au fonctionnement de javaFX.</p>
+<p>Créez un package dans le dossier java et créez y une classe <code>Launch.java</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">java
+└── main
     └── org
         └── gerblog
-            ├── main_style.css
-            └── widget.fxml
-</code></pre></div><p>La classe <code>App.java</code> va servir à duper la JVM pour faire fonctionner JavaFX.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        Launch<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Pour le moment on va juste définir un simple affichage.</p>
+            └── Launch.class
+</code></pre></div><p>Comme nous savons le faire, créons une simple fenêtre pour tester que notre application fonctionne.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Launch</span> <span style="color:#66d9ef">extends</span> Application <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>Stage primaryStage<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
-        Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>App<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;widget.fxml&#34;</span><span style="color:#f92672">));</span>
-        Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
+        Parent root<span style="color:#f92672">;</span>
+        Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StackPane<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Label<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JavaFX&#34;</span><span style="color:#f92672">)),</span>200<span style="color:#f92672">,</span>200<span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setScene</span><span style="color:#f92672">(</span>scene<span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        launch<span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
-    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
-</code></pre></div><p>N&rsquo;oubliez pas de créer le fichier <code>widget.fxml</code> dans les ressources et le controlleur associé dans <code>gui/widget</code>.</p>
-<p>Pour le moment rien de fou&hellip; Mais testez le quand même.</p>
-<h2 id="un-peu-de-design">Un peu de design</h2>
-<p>On va imbriquer des VBox et des Hbox pour la mise en page</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">stylesheets=</span><span style="color:#e6db74">&#34;@main_style.css&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/10.0.2-internal&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
-   <span style="color:#f92672">&lt;children&gt;</span>
-      <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
-         <span style="color:#f92672">&lt;children&gt;</span>
-            <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;main-title&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Les Chiffres du Covid-19&#34;</span> <span style="color:#f92672">/&gt;</span>
-            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">alignment=</span><span style="color:#e6db74">&#34;CENTER_LEFT&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
-               <span style="color:#f92672">&lt;children&gt;</span>
-                  <span style="color:#f92672">&lt;FontIcon</span> <span style="color:#a6e22e">iconColor=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">iconLiteral=</span><span style="color:#e6db74">&#34;fa-globe&#34;</span> <span style="color:#a6e22e">iconSize=</span><span style="color:#e6db74">&#34;30&#34;</span> <span style="color:#f92672">/&gt;</span>
-                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;textGlobalReport&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;content-text&#34;</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts : ...&#34;</span> <span style="color:#f92672">/&gt;</span>
-               <span style="color:#f92672">&lt;/children&gt;&lt;/HBox&gt;</span>
-            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
-               <span style="color:#f92672">&lt;children&gt;</span>
-                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;textCountryCode&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;country-title&#34;</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;FR&#34;</span> <span style="color:#f92672">/&gt;</span>
-                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;textCountryReport&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;content-text&#34;</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts: ...&#34;</span> <span style="color:#f92672">/&gt;</span>
-               <span style="color:#f92672">&lt;/children&gt;</span>
-            <span style="color:#f92672">&lt;/HBox&gt;</span>
-         <span style="color:#f92672">&lt;/children&gt;</span>
-      <span style="color:#f92672">&lt;/VBox&gt;</span>
-   <span style="color:#f92672">&lt;/children&gt;</span>
-<span style="color:#f92672">&lt;/AnchorPane&gt;</span>
-</code></pre></div><p>Si vous copiez directement ce code, ça va pas marcher!!!</p>
-<p>Si vous lisez le contenu, vous vous apercevez que j&rsquo;ai ajouté des choses nouvelles. D&rsquo;abord, il y a le <code>FontIcon</code>.</p>
-<p>Il faudra d&rsquo;abord ajouter <strong>ikonli</strong> à vos dépendances dans le <code>pom.xml</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">...le texte qui précède
-<span style="color:#f92672">&lt;dependencies&gt;</span>
-       ... autres dépendances
-        <span style="color:#f92672">&lt;dependency&gt;</span>
-            <span style="color:#f92672">&lt;groupId&gt;</span>org.kordamp.ikonli<span style="color:#f92672">&lt;/groupId&gt;</span>
-            <span style="color:#f92672">&lt;artifactId&gt;</span>ikonli-fontawesome-pack<span style="color:#f92672">&lt;/artifactId&gt;</span>
-            <span style="color:#f92672">&lt;version&gt;</span>11.4.0<span style="color:#f92672">&lt;/version&gt;</span>
-        <span style="color:#f92672">&lt;/dependency&gt;</span>
-        <span style="color:#f92672">&lt;dependency&gt;</span>
-            <span style="color:#f92672">&lt;groupId&gt;</span>org.kordamp.ikonli<span style="color:#f92672">&lt;/groupId&gt;</span>
-            <span style="color:#f92672">&lt;artifactId&gt;</span>ikonli-javafx<span style="color:#f92672">&lt;/artifactId&gt;</span>
-            <span style="color:#f92672">&lt;version&gt;</span>11.4.0<span style="color:#f92672">&lt;/version&gt;</span>
-        <span style="color:#f92672">&lt;/dependency&gt;</span>
-        ... autres dépendances
-    <span style="color:#f92672">&lt;/dependencies&gt;</span>
-...
-</code></pre></div><p>ikonly nous permet d&rsquo;ajouter des icones fontawesome (et ça c&rsquo;est cool!!!).</p>
-<p>Ensuite, vous voyez aussi que j&rsquo;ai ajouté des <code>styleClass=&quot;...&quot;</code> car nous allons utiliser le CSS.</p>
-<p>En haut de <code>widget.fxml</code> on déclare l&rsquo;emplacement du fichier de style et on va remplir le style dans <code>main-style.css</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">*</span> {
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-base: <span style="color:#ae81ff">#232323</span>;
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-family: <span style="color:#e6db74">&#39;Hack&#39;</span>, <span style="color:#e6db74">&#39;Noto Mono&#39;</span>, Arial;
-}
-
-.<span style="color:#a6e22e">main-title</span> {
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-weight: <span style="color:#66d9ef">bold</span>;
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">pt</span>;
-}
-
-
-.<span style="color:#a6e22e">content-text</span> {
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">14</span><span style="color:#66d9ef">pt</span>;
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-fill: <span style="color:#66d9ef">white</span>;
-}
-
-.<span style="color:#a6e22e">country-title</span> {
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">pt</span>;
-    <span style="color:#960050;background-color:#1e0010">-</span>fx-fill: <span style="color:#66d9ef">white</span>;
-}
-</code></pre></div><p>Si tout est bien en place chez vous, après compilation et lancement on devrait obtenir ça:</p>
-<p><img src="/img/JavaFX_Json/widget1.png" alt="wiget1"></p>
-<h2 id="rendre-la-fenêtre-sans-bordure-et-draggable">Rendre la fenêtre sans bordure et draggable</h2>
-<p>On va d&rsquo;abord transformer l&rsquo;affichage pour avoir une fenêtre un peu transparente et sans bordure.</p>
-<p>Je vais ajouter une autre scene, un peu comme un conteneur qui sera utilisé plus tard. Ensuite, je vais définir la transparence et cacher la bordure.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//Le primaryStage devient le conteneur
-</span><span style="color:#75715e"></span>primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UTILITY</span><span style="color:#f92672">);</span>
-<span style="color:#75715e">//On le rend transparent
-</span><span style="color:#75715e"></span>primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
-primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
-
-<span style="color:#75715e">//On défini un nouveau stage
-</span><span style="color:#75715e"></span>Stage secondaryStage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Stage<span style="color:#f92672">();</span>
-<span style="color:#75715e">//On enlève les bordures
-</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
-<span style="color:#75715e">//On l&#39;attache à primaryStage
-</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initOwner</span><span style="color:#f92672">(</span>primaryStage<span style="color:#f92672">);</span>
-Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>App<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;widget.fxml&#34;</span><span style="color:#f92672">));</span>
-Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
-<span style="color:#75715e">//On règle la transparence à 0.8
-</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">);</span>
-secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setScene</span><span style="color:#f92672">(</span>scene<span style="color:#f92672">);</span>
-secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
-</code></pre></div><p>Vous devriez avoir maintenant une fenêtre au centre de l'écran.
-Par contre, nous avons 2 problèmes&hellip; On ne peut plus la déplacer et on ne peut plus la fermer non plus.</p>
-<p>On met la fenêtre en haut à droite en ajoutant ça</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Aligner la fenêtre en haut à droite
-</span><span style="color:#75715e">//on repère les limites de l&#39;écran
-</span><span style="color:#75715e"></span>Rectangle2D visualBounds <span style="color:#f92672">=</span> Screen<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrimary</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getVisualBounds</span><span style="color:#f92672">();</span>
-<span style="color:#75715e">// on change les coordonnées de la fenêtre
-</span><span style="color:#75715e"></span>secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMaxX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 25 <span style="color:#f92672">-</span> scene<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">());</span>
-secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMinY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> 25<span style="color:#f92672">);</span>
-</code></pre></div><p>Pour faire glisser la fenêtre on va définir le décalage avec:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> xOffset<span style="color:#f92672">;</span>
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> yOffset<span style="color:#f92672">;</span>
-</code></pre></div><p>en haut de la classe et ajouter l'évenement dans la méthode start:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//On fait glisser la fenêtre avec la souris
-</span><span style="color:#75715e">//On récupère les offsets
-</span><span style="color:#75715e"></span>scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMousePressed</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-    xOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">();</span>
-    yOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">();</span>
-<span style="color:#f92672">});</span>
-<span style="color:#75715e">//On fait bouger la fenêtre
-</span><span style="color:#75715e"></span>scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMouseDragged</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-    secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> xOffset<span style="color:#f92672">);</span>
-    secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
-<span style="color:#f92672">});</span>
-</code></pre></div><p>Testez, ça bouge&hellip;</p>
-<p><img src="/img/JavaFX_Json/widget1.gif" alt="widget gif"></p>
-<p>Réglons maintenant le problème de fermeture de l&rsquo;appli.</p>
-<ul>
-<li>On ajoute un menu contextuel à ma fenêtre dans le controlleur.</li>
-<li>On ajoute l&rsquo;interface <code>Initializable</code> à notre controlleur et dans la méthode <code>initialize()</code> et on lance le menu.</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
-   <span style="color:#75715e">// N&#39;oubliez pas de nommer l&#39;AnchorPane qui sert d&#39;ancre à notre menu
-</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@FXML</span>
-    <span style="color:#66d9ef">public</span> AnchorPane rootPane<span style="color:#f92672">;</span>
-
-    <span style="color:#a6e22e">@Override</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        initializeContextMenu<span style="color:#f92672">();</span>
-    <span style="color:#f92672">}</span>
-
-   <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
-   <span style="color:#75715e">// le bouton quitter et son action
-</span><span style="color:#75715e"></span>       MenuItem exitItem <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuItem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Quitter&#34;</span><span style="color:#f92672">);</span>
-       exitItem<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnAction</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-           System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
-       <span style="color:#f92672">});</span>
-   <span style="color:#75715e">// le menu qui s&#39;active au clique droit et se cache au clique gauche
-</span><span style="color:#75715e"></span>       <span style="color:#66d9ef">final</span> ContextMenu contextMenu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ContextMenu<span style="color:#f92672">(</span>exitItem<span style="color:#f92672">);</span>
-       rootPane<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventHandler</span><span style="color:#f92672">(</span>MouseEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">MOUSE_PRESSED</span><span style="color:#f92672">,</span> event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-           <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">isSecondaryButtonDown</span><span style="color:#f92672">()){</span>
-               contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">(</span>rootPane<span style="color:#f92672">,</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenX</span><span style="color:#f92672">(),</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreenY</span><span style="color:#f92672">());</span>
-           <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
-            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">isShowing</span><span style="color:#f92672">()){</span>
-                contextMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">hide</span><span style="color:#f92672">();</span>
-            <span style="color:#f92672">}</span>
-        <span style="color:#f92672">}</span>
-    <span style="color:#f92672">});</span>
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
-</code></pre></div><p>Maintenant vous avez la possibilité de quitter l&rsquo;appli.</p>
+</code></pre></div><p>Et enfin il faut déclarer la classe principal dans le <code>build.gradle</code> en ajoutant <code>mainClassName = 'org.gerblog.Launch'</code></p>
+<p>A droite dans IntelliJ dans le menu gradle dans Tasks/Application double cliquez sur run.</p>
+<h2 id="utilisons-retrofit">Utilisons Retrofit</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
 		</div>
 		<footer class="post__footer">
@@ -295,6 +150,7 @@ secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">se
 	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
 	<ul class="tags__list">
 		<li class="tags__item"><a class="tags__link btn" href="/tags/javafx/" rel="tag">JavaFX</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/gradle/" rel="tag">Gradle</a></li>
 		<li class="tags__item"><a class="tags__link btn" href="/tags/json/" rel="tag">Json</a></li>
 		<li class="tags__item"><a class="tags__link btn" href="/tags/gson/" rel="tag">Gson</a></li>
 		<li class="tags__item"><a class="tags__link btn" href="/tags/retrofit/" rel="tag">Retrofit</a></li>
