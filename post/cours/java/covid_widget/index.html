@@ -132,7 +132,7 @@ javafx <span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>Stage primaryStage<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
         Parent root<span style="color:#f92672">;</span>
-        Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StackPane<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Label<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;JavaFX&#34;</span><span style="color:#f92672">)),</span>200<span style="color:#f92672">,</span>200<span style="color:#f92672">);</span>
+        Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StackPane<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Label<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;gradle et JavaFX&#34;</span><span style="color:#f92672">)),</span>200<span style="color:#f92672">,</span>200<span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setScene</span><span style="color:#f92672">(</span>scene<span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
@@ -140,6 +140,59 @@ javafx <span style="color:#f92672">{</span>
 </code></pre></div><p>Et enfin il faut déclarer la classe principal dans le <code>build.gradle</code> en ajoutant <code>mainClassName = 'org.gerblog.Launch'</code></p>
 <p>A droite dans IntelliJ dans le menu gradle dans Tasks/Application double cliquez sur run.</p>
 <h2 id="utilisons-retrofit">Utilisons Retrofit</h2>
+<p><strong>Retrofit</strong> est une librairie qui va nous permettre de récupérer les données de l&rsquo;api simplement.</p>
+<p><strong>Retrofit</strong> gère les appel https et un adapter qui va traduire le Json en objets java (POJO).</p>
+<p>On commence donc par importer <strong>Retrofit</strong> dans notre projet. Ajoutez ces 2 lignes dans <code>build.gradle</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">dependencies <span style="color:#f92672">{</span>
+    <span style="color:#75715e">//...les autres dépendances
+</span><span style="color:#75715e"></span>
+    compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:retrofit:2.8.1&#39;</span>
+    compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:converter-gson:2.8.1&#39;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Pour faire fonctionner <strong>Retrofit</strong> nous devons mettre en place le service de consommation de l&rsquo;api. Créez un package <code>datafetch</code> et dans celui ci créez une classe <code>DataProviderService.java</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>String countryName<span style="color:#f92672">){</span>
+        Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+</code></pre></div><p>La méthode getData() va nous permettre de récupérer les données.
+Le builder de <strong>Retrofit</strong> utilise l&rsquo;adresse de base de l&rsquo;api. Et on lui ajout le convertisseur Gson.</p>
+<p>Retrofit a besoin aussi d&rsquo;une interfaces de connexion</p>
+<p>Créez l&rsquo;interface CovidApi.java</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
+    <span style="color:#75715e">// la requête get pour avoir toutes les infos
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/all&#34;</span><span style="color:#f92672">)</span>
+    Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">();</span>
+    <span style="color:#75715e">//La requête pour avoir uniquement le pays qui nous intéresse
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/countries/{countryName}&#34;</span><span style="color:#f92672">)</span>
+    Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Path</span><span style="color:#f92672">(</span>value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;countryName&#34;</span><span style="color:#f92672">)</span> String countryName<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Retournons dans le service et faisons appel à l&rsquo;interface pour créer l&rsquo;objet de connexion</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+
+CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span>CovidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+
+        covidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">()</span>
+        <span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">body</span><span style="color:#f92672">());</span>
+            <span style="color:#f92672">}</span>
+
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+</code></pre></div><p>On a plus qu&rsquo;a tester ça.</p>
+<p>Dans <code>Launch.java</code> ajoutez un appel à notre <code>getData()</code> dans la méthode <code>start()</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+<span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">...</span>
+</code></pre></div><p>Vous devriez avoir en consol les chiffres du jour.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
