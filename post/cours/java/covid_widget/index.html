@@ -72,6 +72,7 @@
     <li><a href="#commençons-par-notre-projet-javafx">Commençons par notre projet JavaFX</a></li>
     <li><a href="#utilisons-retrofit">Utilisons Retrofit</a></li>
     <li><a href="#faisons-des-pojo">Faisons des POJO</a></li>
+    <li><a href="#récupérons-tout-ça-avec-retrofit">Récupérons tout ça avec Retrofit</a></li>
   </ul>
 </nav>
 	</div>
@@ -98,6 +99,11 @@ Son utilisation est simple vous allez voire</p>
   <span style="color:#f92672">&#34;testsPerOneMillion&#34;</span>: <span style="color:#ae81ff">5114</span>
 }
 </code></pre></div><h2 id="commençons-par-notre-projet-javafx">Commençons par notre projet JavaFX</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Z-36q571Nz8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>Créez un projet Gradle et modifiez le fichier <code>build.gradle</code> comme ceci</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
     id <span style="color:#e6db74">&#39;java&#39;</span>
@@ -338,7 +344,27 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTotalTests</span><span style="color:#f92672">(</span>Long totalTests<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">totalTests</span> <span style="color:#f92672">=</span> totalTests<span style="color:#f92672">;</span>
     <span style="color:#f92672">}}</span>
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre></div><p>Ajoutez à nos deux objets un @override de toString pour que ça nous affiche ce que l&rsquo;on veut et pas la méthode par défaut de java.</p>
+<p>Par exemple, voilà celle de <code>GlobalData.java</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;GlobalData{&#34;</span> <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#34;cases=&#34;</span> <span style="color:#f92672">+</span> cases <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#34;, deaths=&#34;</span> <span style="color:#f92672">+</span> deaths <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#34;, recovered=&#34;</span> <span style="color:#f92672">+</span> recovered <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#39;}&#39;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="récupérons-tout-ça-avec-retrofit">Récupérons tout ça avec Retrofit</h2>
+<p>Nous allons modifier les types dans l&rsquo;interface <code>CovidApi.java</code> en remplaçant les JsonObject par l&rsquo;objet qui correspond.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/all&#34;</span><span style="color:#f92672">)</span>
+    Call<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">();</span>
+
+    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/countries/{countryName}&#34;</span><span style="color:#f92672">)</span>
+    Call<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Path</span><span style="color:#f92672">(</span>value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;countryName&#34;</span><span style="color:#f92672">)</span> String countryName<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Maintenant, le convertisseur va faire le travail pour nous et convertir le Json en POJO (งツ)ว.</p>
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
 		</div>
