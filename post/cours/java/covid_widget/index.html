@@ -71,6 +71,7 @@
     <li><a href="#dabord-lapi">D&rsquo;abord l&rsquo;API</a></li>
     <li><a href="#commençons-par-notre-projet-javafx">Commençons par notre projet JavaFX</a></li>
     <li><a href="#utilisons-retrofit">Utilisons Retrofit</a></li>
+    <li><a href="#faisons-des-pojo">Faisons des POJO</a></li>
   </ul>
 </nav>
 	</div>
@@ -157,7 +158,6 @@ javafx <span style="color:#f92672">{</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
-
 </code></pre></div><p>La méthode getData() va nous permettre de récupérer les données.
 Le builder de <strong>Retrofit</strong> utilise l&rsquo;adresse de base de l&rsquo;api. Et on lui ajout le convertisseur Gson.</p>
 <p>Retrofit a besoin aussi d&rsquo;une interfaces de connexion</p>
@@ -192,8 +192,153 @@ CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="colo
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
 <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
 <span style="color:#f92672">...</span>
-</code></pre></div><p>Vous devriez avoir en consol les chiffres du jour.</p>
-<!-- raw HTML omitted -->
+</code></pre></div><p>Vous devriez avoir en console les chiffres du jour.</p>
+<h2 id="faisons-des-pojo">Faisons des POJO</h2>
+<p>D&rsquo;abord POJO c&rsquo;est Plain Old Java Object <a href="https://fr.wikipedia.org/wiki/Plain_old_Java_object">POJO pour wikipedia</a></p>
+<p>En d&rsquo;autre terme on va créer la correspondance en entre le json et un objet java.
+Trop simple quand on a les bons outils. Je vous invite à utiliser une extension intelliJ (Json2Pojo), mais vous pouvez trouver d&rsquo;autres outils en ligne qui marchent très bien pour convertir un objet json en objet java. (<a href="http://www.jsonschema2pojo.org">http://www.jsonschema2pojo.org</a> ou <a href="https://codebeautify.org/json-to-java-converter">https://codebeautify.org/json-to-java-converter</a> &hellip; il en existe beaucoup).</p>
+<p>Après avoir converti et nettoyé notre objet vous devriez avoir ça pour l&rsquo;objet correspondant à la requête all:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GlobalData</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> cases<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> deaths<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> recovered<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getCases</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> cases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setCases</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> cases<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cases</span> <span style="color:#f92672">=</span> cases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getDeaths</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> deaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setDeaths</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> deaths<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">deaths</span> <span style="color:#f92672">=</span> deaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">getRecovered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> recovered<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setRecovered</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> recovered<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">recovered</span> <span style="color:#f92672">=</span> recovered<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}}</span>
+</code></pre></div><p>et pour la recherche par ville:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CountryData</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> String country<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long active<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long cases<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long casesPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long critical<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long deaths<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long deathsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long recovered<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long testsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long todayCases<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long todayDeaths<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long totalTests<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getCountry</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> country<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setCountry</span><span style="color:#f92672">(</span>String country<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">country</span> <span style="color:#f92672">=</span> country<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getActive</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> active<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setActive</span><span style="color:#f92672">(</span>Long active<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">active</span> <span style="color:#f92672">=</span> active<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getCases</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> cases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setCases</span><span style="color:#f92672">(</span>Long cases<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cases</span> <span style="color:#f92672">=</span> cases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getCasesPerOneMillion</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> casesPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setCasesPerOneMillion</span><span style="color:#f92672">(</span>Long casesPerOneMillion<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">casesPerOneMillion</span> <span style="color:#f92672">=</span> casesPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getCritical</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> critical<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setCritical</span><span style="color:#f92672">(</span>Long critical<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">critical</span> <span style="color:#f92672">=</span> critical<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getDeaths</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> deaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setDeaths</span><span style="color:#f92672">(</span>Long deaths<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">deaths</span> <span style="color:#f92672">=</span> deaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getDeathsPerOneMillion</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> deathsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setDeathsPerOneMillion</span><span style="color:#f92672">(</span>Long deathsPerOneMillion<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">deathsPerOneMillion</span> <span style="color:#f92672">=</span> deathsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getRecovered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> recovered<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setRecovered</span><span style="color:#f92672">(</span>Long recovered<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">recovered</span> <span style="color:#f92672">=</span> recovered<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getTestsPerOneMillion</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> testsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTestsPerOneMillion</span><span style="color:#f92672">(</span>Long testsPerOneMillion<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">testsPerOneMillion</span> <span style="color:#f92672">=</span> testsPerOneMillion<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getTodayCases</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> todayCases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTodayCases</span><span style="color:#f92672">(</span>Long todayCases<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">todayCases</span> <span style="color:#f92672">=</span> todayCases<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getTodayDeaths</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> todayDeaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTodayDeaths</span><span style="color:#f92672">(</span>Long todayDeaths<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">todayDeaths</span> <span style="color:#f92672">=</span> todayDeaths<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getTotalTests</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> totalTests<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTotalTests</span><span style="color:#f92672">(</span>Long totalTests<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">totalTests</span> <span style="color:#f92672">=</span> totalTests<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}}</span>
+</code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
 		</div>
