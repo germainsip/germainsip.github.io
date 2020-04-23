@@ -73,6 +73,7 @@
     <li><a href="#utilisons-retrofit">Utilisons Retrofit</a></li>
     <li><a href="#faisons-des-pojo">Faisons des POJO</a></li>
     <li><a href="#récupérons-tout-ça-avec-retrofit">Récupérons tout ça avec Retrofit</a></li>
+    <li><a href="#un-peu-de-design-maintenant">Un peu de design maintenant</a></li>
   </ul>
 </nav>
 	</div>
@@ -364,6 +365,103 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     Call<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Path</span><span style="color:#f92672">(</span>value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;countryName&#34;</span><span style="color:#f92672">)</span> String countryName<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Maintenant, le convertisseur va faire le travail pour nous et convertir le Json en POJO (งツ)ว.</p>
+<p>Jusqu&rsquo;ici la méthode getData du DataProviderService était vide, nous alons créer un objet pour réceptionner les valeurs et l&rsquo;appeler <code>CoviDataModel</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> GlobalData globalData<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> CountryData countryData<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> GlobalData <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> globalData<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> CountryData <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> countryData<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Nous devons changer le retour de <code>getData</code> dans le Provider de void à <code>CovidDataModel</code> et pouvoir renvoyer en même temps les deux valeurs (Celà impose l&rsquo;utilisation de <code>CompletableFuture</code> une méthode qui permet d&rsquo;attendre que les 2 résultats soient chargés).</p>
+<p>Du coup pas mal de changements:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> CovidDataModel <span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>String countryName<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+        CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span>CovidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+<span style="color:#75715e">// premier Future
+</span><span style="color:#75715e"></span>        CompletableFuture<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> callback1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CompletableFuture<span style="color:#f92672">&lt;&gt;();</span>
+
+        covidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+                    <span style="color:#a6e22e">@Override</span>
+                    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        callback1<span style="color:#f92672">.</span><span style="color:#a6e22e">complete</span><span style="color:#f92672">(</span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">body</span><span style="color:#f92672">());</span>
+                    <span style="color:#f92672">}</span>
+
+                    <span style="color:#a6e22e">@Override</span>
+                    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        callback1<span style="color:#f92672">.</span><span style="color:#a6e22e">completeExceptionally</span><span style="color:#f92672">(</span>t<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">});</span>
+                <span style="color:#75715e">// Deuxième Future
+</span><span style="color:#75715e"></span>        CompletableFuture<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> callback2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CompletableFuture<span style="color:#f92672">&lt;&gt;();</span>
+
+        covidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">(</span>countryName<span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+                    <span style="color:#a6e22e">@Override</span>
+                    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        callback2<span style="color:#f92672">.</span><span style="color:#a6e22e">complete</span><span style="color:#f92672">(</span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">body</span><span style="color:#f92672">());</span>
+                    <span style="color:#f92672">}</span>
+
+                    <span style="color:#a6e22e">@Override</span>
+                    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>CountryData<span style="color:#f92672">&gt;</span> call<span style="color:#f92672">,</span> Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                        callback2<span style="color:#f92672">.</span><span style="color:#a6e22e">completeExceptionally</span><span style="color:#f92672">(</span>t<span style="color:#f92672">);</span>
+                    <span style="color:#f92672">}</span>
+                <span style="color:#f92672">});</span>
+<span style="color:#75715e">// L&#39;obtention des Futures
+</span><span style="color:#75715e"></span>        GlobalData globalData <span style="color:#f92672">=</span> callback1<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">();</span>
+        CountryData countryData <span style="color:#f92672">=</span> callback2<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">();</span>
+<span style="color:#75715e">// retour du model
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> CovidDataModel<span style="color:#f92672">(</span>globalData<span style="color:#f92672">,</span>countryData<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Pour le model on lui ajoute un constructeur et une méthode toString</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> GlobalData globalData<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> CountryData countryData<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;CovidDataModel{&#34;</span> <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#34;globalData=&#34;</span> <span style="color:#f92672">+</span> globalData <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#34;, countryData=&#34;</span> <span style="color:#f92672">+</span> countryData <span style="color:#f92672">+</span>
+                <span style="color:#e6db74">&#39;}&#39;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">CovidDataModel</span><span style="color:#f92672">(</span>GlobalData globalData<span style="color:#f92672">,</span> CountryData countryData<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">globalData</span> <span style="color:#f92672">=</span> globalData<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">countryData</span> <span style="color:#f92672">=</span> countryData<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> GlobalData <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> globalData<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> CountryData <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> countryData<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>et le launch&hellip;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+CovidDataModel dataModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dataModel<span style="color:#f92672">);</span>
+<span style="color:#f92672">...</span>
+</code></pre></div><p>Maintenant si vous exécutez l&rsquo;appli, elle va chercher les info sur l&rsquo;api et construit un objet prenant les infos dont nous allons nous servir.</p>
+<blockquote>
+<p>Le résultat que vous devriez avoir en console</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">CovidDataModel<span style="color:#f92672">{</span>globalData<span style="color:#f92672">=</span>GlobalData<span style="color:#f92672">{</span>cases<span style="color:#f92672">=</span>2661504, deaths<span style="color:#f92672">=</span>185504, recovered<span style="color:#f92672">=</span>730727<span style="color:#f92672">}</span>, countryData<span style="color:#f92672">=</span>CountryData<span style="color:#f92672">{</span>country<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;France&#39;</span>, active<span style="color:#f92672">=</span>97880, cases<span style="color:#f92672">=</span>159877, casesPerOneMillion<span style="color:#f92672">=</span>2449, critical<span style="color:#f92672">=</span>5218, deaths<span style="color:#f92672">=</span>21340, deathsPerOneMillion<span style="color:#f92672">=</span>327, recovered<span style="color:#f92672">=</span>40657, testsPerOneMillion<span style="color:#f92672">=</span>7103, todayCases<span style="color:#f92672">=</span>0, todayDeaths<span style="color:#f92672">=</span>0, totalTests<span style="color:#f92672">=</span>463662<span style="color:#f92672">}}</span>
+</code></pre></div><h2 id="un-peu-de-design-maintenant">Un peu de design maintenant</h2>
+<p>On a écrit beaucoup de code. Amusons nous avec l&rsquo;apsect graphique du widget.</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
