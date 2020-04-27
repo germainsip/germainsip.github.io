@@ -74,6 +74,7 @@
     <li><a href="#faisons-des-pojo">Faisons des POJO</a></li>
     <li><a href="#récupérons-tout-ça-avec-retrofit">Récupérons tout ça avec Retrofit</a></li>
     <li><a href="#un-peu-de-design-maintenant">Un peu de design maintenant</a></li>
+    <li><a href="#un-peu-de-css">Un peu de CSS</a></li>
   </ul>
 </nav>
 	</div>
@@ -462,6 +463,81 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">CovidDataModel<span style="color:#f92672">{</span>globalData<span style="color:#f92672">=</span>GlobalData<span style="color:#f92672">{</span>cases<span style="color:#f92672">=</span>2661504, deaths<span style="color:#f92672">=</span>185504, recovered<span style="color:#f92672">=</span>730727<span style="color:#f92672">}</span>, countryData<span style="color:#f92672">=</span>CountryData<span style="color:#f92672">{</span>country<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;France&#39;</span>, active<span style="color:#f92672">=</span>97880, cases<span style="color:#f92672">=</span>159877, casesPerOneMillion<span style="color:#f92672">=</span>2449, critical<span style="color:#f92672">=</span>5218, deaths<span style="color:#f92672">=</span>21340, deathsPerOneMillion<span style="color:#f92672">=</span>327, recovered<span style="color:#f92672">=</span>40657, testsPerOneMillion<span style="color:#f92672">=</span>7103, todayCases<span style="color:#f92672">=</span>0, todayDeaths<span style="color:#f92672">=</span>0, totalTests<span style="color:#f92672">=</span>463662<span style="color:#f92672">}}</span>
 </code></pre></div><h2 id="un-peu-de-design-maintenant">Un peu de design maintenant</h2>
 <p>On a écrit beaucoup de code. Amusons nous avec l&rsquo;apsect graphique du widget.</p>
+<p>Créons un package <code>gui/widget</code>. A l&rsquo;intérieur, créez un fxml <code>widget.fxml</code> et son controlleur <code>Widgetcontroller.java</code></p>
+<p>Voilà le contenu du fxml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/11.0.1&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;children&gt;</span>
+      <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
+         <span style="color:#f92672">&lt;children&gt;</span>
+            <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Infos sur le Covid&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">alignment=</span><span style="color:#e6db74">&#34;CENTER_LEFT&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;10.0&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;children&gt;</span>
+                  <span style="color:#f92672">&lt;FontIcon</span> <span style="color:#a6e22e">iconLiteral=</span><span style="color:#e6db74">&#34;fa-globe&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts: ...&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/children&gt;</span>
+            <span style="color:#f92672">&lt;/HBox&gt;</span>
+            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">alignment=</span><span style="color:#e6db74">&#34;CENTER_LEFT&#34;</span> <span style="color:#a6e22e">layoutX=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">layoutY=</span><span style="color:#e6db74">&#34;27.0&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;10.0&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;children&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;FR&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts: ...&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/children&gt;</span>
+            <span style="color:#f92672">&lt;/HBox&gt;</span>
+         <span style="color:#f92672">&lt;/children&gt;</span>
+      <span style="color:#f92672">&lt;/VBox&gt;</span>
+   <span style="color:#f92672">&lt;/children&gt;</span>
+<span style="color:#f92672">&lt;/AnchorPane&gt;</span>
+</code></pre></div><p>Si vous copiez directement ce code, ça va pas marcher!!!</p>
+<p>Si vous lisez le contenu, vous vous apercevez que j&rsquo;ai ajouté des choses nouvelles. D&rsquo;abord, il y a le <code>FontIcon</code>.</p>
+<p>Il faut ajouter une dépendace à notre projet dans <code>build.gradle</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">  compile <span style="color:#e6db74">&#39;org.kordamp.ikonli:ikonli-javafx:11.4.0&#39;</span>
+    compile <span style="color:#e6db74">&#39;org.kordamp.ikonli:ikonli-fontawesome-pack:11.4.0&#39;</span>
+</code></pre></div><p>Cela nous permet d&rsquo;utiliser les fontawesome qui produisent de icones (et ça c&rsquo;est trop cool&hellip;).</p>
+<h2 id="un-peu-de-css">Un peu de CSS</h2>
+<p>C&rsquo;est un peu compliqué de détailler cette partie ici. Je le fais dans la vidéo.</p>
+<p>Vous allez ajouter un package <code>style</code> et un fichier <code>main_style.css</code> dont le contenu sera</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">*</span> {
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-base: <span style="color:#ae81ff">#232323</span>;
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-family: <span style="color:#e6db74">&#34;Hack Nerd Font&#34;</span>, <span style="color:#e6db74">&#34;Noto Mono&#34;</span>, Arial;
+}
+
+.<span style="color:#a6e22e">main-title</span> {
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-weight: <span style="color:#66d9ef">bold</span>;
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">pt</span>;
+}
+
+.<span style="color:#a6e22e">country-title</span> {
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">pt</span>;
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-fill: <span style="color:#66d9ef">white</span>;
+}
+
+.<span style="color:#a6e22e">content-text</span> {
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">14</span><span style="color:#66d9ef">pt</span>;
+    <span style="color:#960050;background-color:#1e0010">-</span>fx-fill: <span style="color:#66d9ef">white</span>;
+}
+</code></pre></div><p>après avoir affecté les classes et fait quelques changements le fxml devient</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">stylesheets=</span><span style="color:#e6db74">&#34;@../style/main_style.css&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/11.0.1&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;children&gt;</span>
+      <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
+         <span style="color:#f92672">&lt;children&gt;</span>
+            <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;main-title&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Infos sur le Covid&#34;</span> <span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">alignment=</span><span style="color:#e6db74">&#34;CENTER_LEFT&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;10.0&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;children&gt;</span>
+                  <span style="color:#f92672">&lt;FontIcon</span> <span style="color:#a6e22e">iconColor=</span><span style="color:#e6db74">&#34;WHITE&#34;</span> <span style="color:#a6e22e">iconLiteral=</span><span style="color:#e6db74">&#34;fa-globe&#34;</span> <span style="color:#a6e22e">iconSize=</span><span style="color:#e6db74">&#34;30&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;content-text&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts: ...&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/children&gt;</span>
+            <span style="color:#f92672">&lt;/HBox&gt;</span>
+            <span style="color:#f92672">&lt;HBox</span> <span style="color:#a6e22e">alignment=</span><span style="color:#e6db74">&#34;CENTER_LEFT&#34;</span> <span style="color:#a6e22e">layoutX=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">layoutY=</span><span style="color:#e6db74">&#34;27.0&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;10.0&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;children&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;country-title&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;FR&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;Text</span> <span style="color:#a6e22e">strokeType=</span><span style="color:#e6db74">&#34;OUTSIDE&#34;</span> <span style="color:#a6e22e">strokeWidth=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">styleClass=</span><span style="color:#e6db74">&#34;content-text&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Cas: ... | Guéris: ... | Morts: ...&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/children&gt;</span>
+            <span style="color:#f92672">&lt;/HBox&gt;</span>
+         <span style="color:#f92672">&lt;/children&gt;</span>
+      <span style="color:#f92672">&lt;/VBox&gt;</span>
+   <span style="color:#f92672">&lt;/children&gt;</span>
+<span style="color:#f92672">&lt;/AnchorPane&gt;</span>
+</code></pre></div><p>Et visuellement vous devez obtenir</p>
+<p><img src="/img/apercu-widget.png" alt="apercu"></p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
