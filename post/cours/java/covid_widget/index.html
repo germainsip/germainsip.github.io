@@ -149,6 +149,11 @@ javafx <span style="color:#f92672">{</span>
 </code></pre></div><p>Et enfin il faut déclarer la classe principal dans le <code>build.gradle</code> en ajoutant <code>mainClassName = 'org.gerblog.Launch'</code></p>
 <p>A droite dans IntelliJ dans le menu gradle dans Tasks/Application double cliquez sur run.</p>
 <h2 id="utilisons-retrofit">Utilisons Retrofit</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Q0ltx0oAFd8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p><strong>Retrofit</strong> est une librairie qui va nous permettre de récupérer les données de l&rsquo;api simplement.</p>
 <p><strong>Retrofit</strong> gère les appel https et un adapter qui va traduire le Json en objets java (POJO).</p>
 <p>On commence donc par importer <strong>Retrofit</strong> dans notre projet. Ajoutez ces 2 lignes dans <code>build.gradle</code></p>
@@ -202,6 +207,11 @@ CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="colo
 <span style="color:#f92672">...</span>
 </code></pre></div><p>Vous devriez avoir en console les chiffres du jour.</p>
 <h2 id="faisons-des-pojo">Faisons des POJO</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/Q0ltx0oAFd8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>D&rsquo;abord POJO c&rsquo;est Plain Old Java Object <a href="https://fr.wikipedia.org/wiki/Plain_old_Java_object">POJO pour wikipedia</a></p>
 <p>En d&rsquo;autre terme on va créer la correspondance en entre le json et un objet java.
 Trop simple quand on a les bons outils. Je vous invite à utiliser une extension intelliJ (Json2Pojo), mais vous pouvez trouver d&rsquo;autres outils en ligne qui marchent très bien pour convertir un objet json en objet java. (<a href="http://www.jsonschema2pojo.org">http://www.jsonschema2pojo.org</a> ou <a href="https://codebeautify.org/json-to-java-converter">https://codebeautify.org/json-to-java-converter</a> &hellip; il en existe beaucoup).</p>
