@@ -391,6 +391,11 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Nous devons changer le retour de <code>getData</code> dans le Provider de void à <code>CovidDataModel</code> et pouvoir renvoyer en même temps les deux valeurs (Celà impose l&rsquo;utilisation de <code>CompletableFuture</code> une méthode qui permet d&rsquo;attendre que les 2 résultats soient chargés).</p>
 <p>Du coup pas mal de changements:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/XbIl5VG1CGw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> CovidDataModel <span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>String countryName<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
