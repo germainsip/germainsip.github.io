@@ -477,6 +477,11 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 </blockquote>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">CovidDataModel<span style="color:#f92672">{</span>globalData<span style="color:#f92672">=</span>GlobalData<span style="color:#f92672">{</span>cases<span style="color:#f92672">=</span>2661504, deaths<span style="color:#f92672">=</span>185504, recovered<span style="color:#f92672">=</span>730727<span style="color:#f92672">}</span>, countryData<span style="color:#f92672">=</span>CountryData<span style="color:#f92672">{</span>country<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;France&#39;</span>, active<span style="color:#f92672">=</span>97880, cases<span style="color:#f92672">=</span>159877, casesPerOneMillion<span style="color:#f92672">=</span>2449, critical<span style="color:#f92672">=</span>5218, deaths<span style="color:#f92672">=</span>21340, deathsPerOneMillion<span style="color:#f92672">=</span>327, recovered<span style="color:#f92672">=</span>40657, testsPerOneMillion<span style="color:#f92672">=</span>7103, todayCases<span style="color:#f92672">=</span>0, todayDeaths<span style="color:#f92672">=</span>0, totalTests<span style="color:#f92672">=</span>463662<span style="color:#f92672">}}</span>
 </code></pre></div><h2 id="un-peu-de-design-maintenant">Un peu de design maintenant</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>On a écrit beaucoup de code. Amusons nous avec l&rsquo;apsect graphique du widget.</p>
 <p>Créons un package <code>gui/widget</code>. A l&rsquo;intérieur, créez un fxml <code>widget.fxml</code> et son controlleur <code>Widgetcontroller.java</code></p>
 <p>Voilà le contenu du fxml</p>
@@ -555,7 +560,26 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 <blockquote>
 <p>J&rsquo;en ai profité pour nommer les éléments dont nous aurons besoin.</p>
 </blockquote>
-<!-- raw HTML omitted -->
+<p>Il reste alors à ajouter les référeces de nos champs dans le controlleur et implémenter <code>Initializable</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@FXML</span>
+    <span style="color:#66d9ef">public</span> AnchorPane rootPane<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@FXML</span>
+    <span style="color:#66d9ef">public</span> Text textGlobalReport<span style="color:#f92672">,</span>textCountryCode<span style="color:#f92672">,</span>textCountryReport<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Dans <code>Launch</code> on fait les modifiations pour le fxml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>getClass<span style="color:#f92672">().</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/org/gerblog/gui/widget/widget.fxml&#34;</span><span style="color:#f92672">));</span>
+Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
+</code></pre></div><p>Et pour que gradle ait accés au css et fxml on ajoute ces 2 lignes à build.gradle</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/java&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.fxml&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;**/*.css&#34;</span><span style="color:#f92672">])</span>
+sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/resources&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.*&#34;</span><span style="color:#f92672">])</span>
+</code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
 		</div>
