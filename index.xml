@@ -6,10 +6,23 @@
     <description>Recent content on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 16 Apr 2020 08:10:03 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 May 2020 12:24:26 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Velvet1</title>
+      <link>/post/cours/java/velvet1/</link>
+      <pubDate>Mon, 04 May 2020 12:24:26 +0000</pubDate>
+      
+      <guid>/post/cours/java/velvet1/</guid>
+      <description>Construction du squelette de l&amp;rsquo;appli Commencez par créer un projet JavaFX avec Gradle.
+  Ajoutez les plugins au build.gradle
+plugins { id &amp;#39;java&amp;#39; id &amp;#39;application&amp;#39; id &amp;#39;org.openjfx.javafxplugin&amp;#39; version &amp;#39;0.0.8&amp;#39; } on définie les modules de javaFX la classe main
+javafx { version = &amp;#34;14&amp;#34; modules = [&amp;#34;javafx.controls&amp;#34;,&amp;#34;javafx.base&amp;#34;,&amp;#34;javafx.graphics&amp;#34;,&amp;#34;javafx.fxml&amp;#34;] } mainClassName = &amp;#39;org.germain.App&amp;#39; Créez les packages ainsi que App.java, velvet.fxml et VelvetController.java comme dans la vidéo.
+Enfin, apportez les modification à build.</description>
+    </item>
     
     <item>
       <title>Covid_widget</title>
