@@ -582,6 +582,7 @@ Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/java&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.fxml&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;**/*.css&#34;</span><span style="color:#f92672">])</span>
 sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/resources&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.*&#34;</span><span style="color:#f92672">])</span>
 </code></pre></div><h2 id="on-widgetise-la-fenêtre">On widgetise la fenêtre</h2>
+<p>{{youtube G_D42piHSR8}}</p>
 <p>Pour enlever la bordure, il suffit d&rsquo;ajouter un réglage au <code>primaryStage</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
 </code></pre></div><p>Testez&hellip; La fenêtre n&rsquo;a plus de bordure mais elle apparait toujours dans la barre des taches.</p>
@@ -624,6 +625,11 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
             secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
         <span style="color:#f92672">});</span>
 </code></pre></div><h2 id="retour-au-controlleur-pour-récupérer-les-données">Retour au controlleur pour récupérer les données</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/26-42PlpTlg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>Nous allons utiliser un planificateur (Scheduler).</p>
 <p>En haut du controlleur définissons notre planificateur</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> ScheduledExecutorService executorService<span style="color:#f92672">;</span>
