@@ -76,6 +76,7 @@
     <li><a href="#un-peu-de-design-maintenant">Un peu de design maintenant</a></li>
     <li><a href="#un-peu-de-css">Un peu de CSS</a></li>
     <li><a href="#on-widgetise-la-fenêtre">On widgetise la fenêtre</a></li>
+    <li><a href="#retour-au-controlleur-pour-récupérer-les-données">Retour au controlleur pour récupérer les données</a></li>
   </ul>
 </nav>
 	</div>
@@ -622,7 +623,55 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
             secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneX</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> xOffset<span style="color:#f92672">);</span>
             secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
         <span style="color:#f92672">});</span>
-</code></pre></div><!-- raw HTML omitted -->
+</code></pre></div><h2 id="retour-au-controlleur-pour-récupérer-les-données">Retour au controlleur pour récupérer les données</h2>
+<p>Nous allons utiliser un planificateur (Scheduler).</p>
+<p>En haut du controlleur définissons notre planificateur</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> ScheduledExecutorService executorService<span style="color:#f92672">;</span>
+</code></pre></div><p>Dans initialize appelons la méthode d&rsquo;initialisation</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">initializeSchedulerService<span style="color:#f92672">();</span>
+</code></pre></div><p>et définissons cette méthode (et quelques ajustements&hellip;)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeSchedulerService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        executorService <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newSingleThreadScheduledExecutor</span><span style="color:#f92672">();</span>
+        executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleAtFixedRate</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">::</span>loadData<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span>20<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        DataProviderService dataProviderService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">();</span>
+        CovidDataModel covidDataModel <span style="color:#f92672">=</span> dataProviderService<span style="color:#f92672">.</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#75715e">// attention au processus de javaFX
+</span><span style="color:#75715e"></span>        Platform<span style="color:#f92672">.</span><span style="color:#a6e22e">runLater</span><span style="color:#f92672">(()-&gt;{</span>
+            <span style="color:#75715e">// déploiement des données dans l&#39;affichage
+</span><span style="color:#75715e"></span>            inflateData<span style="color:#f92672">(</span>covidDataModel<span style="color:#f92672">);</span>
+        <span style="color:#f92672">});</span>
+
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">inflateData</span><span style="color:#f92672">(</span>CovidDataModel covidDataModel<span style="color:#f92672">){</span>
+        GlobalData globalData <span style="color:#f92672">=</span> covidDataModel<span style="color:#f92672">.</span><span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">();</span>
+        CountryData countryData <span style="color:#f92672">=</span> covidDataModel<span style="color:#f92672">.</span><span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">();</span>
+        textGlobalReport<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>getFormatedData<span style="color:#f92672">(</span>globalData<span style="color:#f92672">.</span><span style="color:#a6e22e">getCases</span><span style="color:#f92672">(),</span>globalData<span style="color:#f92672">.</span><span style="color:#a6e22e">getRecovered</span><span style="color:#f92672">(),</span>globalData<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeaths</span><span style="color:#f92672">()));</span>
+        textCountryReport<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>getFormatedData<span style="color:#f92672">(</span>countryData<span style="color:#f92672">.</span><span style="color:#a6e22e">getCases</span><span style="color:#f92672">(),</span>countryData<span style="color:#f92672">.</span><span style="color:#a6e22e">getRecovered</span><span style="color:#f92672">(),</span>countryData<span style="color:#f92672">.</span><span style="color:#a6e22e">getDeaths</span><span style="color:#f92672">()));</span>
+        <span style="color:#75715e">// redimentionnement du stage
+</span><span style="color:#75715e"></span>        readjustStage<span style="color:#f92672">(</span>textCountryCode<span style="color:#f92672">.</span><span style="color:#a6e22e">getScene</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getWindow</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+
+    <span style="color:#75715e">// formatage du texte
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> String <span style="color:#a6e22e">getFormatedData</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> totalCases<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> recoveredCases<span style="color:#f92672">,</span> <span style="color:#66d9ef">long</span> totalDeath<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">return</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Cas: %-8d | Guéris: %-7d | Morts: %-6d&#34;</span><span style="color:#f92672">,</span>totalCases<span style="color:#f92672">,</span>recoveredCases<span style="color:#f92672">,</span>totalDeath<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">// redimentionnement du stage
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readjustStage</span><span style="color:#f92672">(</span>Window stage<span style="color:#f92672">){</span>
+        stage<span style="color:#f92672">.</span><span style="color:#a6e22e">sizeToScene</span><span style="color:#f92672">();</span>
+        Rectangle2D visualBounds <span style="color:#f92672">=</span> Screen<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrimary</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getVisualBounds</span><span style="color:#f92672">();</span>
+        stage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMaxX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 25 <span style="color:#f92672">-</span> textCountryCode<span style="color:#f92672">.</span><span style="color:#a6e22e">getScene</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">());</span>
+        stage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMinY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> 25<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><blockquote>
+<p>plus de détails dans la vidéo</p>
+</blockquote>
+<!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 
 		</div>
