@@ -589,6 +589,7 @@ sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</
     <span style="color:#75715e">// le stage fantome
 </span><span style="color:#75715e"></span>        primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UTILITY</span><span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+        primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
     <span style="color:#75715e">// le stage sans bordure contenu dans le premier
 </span><span style="color:#75715e"></span>        Stage secondaryStage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Stage<span style="color:#f92672">();</span>
         secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
@@ -614,12 +615,12 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 
 <span style="color:#75715e">//ajout de la méthode de translation
 </span><span style="color:#75715e"></span> scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMousePressed</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-            xOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getSceneX</span><span style="color:#f92672">();</span>
-            yOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getSceneY</span><span style="color:#f92672">();</span>
+            xOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneX</span><span style="color:#f92672">();</span>
+            yOffset <span style="color:#f92672">=</span> secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">getY</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneY</span><span style="color:#f92672">();</span>
         <span style="color:#f92672">});</span>
         scene<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnMouseDragged</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
-            secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getSceneX</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> xOffset<span style="color:#f92672">);</span>
-            secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getSceneY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
+            secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneX</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> xOffset<span style="color:#f92672">);</span>
+            secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getScreneY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> yOffset<span style="color:#f92672">);</span>
         <span style="color:#f92672">});</span>
 </code></pre></div><!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
