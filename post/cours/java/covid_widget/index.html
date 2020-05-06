@@ -77,6 +77,7 @@
     <li><a href="#un-peu-de-css">Un peu de CSS</a></li>
     <li><a href="#on-widgetise-la-fenêtre">On widgetise la fenêtre</a></li>
     <li><a href="#retour-au-controlleur-pour-récupérer-les-données">Retour au controlleur pour récupérer les données</a></li>
+    <li><a href="#un-fichier-de-configuration">Un fichier de configuration.</a></li>
   </ul>
 </nav>
 	</div>
@@ -681,8 +682,85 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 </code></pre></div><blockquote>
 <p>plus de détails dans la vidéo</p>
 </blockquote>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<h2 id="un-fichier-de-configuration">Un fichier de configuration.</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Jusqu&rsquo;ici tout est codé en dure dans notre programme. L&rsquo;idée est de permettre de changer le pays et l&rsquo;intervale de temps pour le rafraississement.</p>
+<p>Tout va se faire dans un fichier Json. Nousavons donc besoin d&rsquo;un POJO et d&rsquo;un service que nous allons mettre dans un package <code>config</code></p>
+<p>Classe <code>ConfigModel.java</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigModel</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> refreshIntervalInSeconds<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String countryName<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String countryCode<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ConfigModel</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        refreshIntervalInSeconds <span style="color:#f92672">=</span> 30<span style="color:#f92672">;</span>
+        countryName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">;</span>
+        countryCode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;FR&#34;</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">//... plus les Getter et Setter
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Classe <code>ConfigurationService</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigrationService</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> File SETTINGS_FILE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;settings.json&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">private</span> Gson gson <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">create</span><span style="color:#f92672">();</span>
+
+    <span style="color:#66d9ef">public</span> ConfigModel <span style="color:#a6e22e">getConfiguration</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>SETTINGS_FILE<span style="color:#f92672">.</span><span style="color:#a6e22e">exists</span><span style="color:#f92672">()){</span>
+            createSettingsFile<span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> getConfigurationFromfile<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createSettingsFile</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        ConfigModel configModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConfigModel<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span> Writer writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileWriter<span style="color:#f92672">(</span>SETTINGS_FILE<span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">)){</span>
+            gson<span style="color:#f92672">.</span><span style="color:#a6e22e">toJson</span><span style="color:#f92672">(</span>configModel<span style="color:#f92672">,</span>writer<span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> ConfigModel <span style="color:#a6e22e">getConfigurationFromfile</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+        ConfigModel configModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConfigModel<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span> Reader reader <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileReader<span style="color:#f92672">(</span>SETTINGS_FILE<span style="color:#f92672">)){</span>
+           <span style="color:#66d9ef">return</span> gson<span style="color:#f92672">.</span><span style="color:#a6e22e">fromJson</span><span style="color:#f92672">(</span>reader<span style="color:#f92672">,</span>ConfigModel<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>En résumé, ce service crée le fichier de configuration s&rsquo;il n&rsquo;existe pas puis le lit et le transforme en objet.</p>
+<p>Enfin on va modifier le controlleur pour prendre en compte ces changements:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+ <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            configModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ConfigrationService<span style="color:#f92672">().</span><span style="color:#a6e22e">getConfiguration</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+        initializeSchedulerService<span style="color:#f92672">();</span>
+        textCountryCode<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>configModel<span style="color:#f92672">.</span><span style="color:#a6e22e">getCountryCode</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeSchedulerService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+
+        executorService <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newSingleThreadScheduledExecutor</span><span style="color:#f92672">();</span>
+        executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleAtFixedRate</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">::</span>loadData<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> configModel<span style="color:#f92672">.</span><span style="color:#a6e22e">getRefreshIntervalInSeconds</span><span style="color:#f92672">(),</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loadData</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        DataProviderService dataProviderService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">();</span>
+        CovidDataModel covidDataModel <span style="color:#f92672">=</span> dataProviderService<span style="color:#f92672">.</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>configModel<span style="color:#f92672">.</span><span style="color:#a6e22e">getCountryName</span><span style="color:#f92672">());</span>
+        <span style="color:#75715e">// attention au processus de javaFX
+</span><span style="color:#75715e"></span>        Platform<span style="color:#f92672">.</span><span style="color:#a6e22e">runLater</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+            inflateData<span style="color:#f92672">(</span>covidDataModel<span style="color:#f92672">);</span>
+        <span style="color:#f92672">});</span>
+
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">...</span>
+</code></pre></div><p>Et voilà &hellip;</p>
 
 		</div>
 		<footer class="post__footer">
