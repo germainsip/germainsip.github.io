@@ -763,6 +763,11 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 <span style="color:#f92672">...</span>
 </code></pre></div><p>Et voilà &hellip;</p>
 <h2 id="derniers-petits-ajouts">Derniers petits ajouts</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/4w6NVuJWiVM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
 <p>On va ajouter un menu pour quitter et rafraichir manuellement</p>
 <p>Ajoutez la méthode suivante au controlleur</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">(){</span>
@@ -780,7 +785,6 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
         MenuItem refreshItem <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuItem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Rafraichir&#34;</span><span style="color:#f92672">);</span>
         refreshItem<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnAction</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
             executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">schedule</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">::</span>loadData<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
-
         <span style="color:#f92672">});</span>
         <span style="color:#66d9ef">final</span> ContextMenu contextMenu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ContextMenu<span style="color:#f92672">(</span>exitItem<span style="color:#f92672">,</span> refreshItem<span style="color:#f92672">);</span>
         rootPane<span style="color:#f92672">.</span><span style="color:#a6e22e">addEventHandler</span><span style="color:#f92672">(</span>MouseEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">MOUSE_PRESSED</span><span style="color:#f92672">,</span> event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
