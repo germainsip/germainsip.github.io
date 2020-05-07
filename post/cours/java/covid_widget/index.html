@@ -79,6 +79,7 @@
     <li><a href="#retour-au-controlleur-pour-récupérer-les-données">Retour au controlleur pour récupérer les données</a></li>
     <li><a href="#un-fichier-de-configuration">Un fichier de configuration.</a></li>
     <li><a href="#derniers-petits-ajouts">Derniers petits ajouts</a></li>
+    <li><a href="#dernière-étape-distribution">Dernière étape, distribution</a></li>
   </ul>
 </nav>
 	</div>
@@ -807,7 +808,34 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 .<span style="color:#a6e22e">menu-item</span>:<span style="color:#a6e22e">focused</span> {
     <span style="color:#960050;background-color:#1e0010">-</span>fx-background-color: <span style="color:#66d9ef">mediumpurple</span>;
 }
-</code></pre></div>
+</code></pre></div><h2 id="dernière-étape-distribution">Dernière étape, distribution</h2>
+<p>Afin que notre application puisse fonctionner avec la jvm il va falloir tricher un peu.
+Déplacez le <code>Launch.java</code> dans le gui et créez une classe <code>App.java</code></p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/HKFKaf6kVC8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.gerblog<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.gerblog.gui.Launch<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Launch<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>La jvm va croire que l&rsquo;on a à faire à une appli java et chargera les modules javafx ensuite.</p>
+<p>Ensuite, tout est dans la vidéo.</p>
+<blockquote>
+<p>Pour trouver Bat to Exe converter
+<a href="https://github.com/99fk/Bat-To-Exe-Converter-Downloader">https://github.com/99fk/Bat-To-Exe-Converter-Downloader</a>
+ou
+<a href="https://www.majorgeeks.com/files/details/bat_to_exe_converter.html">https://www.majorgeeks.com/files/details/bat_to_exe_converter.html</a>
+sur mac utilisez platypus
+Pour créer l&rsquo;installeur: <a href="https://jrsoftware.org/isinfo.php">innosetup</a></p>
+</blockquote>
+
 		</div>
 		<footer class="post__footer">
 			
