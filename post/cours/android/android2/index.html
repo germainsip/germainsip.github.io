@@ -182,7 +182,7 @@ Pour plus d\'informations, consultez la Beatles Time Capsule sur www.rockument.c
 <p>A partir de maintenant notre article scroll et le lien hypertext est actif.</p>
 <p>Le sous titre ne scroll pas avec le reste! Le <code>ScrollView</code> ne peut prendre qu&rsquo;un seul enfant, cependant nous pouvons imbriquer un <code>ViewGroup</code> dans le <code>ScrollView</code>.</p>
 <h2 id="inclusion-dans-un-viewgroup">Inclusion dans un <code>ViewGroup</code></h2>
-<p>C&rsquo;est très simple nous allons ajouter une balise ouvrante et fermante <!-- raw HTML omitted --> y inclure nos 2 <code>TextView</code> enlever la contrainte du sous-titre et modifier celle du <code>ScrollView</code>. Enfin définissez le <code>LinearLayout</code>sur vertical.</p>
+<p>C&rsquo;est très simple nous allons ajouter une balise ouvrante et fermante <RelativeLayout> y inclure nos 2 <code>TextView</code> enlever la contrainte du sous-titre et modifier celle du <code>ScrollView</code>. Enfin définissez le <code>LinearLayout</code>sur vertical.</p>
 <p>Voici le xml que vous devriez avoir:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
 <span style="color:#f92672">&lt;RelativeLayout</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>

@@ -121,8 +121,63 @@
             └── exemplejson.fxml
 </code></pre></div><p>Pour le <strong>fxml</strong>, nous allons simplement ajouter un bouton et des label.</p>
 <p><img src="/img/JavaFX_Json/jfxjson1.png" alt="layout1"></p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<!-- ```xml
+<BorderPane prefHeight="257.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.afpa.ExempleController">
+   <left>
+      <VBox layoutX="48.0" layoutY="63.0" spacing="20.0">
+         <children>
+            <Button text="Sauver" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <top>
+      <Label text="Mon appli d'Exemple" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <HBox prefHeight="371.0" prefWidth="284.0">
+         <VBox prefHeight="371.0" prefWidth="136.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+               <Label text="Nom">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="10.0" text="Prénom">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+               </Label>
+               <Label layoutX="10.0" layoutY="10.0" text="âge">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+               </Label>
+            </children>
+            <padding>
+               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+               <Label text="Label" />
+               <Label layoutX="10.0" layoutY="10.0" text="Label" />
+               <Label layoutX="10.0" layoutY="10.0" text="Label" />
+            </children>
+            <padding>
+               <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+         </VBox>
+      </HBox>
+   </center>
+</BorderPane>
+``` -->
 <blockquote>
 <p>J&rsquo;ai utilisé un BorderPan et des Box</p>
 <p><img src="/img/JavaFX_Json/jfxjson2.png" alt="arbo"></p>
