@@ -146,7 +146,7 @@ Vous pouvez soit le faire de façon graphique ou directement dans le xml:</p>
   <span style="color:#f92672">/&gt;</span>
 </code></pre></div><ul>
 <li><code>android:id=&quot;@+id/entre&quot;</code> va nous permettre d&rsquo;identifier notre élément et le récupérer dans la classe</li>
-<li><code>android:hint=&quot;entrez votre texte ici&quot;</code> affiche une indication à l&rsquo;utilisateur, c&rsquo;est l'équivalent du placeholder en html.</li>
+<li><code>android:hint=&quot;entrez votre texte ici&quot;</code> affiche une indication à l&rsquo;utilisateur, c&rsquo;est l&rsquo;équivalent du placeholder en html.</li>
 <li>Les autres attributs sont les contraintes de notre élément.</li>
 </ul>
 <h2 id="la-classe-mainactivity">La classe MainActivity</h2>
@@ -167,20 +167,20 @@ Vous pouvez soit le faire de façon graphique ou directement dans le xml:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">resultat <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resultat</span><span style="color:#f92672">);</span>
 entre <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">entre</span><span style="color:#f92672">);</span>
 go <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">go</span><span style="color:#f92672">);</span>
-</code></pre></div><p>La méthode <code>findViewById()</code> va chercher dans <code>R</code> l'<code>id</code> de l'élément que vous avez nommé précédemment.</p>
+</code></pre></div><p>La méthode <code>findViewById()</code> va chercher dans <code>R</code> l'<code>id</code> de l&rsquo;élément que vous avez nommé précédemment.</p>
 <h2 id="un-peu-daction-maintenant">Un peu d&rsquo;action maintenant</h2>
 <p>Afin de rendre réactive notre vue nous allons implémenter l&rsquo;interface <code>View.OnClickListener</code> et la méthode <code>onClick()</code>.</p>
 <p>L&rsquo;IDE devrait vous proposer cette méthode. Une fois écrite, nous devons associer le listener à notre bouton:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">go<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
-</code></pre></div><p>et récupérer l'événement dans <code>onClick()</code></p>
+</code></pre></div><p>et récupérer l&rsquo;événement dans <code>onClick()</code></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View v<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>v <span style="color:#f92672">==</span> go<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         resultat<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>entre<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
     <span style="color:#f92672">}</span>
     <span style="color:#f92672">}</span>
-</code></pre></div><p>La condition if n'était pas obligatoire ici car nous n&rsquo;avons qu&rsquo;un élément muni d&rsquo;un <strong>listener</strong> mais je vous montre la technique pour la suite. Enfin, le reste est du java. (on récupère le texte de entre et on le met dans resultat).</p>
-<p>Voilà il ne vous reste plus qu'à tester.</p>
+</code></pre></div><p>La condition if n&rsquo;était pas obligatoire ici car nous n&rsquo;avons qu&rsquo;un élément muni d&rsquo;un <strong>listener</strong> mais je vous montre la technique pour la suite. Enfin, le reste est du java. (on récupère le texte de entre et on le met dans resultat).</p>
+<p>Voilà il ne vous reste plus qu&rsquo;à tester.</p>
 <p>`</p>
 
 		</div>

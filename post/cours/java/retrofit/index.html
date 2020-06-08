@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Retrofit - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<meta property="og:title" content="Retrofit" />
+<meta property="og:description" content="La librairie Retrofit2 Retrofit est une librairie qui simplifie la consommation d&rsquo;api
+On peut la trouver sur github
+Nous allons l&rsquo;ajouter a un projet gradle en ajoutant simplement compile &#39;com.squareup.retrofit2:retrofit:2.8.1&#39; à nos dépendances ainsi qu&rsquo;un convertisseur compile &#39;com.squareup.retrofit2:converter-gson:2.8.1&#39; qui transformera nos objets json en objets Java.
+Pour notre exemple, je vais utiliser une api toute faite jsonplaceholder
+Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exemple si vous allez à l&rsquo;adresse https://jsonplaceholder." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/java/retrofit/" />
+<meta property="article:published_time" content="2020-06-07T13:38:13+00:00" />
+<meta property="article:modified_time" content="2020-06-07T13:38:13+00:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Retrofit"/>
+<meta name="twitter:description" content="La librairie Retrofit2 Retrofit est une librairie qui simplifie la consommation d&rsquo;api
+On peut la trouver sur github
+Nous allons l&rsquo;ajouter a un projet gradle en ajoutant simplement compile &#39;com.squareup.retrofit2:retrofit:2.8.1&#39; à nos dépendances ainsi qu&rsquo;un convertisseur compile &#39;com.squareup.retrofit2:converter-gson:2.8.1&#39; qui transformera nos objets json en objets Java.
+Pour notre exemple, je vais utiliser une api toute faite jsonplaceholder
+Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exemple si vous allez à l&rsquo;adresse https://jsonplaceholder."/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Retrofit</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2020-06-07T13:38:13Z">07-06-2020</time>
+</div>
+</div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-librairie-retrofit2">La librairie Retrofit2</a></li>
+    <li><a href="#quelques-réglages-dans-notre-application">Quelques réglages dans notre application</a></li>
+    <li><a href="#mise-en-place-dans-notre-programme">Mise en place dans notre programme</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="la-librairie-retrofit2">La librairie Retrofit2</h2>
+<p>Retrofit est une librairie qui simplifie la consommation d&rsquo;api</p>
+<p>On peut la trouver sur <a href="https://square.github.io/retrofit/">github</a></p>
+<p>Nous allons l&rsquo;ajouter a un projet gradle en ajoutant simplement <code>compile 'com.squareup.retrofit2:retrofit:2.8.1'</code> à nos dépendances ainsi qu&rsquo;un convertisseur <code>compile 'com.squareup.retrofit2:converter-gson:2.8.1'</code> qui transformera nos objets <code>json</code> en objets Java.</p>
+<p>Pour notre exemple, je vais utiliser une api toute faite <a href="https://jsonplaceholder.typicode.com">jsonplaceholder</a></p>
+<p>Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exemple si vous allez à l&rsquo;adresse <code>https://jsonplaceholder.typicode.com/todos/1</code> vous obtiendrez le todo 1 en json</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  <span style="color:#f92672">&#34;userId&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+  <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;delectus aut autem&#34;</span>,
+  <span style="color:#f92672">&#34;completed&#34;</span>: <span style="color:#66d9ef">false</span>
+}
+</code></pre></div><h2 id="quelques-réglages-dans-notre-application">Quelques réglages dans notre application</h2>
+<blockquote>
+<p>pour rappel: votre <code>build.gradle</code> doit ressembler à ça</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
+    id <span style="color:#e6db74">&#39;java&#39;</span>
+    id <span style="color:#e6db74">&#39;application&#39;</span>
+    id <span style="color:#e6db74">&#39;org.openjfx.javafxplugin&#39;</span> version <span style="color:#e6db74">&#39;0.0.8&#39;</span>
+<span style="color:#f92672">}</span>
+
+group <span style="color:#e6db74">&#39;org.afpa&#39;</span>
+version <span style="color:#e6db74">&#39;1.0-SNAPSHOT&#39;</span>
+
+sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDir</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/java&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.fxml&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;**/*.css&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;**/*.png&#34;</span><span style="color:#f92672">])</span>
+sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/resources&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.*&#34;</span><span style="color:#f92672">])</span>
+
+repositories <span style="color:#f92672">{</span>
+    mavenCentral<span style="color:#f92672">()</span>
+<span style="color:#f92672">}</span>
+
+dependencies <span style="color:#f92672">{</span>
+    testCompile group: <span style="color:#e6db74">&#39;junit&#39;</span><span style="color:#f92672">,</span> name: <span style="color:#e6db74">&#39;junit&#39;</span><span style="color:#f92672">,</span> version: <span style="color:#e6db74">&#39;4.12&#39;</span>
+
+    compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:retrofit:2.8.1&#39;</span>
+    compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:converter-gson:2.8.1&#39;</span>
+<span style="color:#f92672">}</span>
+
+javafx <span style="color:#f92672">{</span>
+    version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;14&#34;</span>
+    modules <span style="color:#f92672">=</span> <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;javafx.controls&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.base&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.graphics&#39;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#39;javafx.fxml&#39;</span><span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+
+mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;org.afpa.App&#34;</span>
+
+</code></pre></div><p>Nous allons d&rsquo;abord créer un <strong>POJO</strong> (objet java) pour réceptionner nos données. J&rsquo;ai d&rsquo;abord choisi les posts.</p>
+<p>L&rsquo;objet que je récupère en json ressemble à ceci:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;userId&#34;</span>: <span style="color:#ae81ff">1</span>,
+    <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+    <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&#34;</span>,
+    <span style="color:#f92672">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&#34;</span>
+  }
+</code></pre></div><p>Donc mon objet java est:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<span style="color:#f92672">package</span> org.afpa.DAL<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> com.google.gson.annotations.SerializedName<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Post</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> Long id<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Long userId<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> String title<span style="color:#f92672">;</span>
+    <span style="color:#a6e22e">@SerializedName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;body&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> String text<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> id<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getUserId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> userId<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getTitle</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> title<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getText</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>J&rsquo;ai placé cet objet dans un package DAL et j&rsquo;ai renommé le membre <code>body</code> en <code>text</code> grace à l&rsquo;annotation <code>@SerializedName(&quot;body&quot;)</code>.</p>
+<p>Retrofit a besoin que l&rsquo;on lui crée une interface où nous mettons notre &ldquo;query&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.DAL<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> retrofit2.Call<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.http.GET<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> java.util.List<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ApiService</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;posts&#34;</span><span style="color:#f92672">)</span>
+    Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">getPosts</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>Dans cette interface nous avons déclaré la méthode <code>getPosts()</code> qui va récupérer une liste de <code>Post</code> à partir de la liste json envoyée par l&rsquo;API.</p>
+<h2 id="mise-en-place-dans-notre-programme">Mise en place dans notre programme</h2>
+<p>Vous avez déjà fais du JavaFX, donc je vais aller un peu plus vite.</p>
+<p>Je crée un fxml et son contrôleur dans un package <code>GUI</code>:</p>
+<p><strong>retroexemple.fxml</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+
+<span style="color:#75715e">&lt;?import javafx.geometry.*?&gt;</span>
+<span style="color:#75715e">&lt;?import javafx.scene.control.*?&gt;</span>
+<span style="color:#75715e">&lt;?import javafx.scene.layout.*?&gt;</span>
+<span style="color:#75715e">&lt;?import javafx.scene.text.*?&gt;</span>
+
+<span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">prefHeight=</span><span style="color:#e6db74">&#34;400.0&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;600.0&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/10.0.2-internal&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.afpa.GUI.RetroexempleController&#34;</span><span style="color:#f92672">&gt;</span>
+   <span style="color:#f92672">&lt;children&gt;</span>
+      <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">prefHeight=</span><span style="color:#e6db74">&#34;400.0&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;600.0&#34;</span> <span style="color:#a6e22e">spacing=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;0.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;0.0&#34;</span><span style="color:#f92672">&gt;</span>
+         <span style="color:#f92672">&lt;children&gt;</span>
+            <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Retrofit2 et JavaFX&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;font&gt;</span>
+                  <span style="color:#f92672">&lt;Font</span> <span style="color:#a6e22e">size=</span><span style="color:#e6db74">&#34;36.0&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/font&gt;</span>
+            <span style="color:#f92672">&lt;/Label&gt;</span>
+            <span style="color:#f92672">&lt;TableView</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;receptionTab&#34;</span> <span style="color:#a6e22e">prefHeight=</span><span style="color:#e6db74">&#34;357.0&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;600.0&#34;</span><span style="color:#f92672">&gt;</span>
+              <span style="color:#f92672">&lt;columns&gt;</span>
+                <span style="color:#f92672">&lt;TableColumn</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;idCol&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;75.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Id&#34;</span> <span style="color:#f92672">/&gt;</span>
+                <span style="color:#f92672">&lt;TableColumn</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;userIdCol&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;75.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;UserID&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;TableColumn</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;titreCol&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;75.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Titre&#34;</span> <span style="color:#f92672">/&gt;</span>
+                  <span style="color:#f92672">&lt;TableColumn</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;texteCol&#34;</span> <span style="color:#a6e22e">prefWidth=</span><span style="color:#e6db74">&#34;75.0&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Texte&#34;</span> <span style="color:#f92672">/&gt;</span>
+              <span style="color:#f92672">&lt;/columns&gt;</span>
+               <span style="color:#f92672">&lt;columnResizePolicy&gt;</span>
+                  <span style="color:#f92672">&lt;TableView</span> <span style="color:#a6e22e">fx:constant=</span><span style="color:#e6db74">&#34;CONSTRAINED_RESIZE_POLICY&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/columnResizePolicy&gt;</span>
+            <span style="color:#f92672">&lt;/TableView&gt;</span>
+            <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;messageErreur&#34;</span> <span style="color:#a6e22e">layoutX=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">layoutY=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">textFill=</span><span style="color:#e6db74">&#34;#c91212&#34;</span><span style="color:#f92672">&gt;</span>
+               <span style="color:#f92672">&lt;font&gt;</span>
+                  <span style="color:#f92672">&lt;Font</span> <span style="color:#a6e22e">size=</span><span style="color:#e6db74">&#34;18.0&#34;</span> <span style="color:#f92672">/&gt;</span>
+               <span style="color:#f92672">&lt;/font&gt;</span>
+            <span style="color:#f92672">&lt;/Label&gt;</span>
+         <span style="color:#f92672">&lt;/children&gt;</span>
+      <span style="color:#f92672">&lt;/VBox&gt;</span>
+   <span style="color:#f92672">&lt;/children&gt;</span>
+   <span style="color:#f92672">&lt;padding&gt;</span>
+      <span style="color:#f92672">&lt;Insets</span> <span style="color:#a6e22e">bottom=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">left=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">right=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#a6e22e">top=</span><span style="color:#e6db74">&#34;10.0&#34;</span> <span style="color:#f92672">/&gt;</span>
+   <span style="color:#f92672">&lt;/padding&gt;</span>
+<span style="color:#f92672">&lt;/AnchorPane&gt;</span>
+
+
+</code></pre></div><p><strong>RetroExempleController.java</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.GUI<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> javafx.collections.FXCollections<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javafx.collections.ObservableList<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javafx.fxml.Initializable<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javafx.scene.control.TableColumn<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javafx.scene.control.TableView<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javafx.scene.control.cell.PropertyValueFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.afpa.DAL.ApiService<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.afpa.DAL.Post<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.Call<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.Callback<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.Response<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.Retrofit<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> retrofit2.converter.gson.GsonConverterFactory<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> java.net.URL<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.List<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.ResourceBundle<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RetroexempleController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> TableView<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> receptionTab<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> TableColumn idCol<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> TableColumn userIdCol<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> TableColumn titreCol<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> TableColumn texteCol<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> Label messageErreur<span style="color:#f92672">;</span>
+
+    ObservableList<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;</span> observableList <span style="color:#f92672">=</span> FXCollections<span style="color:#f92672">.</span><span style="color:#a6e22e">observableArrayList</span><span style="color:#f92672">();</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        chargeTableau<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>Pour le moment nous n&rsquo;avons pas créé la méthode de chargement.
+Que nous faut-il?</p>
+<p>Il faut d&rsquo;abord créer une instance de <code>Retrofit</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Dans celle-ci nous indiquons l&rsquo;adresse de l&rsquo;api, le convertisseur qui va convertir les objets json en objet java et on oublie pas le <code>.build()</code>.</p>
+<p>On définie ensuite le <code>Call</code> généré par l&rsquo;interface que nous avons écrite.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call <span style="color:#f92672">=</span> apiService<span style="color:#f92672">.</span><span style="color:#a6e22e">getPosts</span><span style="color:#f92672">();</span>
+</code></pre></div><p>Enfin il nous faut utiliser le <code>.enqueue()</code> de <strong>Retrofit</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">call<span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+            <span style="color:#f92672">}</span>
+
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call<span style="color:#f92672">,</span> Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+</code></pre></div><p>Le <code>enqueue</code> prend en paramètre un <code>Callback</code> et implémente deux méthodes. La première est <code>onResponse</code> si tout se passe comme prévu. C&rsquo;est ici que nous remplissons le tableau à partir du json contenu dans <code>response.body()</code> et en créant une <code>ObservableList&lt;Post&gt; observableList</code>.
+La seconde est <code>onFailure()</code>, si ça se passe mal et on peut par exemple envoyer une alerte à l&rsquo;utilisateur.</p>
+<p>Finalement <code>chargeTableau()</code> ressemble à ça:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">chargeTableau</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/&#34;</span><span style="color:#f92672">)</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
+                <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
+
+        ApiService apiService <span style="color:#f92672">=</span> retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span>ApiService<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+        Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call <span style="color:#f92672">=</span> apiService<span style="color:#f92672">.</span><span style="color:#a6e22e">getPosts</span><span style="color:#f92672">();</span>
+
+        call<span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;()</span> <span style="color:#f92672">{</span>
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                observableList <span style="color:#f92672">=</span> FXCollections<span style="color:#f92672">.</span><span style="color:#a6e22e">observableArrayList</span><span style="color:#f92672">(</span>response<span style="color:#f92672">.</span><span style="color:#a6e22e">body</span><span style="color:#f92672">());</span>
+                idCol<span style="color:#f92672">.</span><span style="color:#a6e22e">setCellValueFactory</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PropertyValueFactory<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">));</span>
+                userIdCol<span style="color:#f92672">.</span><span style="color:#a6e22e">setCellValueFactory</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PropertyValueFactory<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;userId&#34;</span><span style="color:#f92672">));</span>
+                titreCol<span style="color:#f92672">.</span><span style="color:#a6e22e">setCellValueFactory</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PropertyValueFactory<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">));</span>
+                texteCol<span style="color:#f92672">.</span><span style="color:#a6e22e">setCellValueFactory</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> PropertyValueFactory<span style="color:#f92672">&lt;&gt;(</span><span style="color:#e6db74">&#34;text&#34;</span><span style="color:#f92672">));</span>
+                receptionTab<span style="color:#f92672">.</span><span style="color:#a6e22e">setItems</span><span style="color:#f92672">(</span>observableList<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+
+            <span style="color:#a6e22e">@Override</span>
+            <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call<span style="color:#f92672">,</span> Throwable t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+               Platform<span style="color:#f92672">.</span><span style="color:#a6e22e">runLater</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+                    Alert alert <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Alert<span style="color:#f92672">(</span>AlertType<span style="color:#f92672">.</span><span style="color:#a6e22e">WARNING</span><span style="color:#f92672">);</span>
+                    alert<span style="color:#f92672">.</span><span style="color:#a6e22e">setContentText</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Erreur de connection!!!&#34;</span><span style="color:#f92672">);</span>
+                    alert<span style="color:#f92672">.</span><span style="color:#a6e22e">showAndWait</span><span style="color:#f92672">();</span>
+                <span style="color:#f92672">});</span>
+            <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p><strong>Attention</strong>, vous remarquerez que la gestion de l&rsquo;alerte est encadrée par un <code>Platform.runLater()</code>. C&rsquo;est parce que Java n&rsquo;aime pas mélanger les processus et que nous devons lui indiquer que l&rsquo;alerte est dans javaFX.</p>
+<p><img src="/img/retrofitOK.png" alt="ok"></p>
+<p>et</p>
+<p><img src="/img/retrofitDown.png" alt="down"></p>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/java/velvet1/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">Velvet1</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
