@@ -76,7 +76,7 @@
 			<h2 id="les-button-et-label">Les <code>Button</code> et <code>Label</code></h2>
 <p>Les boutons et les labels sont les premiers élément que l&rsquo;on utilise simplement dans JFX.
 Vous pouvez les déposer simplement dans votre <code>pane</code> (que l&rsquo;on verra après).
-Il faut les nommer pour les retrouver ensuite dans le controlleur.</p>
+Il faut les nommer pour les retrouver ensuite dans le contrôleur.</p>
 <p>Dans l&rsquo;exemple, nous avons 3 boutons.
 <img src="/img/lesboutons.png" alt="lesboutons"></p>
 <p>Le <strong>bouton 1</strong> a un nom <code>btn1</code> et est associé à une méthode <code>writeOnLabel</code> comme on le voit dans sa transcription en fxml.</p>
@@ -86,6 +86,26 @@ Il faut les nommer pour les retrouver ensuite dans le controlleur.</p>
 <span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">disable=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">mnemonicParsing=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Bouton 3&#34;</span> <span style="color:#f92672">/&gt;</span>
 </code></pre></div><p>Il faut faire la même chose pour le label</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"> <span style="color:#f92672">&lt;Label</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;res&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Résultat&#34;</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><p>Il faut ensuite faire le lien avec le contrôleur (L&rsquo;ide le fait pour vous!!!).</p>
+<p>Dans le contrôleur on va retrouver nos éléments:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> Button btn1<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> Button btn2<span style="color:#f92672">;</span>
+<span style="color:#66d9ef">public</span> Label res<span style="color:#f92672">;</span>
+</code></pre></div><p>et notre méthode à activer. Elle va récupérer le texte du bouton et l&rsquo;envoyer au label.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">/**
+</span><span style="color:#75715e">     * Cette méthode récupère le texte du bouton cliqué
+</span><span style="color:#75715e">     * et envoie le texte &#34;Le [bouton n°] vient d&#39;être cliqué&#34;
+</span><span style="color:#75715e">     * au label res
+</span><span style="color:#75715e">     * @param actionEvent
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeOnLabel</span><span style="color:#f92672">(</span>ActionEvent actionEvent<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#75715e">// récupération du bouton cliqué
+</span><span style="color:#75715e"></span>        Button btnActive <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Button<span style="color:#f92672">)</span> actionEvent<span style="color:#f92672">.</span><span style="color:#a6e22e">getSource</span><span style="color:#f92672">();</span>
+        <span style="color:#75715e">//construction du message avec le texte du bouton
+</span><span style="color:#75715e"></span>        String message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Le &#34;</span><span style="color:#f92672">+</span>btnActive<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">()+</span><span style="color:#e6db74">&#34; vient d&#39;être cliqué!&#34;</span><span style="color:#f92672">;</span>
+        <span style="color:#75715e">//envoie du message dans le label
+</span><span style="color:#75715e"></span>        res<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
