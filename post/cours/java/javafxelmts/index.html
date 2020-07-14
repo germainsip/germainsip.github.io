@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JavaFXelmts - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Didacticiel sur les éléments de JFX">
+	<meta property="og:title" content="JavaFXelmts" />
+<meta property="og:description" content="Didacticiel sur les éléments de JFX" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/java/javafxelmts/" />
+<meta property="article:published_time" content="2020-07-14T17:01:56+02:00" />
+<meta property="article:modified_time" content="2020-07-14T17:01:56+02:00" />
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaFXelmts"/>
+<meta name="twitter:description" content="Didacticiel sur les éléments de JFX"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">JavaFXelmts</h1>
+			<p class="post__lead">Didacticiel sur les éléments de JFX</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2020-07-14T17:01:56&#43;02:00">14-07-2020</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/javafx/" rel="category">JavaFX</a>
+	</span>
+</div></div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/img/jfxjsonhead.png" alt="JavaFXelmts">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#les-button-et-label">Les <code>Button</code> et <code>Label</code></a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="les-button-et-label">Les <code>Button</code> et <code>Label</code></h2>
+<p>Les boutons et les labels sont les premiers élément que l&rsquo;on utilise simplement dans JFX.
+Vous pouvez les déposer simplement dans votre <code>pane</code> (que l&rsquo;on verra après).
+Il faut les nommer pour les retrouver ensuite dans le controlleur.</p>
+<p>Dans l&rsquo;exemple, nous avons 3 boutons.
+<img src="/img/lesboutons.png" alt="lesboutons"></p>
+<p>Le <strong>bouton 1</strong> a un nom <code>btn1</code> et est associé à une méthode <code>writeOnLabel</code> comme on le voit dans sa transcription en fxml.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;btn1&#34;</span> <span style="color:#a6e22e">mnemonicParsing=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">onAction=</span><span style="color:#e6db74">&#34;#writeOnLabel&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Bouton 1&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Le bouton 2 vise la même méthode et le bouton 3 n&rsquo;est pas actif (<code>disable=&quot;true&quot;</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;btn2&#34;</span> <span style="color:#a6e22e">mnemonicParsing=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">onAction=</span><span style="color:#e6db74">&#34;#writeOnLabel&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Bouton 2&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;Button</span> <span style="color:#a6e22e">disable=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">mnemonicParsing=</span><span style="color:#e6db74">&#34;false&#34;</span> <span style="color:#a6e22e">text=</span><span style="color:#e6db74">&#34;Bouton 3&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/javafx/" rel="tag">JavaFX</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/java/retrofit/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">Retrofit</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

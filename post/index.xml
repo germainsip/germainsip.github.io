@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Sun, 07 Jun 2020 13:38:13 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2020 17:01:56 +0200</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaFXelmts</title>
+      <link>/post/cours/java/javafxelmts/</link>
+      <pubDate>Tue, 14 Jul 2020 17:01:56 +0200</pubDate>
+      
+      <guid>/post/cours/java/javafxelmts/</guid>
+      <description>Les Button et Label Les boutons et les labels sont les premiers élément que l&amp;rsquo;on utilise simplement dans JFX. Vous pouvez les déposer simplement dans votre pane (que l&amp;rsquo;on verra après). Il faut les nommer pour les retrouver ensuite dans le controlleur.
+Dans l&amp;rsquo;exemple, nous avons 3 boutons. Le bouton 1 a un nom btn1 et est associé à une méthode writeOnLabel comme on le voit dans sa transcription en fxml.</description>
+    </item>
     
     <item>
       <title>Retrofit</title>
