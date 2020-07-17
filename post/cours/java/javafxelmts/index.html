@@ -67,13 +67,17 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
+    <li><a href="#les-éléments-de-javafx">Les éléments de JavaFX</a></li>
     <li><a href="#les-button-et-label">Les <code>Button</code> et <code>Label</code></a></li>
+    <li><a href="#les-champs-texte">Les Champs texte</a></li>
   </ul>
 </nav>
 	</div>
 </div>
 <div class="content post__content clearfix">
-			<h2 id="les-button-et-label">Les <code>Button</code> et <code>Label</code></h2>
+			<h2 id="les-éléments-de-javafx">Les éléments de JavaFX</h2>
+<p>Vous pouvez trouver un exemple d&rsquo;utilisation d&rsquo;une selection d&rsquo;éléments de JavaFX sur mon dépot <a href="https://github.com/germainsip/gegeLib">ici</a></p>
+<h2 id="les-button-et-label">Les <code>Button</code> et <code>Label</code></h2>
 <p>Les boutons et les labels sont les premiers élément que l&rsquo;on utilise simplement dans JFX.
 Vous pouvez les déposer simplement dans votre <code>pane</code> (que l&rsquo;on verra après).
 Il faut les nommer pour les retrouver ensuite dans le contrôleur.</p>
@@ -106,6 +110,16 @@ Il faut les nommer pour les retrouver ensuite dans le contrôleur.</p>
         <span style="color:#75715e">//envoie du message dans le label
 </span><span style="color:#75715e"></span>        res<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
+</code></pre></div><h2 id="les-champs-texte">Les Champs texte</h2>
+<p>Quand on a besoin de faire des formulaires, on a besoin de champs textuels pour entrer des données. Les <code>TextField</code>sont là pour ça.
+Il en existe plusieurs:</p>
+<ul>
+<li>Le <code>TextField</code></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextField</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;nomField&#34;</span> <span style="color:#f92672">/&gt;</span>
+</code></pre></div><p>Il a d&rsquo;autres attributs accessibles par SceneBuilder ou directement dans le FXML. Comme par exemple le prompt (equivalent du placeholder en html)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextField</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;prenomField&#34;</span> <span style="color:#a6e22e">promptText=</span><span style="color:#e6db74">&#34;prénom&#34;</span> <span style="color:#f92672">/&gt;</span>
+
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
