@@ -60,7 +60,7 @@
 </div></div>
 		</header>
 		<figure class="post__thumbnail">
-			<img src="/img/jfxjsonhead.png" alt="JavaFXelmts">
+			<img src="/img/JavaFX_Logo.png" alt="JavaFXelmts">
 		</figure>
 <div class="post__toc toc">
 	<div class="toc__title">Sommaire</div>
@@ -134,10 +134,58 @@ Il en existe plusieurs:</p>
 <li>Le <code>TextField</code></li>
 </ul>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextField</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;nomField&#34;</span> <span style="color:#f92672">/&gt;</span>
-</code></pre></div><p>Il a d&rsquo;autres attributs accessibles par SceneBuilder ou directement dans le FXML. Comme par exemple le prompt (equivalent du placeholder en html)</p>
+</code></pre></div><p>Il a d&rsquo;autres attributs accessibles par SceneBuilder ou directement dans le FXML. Comme par exemple le prompt ( équivalent du placeholder en html)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextField</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;prenomField&#34;</span> <span style="color:#a6e22e">promptText=</span><span style="color:#e6db74">&#34;prénom&#34;</span> <span style="color:#f92672">/&gt;</span>
-</code></pre></div><!-- à compléter -->
-<h2 id="les-slider">Les Slider</h2>
+</code></pre></div><p>Ajoutons un envoie vers un label et une vérification avec un bouton et une méthode <code>sendHandle()</code> (vue précédemment).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendHandle</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+
+        Boolean flagChampNom<span style="color:#f92672">,</span>flagChampPrenom<span style="color:#f92672">,</span>flagChampTel<span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>Verification<span style="color:#f92672">.</span><span style="color:#a6e22e">verifTexte</span><span style="color:#f92672">(</span>nomField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">())</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            nomField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+            flagChampNom <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+          <span style="color:#75715e">// si le test ne passe pas on change la couleur de bordure
+</span><span style="color:#75715e"></span>            nomField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-fx-border-color: darkred&#34;</span><span style="color:#f92672">);</span>
+            flagChampNom <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>Verification<span style="color:#f92672">.</span><span style="color:#a6e22e">verifTexte</span><span style="color:#f92672">(</span>prenomField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">())</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            prenomField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+            flagChampPrenom <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            nomField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-fx-border-color: darkred&#34;</span><span style="color:#f92672">);</span>
+            flagChampPrenom <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>Verification<span style="color:#f92672">.</span><span style="color:#a6e22e">verifNum</span><span style="color:#f92672">(</span>telField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">())</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            telField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">);</span>
+            flagChampTel <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+          <span style="color:#75715e">// si le test ne passe pas on change la couleur de bordure
+</span><span style="color:#75715e"></span>            telField<span style="color:#f92672">.</span><span style="color:#a6e22e">setStyle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-fx-border-color: darkred&#34;</span><span style="color:#f92672">);</span>
+            flagChampTel <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>flagChampNom <span style="color:#f92672">&amp;&amp;</span> flagChampPrenom <span style="color:#f92672">&amp;&amp;</span> flagChampTel<span style="color:#f92672">)</span> sendField<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendField</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        nomLab<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>nomField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+        prenomLab<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>prenomField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+        telLab<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>telField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+        passLab<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>passField<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">());</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Comme vous pouvez le remarquer, il n&rsquo;y a pas de méthode <code>verifTexte()</code> ou <code>verifNum()</code>. J&rsquo;ai préféré organiser le projet en rangeant cette méthode dans un package séparé <code>org.gerblog.tools.Verification</code> (soit org/gerblog/tools/Verification.java)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Verification</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">static</span> Pattern texte <span style="color:#f92672">=</span> Pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">compile</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\\p{IsAlphabetic}*$&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">static</span> Pattern num <span style="color:#f92672">=</span> Pattern<span style="color:#f92672">.</span><span style="color:#a6e22e">compile</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\\p{Digit}*$&#34;</span><span style="color:#f92672">);</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">verifTexte</span><span style="color:#f92672">(</span>String champ<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">return</span> texte<span style="color:#f92672">.</span><span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span>champ<span style="color:#f92672">).</span><span style="color:#a6e22e">matches</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">verifNum</span><span style="color:#f92672">(</span>String champ<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">return</span> num<span style="color:#f92672">.</span><span style="color:#a6e22e">matcher</span><span style="color:#f92672">(</span>champ<span style="color:#f92672">).</span><span style="color:#a6e22e">matches</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="les-slider">Les Slider</h2>
 <p>Les slider sont des curseurs dont on peut récupérer la valeur.</p>
 <!-- à compléter -->
 <h2 id="les-diagrammes-et-les-histogrammes">Les Diagrammes et les Histogrammes</h2>
