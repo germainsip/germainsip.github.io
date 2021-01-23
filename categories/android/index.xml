@@ -6,11 +6,7 @@
     <description>Recent content in Android on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 02 Apr 2020 09:10:15 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/android/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 02 Apr 2020 09:10:15 +0000</lastBuildDate><atom:link href="/categories/android/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Android et les images</title>
       <link>/post/cours/android/android_images/</link>

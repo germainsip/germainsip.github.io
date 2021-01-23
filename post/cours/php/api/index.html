@@ -173,7 +173,7 @@ USE api_db;
 </code></pre></div><p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
 Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous connecter.</p>
 <p><strong>database.php</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span> {
    <span style="color:#75715e">// On spécifie les coordonnées de connexion
 </span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> $host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>;
@@ -203,7 +203,7 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
 <ul>
 <li>Dans le dossier <code>api</code> créez un dossier <code>objects</code> et dans ce dossier créez la classe <code>product.php</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span> {
 
     <span style="color:#75715e">// connexion à la base
@@ -224,16 +224,16 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
         $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> $db;
     }
 }
-<span style="color:#75715e">?&gt;</span>
-</code></pre></div><p>Il nous faut aussi un fichier pour lire nos objets:</p>
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Il nous faut aussi un fichier pour lire nos objets:</p>
 <p>Ajoutez dans le dossier <code>product</code> un fichier <code>read.php</code></p>
 <p>D&rsquo;abord il nous faut les headers:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">// Les headers dont nous avons besoin
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
 </code></pre></div><p>On prépare la connection en incluant nos import et en instanciant nos objets:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#75715e">// ... le code qui précède dans read.php
 </span><span style="color:#75715e"></span>
@@ -248,7 +248,7 @@ $db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&
 <span style="color:#75715e">// On initialise product
 </span><span style="color:#75715e"></span>$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
 </code></pre></div><p>On va lire les résultats de la méthode <code>read()</code>de <code>Product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#75715e">// le query
 </span><span style="color:#75715e"></span>$stmt <span style="color:#f92672">=</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">read</span>();
@@ -284,7 +284,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 
 }
 </code></pre></div><p>Il nous faut maintenant ajouter la méthode <code>read()</code> à <code>Product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#f92672">...</span>
 
@@ -310,7 +310,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 }
 </code></pre></div><p>Et on va avertir l&rsquo;utilisateur si aucun produit n&rsquo;a été trouvé.</p>
 <p>A la suite de notre <code>if</code> dans <code>read.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">//fin du if
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">else</span> {
 <span style="color:#75715e">// on renvoie le code 404 Not found
@@ -325,7 +325,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 <h2 id="créons-des-produits-partie-3">Créons des produits (Partie 3)</h2>
 <p>C&rsquo;est le <strong>C</strong> de CRUD.</p>
 <p>L&rsquo;accès va se faire via le fichier <code>create.php</code> dans le dossier <code>product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Methods:POST&#34;</span>);
@@ -380,7 +380,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit! les données sont incomplètes!&#34;</span>]);
 }
 </code></pre></div><p>On va aussi ajouter la méthode <code>create()</code> à `product.php</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#f92672">...</span>
 
@@ -426,7 +426,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 <h2 id="un-seul-objet-partie-4">Un seul objet (Partie 4)</h2>
 <p>Afin de lire un seul enregistrement, on va se donner un accé.
 Créons le fichier <code>read_one.php</code> dans le dossier <code>product</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 
 
@@ -473,7 +473,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 </code></pre></div><p>En résumé, on récupère l&rsquo;id de l&rsquo;objet dans l&rsquo;URL puis on lance la requête avec la méthode <code>readOne()</code>. Si nous avons trouvé un produit, on met le infos dans un tableau et on renvoie en json.</p>
 <p>Si pas d&rsquo;éléments trouvés, on avertis l&rsquo;utilisateur.</p>
 <p>Il nous manque la méthode <code>readOne()</code> dans <code>product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">readOne</span>() {
   <span style="color:#75715e">// requête pour lire 1 enregistrement
@@ -509,7 +509,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 <h2 id="lupdate-partie-5">L&rsquo;UPDATE (Partie 5)</h2>
 <p>On a fait <strong>CR</strong>, faisons le <strong>U</strong> du Update.</p>
 <p>On ajoute donc <code>update.php</code> à notre dossier <code>product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#75715e">// les headers
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
@@ -551,7 +551,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 }
 </code></pre></div><p>C&rsquo;est sensiblement le même code que pour le Create.</p>
 <p>On ajoute la méthode <code>update()</code> à notre <code>product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update</span>() {
         $query <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPDATE
@@ -630,7 +630,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -654,7 +654,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2020 Germain SIPIERE.
+			&copy; 2021 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

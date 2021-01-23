@@ -6,11 +6,7 @@
     <description>Recent content in Gson on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 16 Apr 2020 08:10:03 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/gson/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 16 Apr 2020 08:10:03 +0000</lastBuildDate><atom:link href="/tags/gson/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Covid_widget</title>
       <link>/post/cours/java/covid_widget/</link>
