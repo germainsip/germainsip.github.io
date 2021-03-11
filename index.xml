@@ -110,6 +110,17 @@ Une option aurait été d&amp;rsquo;ajouter manuellement les librairies nécessa
     </item>
     
     <item>
+      <title>Flutter et Dart</title>
+      <link>/post/cours/flutter/dart1/</link>
+      <pubDate>Tue, 24 Mar 2020 16:29:46 +0000</pubDate>
+      
+      <guid>/post/cours/flutter/dart1/</guid>
+      <description>Bienvenue dans le monde merveilleux de Flutter Qu&amp;rsquo;est-ce que Flutter C&amp;rsquo;est un Framework développé par Google pour développer des applications pour Android, iOS, Windows, Mac, Linux, et le web.
+ En clair, codez une fois et compilez pour tout! (pour exporter vers des ios il est nécessaire d&amp;rsquo;avoir un Mac)
+ Environnement de développement La doc de Flutter, en anglais, installer Flutter vous explique la démarche d&amp;rsquo;installation pour les 3 os (Windows, MacOS et Linux).</description>
+    </item>
+    
+    <item>
       <title>Notre première appli Android</title>
       <link>/post/cours/android/android1/</link>
       <pubDate>Tue, 24 Mar 2020 08:26:26 +0000</pubDate>
