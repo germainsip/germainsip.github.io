@@ -4,7 +4,37 @@
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-07-14T17:01:56+02:00</lastmod>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/flutter/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/flutter/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/cours/flutter/dart1/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-03-04T14:51:21+02:00</lastmod>
   </url>
   
   <url>
@@ -19,21 +49,6 @@
   
   <url>
     <loc>/post/cours/java/javafxelmts/</loc>
-    <lastmod>2020-07-14T17:01:56+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-07-14T17:01:56+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-07-14T17:01:56+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-07-14T17:01:56+02:00</lastmod>
   </url>
   
@@ -150,21 +165,6 @@
   <url>
     <loc>/post/cours/android/android2/</loc>
     <lastmod>2020-03-26T09:37:44+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/flutter/</loc>
-    <lastmod>2020-03-24T16:29:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/flutter/</loc>
-    <lastmod>2020-03-24T16:29:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/cours/flutter/dart1/</loc>
-    <lastmod>2020-03-24T16:29:46+00:00</lastmod>
   </url>
   
   <url>
