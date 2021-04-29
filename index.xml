@@ -6,7 +6,17 @@
     <description>Recent content on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 04 Mar 2021 14:51:21 +0200</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Apr 2021 09:41:07 +0200</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Electron Intro</title>
+      <link>/post/cours/electron/electron-intro/</link>
+      <pubDate>Thu, 29 Apr 2021 09:41:07 +0200</pubDate>
+      
+      <guid>/post/cours/electron/electron-intro/</guid>
+      <description>Electron L&amp;rsquo;architecture d&amp;rsquo;electron Electron utilise plusieurs processus pour gérer les états de l&amp;rsquo;application et l&amp;rsquo;interface utilisateur. Le processus principal main gère les états de l&amp;rsquo;application pendant que le renderer s&amp;rsquo;occupe de l&amp;rsquo;interface utilisateur.
+Au démarrage d&amp;rsquo;une application Electron un processus main est créé. On ne peut en avoir qu&amp;rsquo;un seul. Ce main a accès aux api de Node.js mais pas celles de chromium. De ce fait, on peut utiliser les API node comme fs.</description>
+    </item>
+    
     <item>
       <title>Flutter et Dart</title>
       <link>/post/cours/flutter/dart1/</link>
