@@ -74,6 +74,11 @@
     <li><a href="#les-tâches-de-fond">Les Tâches de fond</a></li>
     <li><a href="#vu-de-plus-haut">Vu de plus haut</a></li>
     <li><a href="#créons-une-application-electron">Créons une application Electron</a></li>
+    <li><a href="#ce-nest-pas-fini">Ce n&rsquo;est pas fini</a>
+      <ul>
+        <li><a href="#corrigeons-ça">Corrigeons ça</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 	</div>
@@ -488,6 +493,76 @@ Cliquons sur le bouton Cliquer pour ouvrir une photo rendue dans la fenêtre et 
 </code></pre></div><p>Comme la variable <code>__dirname</code> fournie par Node.js pointe vers le chemin absolu de <code>image.html</code> sur le système de fichiers, c&rsquo;est pourquoi le chemin outPath est le <code>&lt;project-path&gt;/img.jpeg</code>. Lorsque nous enregistrons cette image en utilisant <code>.toFile(outPath)</code>, elle est enregistrée dans le répertoire du projet.</p>
 <p>Le protocole <code>file://</code> est utilisé pour charger un fichier à partir du système de fichiers local. L&rsquo;URL de l&rsquo;attribut src est <code>file:// &lt;chemin-absolu-vers-img&gt;.jpeg</code>, ce qui signifie que l&rsquo;élément <code>&lt;img/&gt;</code> affichera le fichier récemment enregistré. Ainsi, lorsque nous cliquons sur le bouton <strong>Cliquez pour voir une image</strong>, une nouvelle fenêtre s&rsquo;ouvrira et rendra le fichier téléchargé. Vous devriez également voir apparaître le fichier <code>img.jpeg</code> dans le répertoire du projet.</p>
 <p><img src="/img/electron/image.png" alt="image"></p>
+<h2 id="ce-nest-pas-fini">Ce n&rsquo;est pas fini</h2>
+<p>Je ne vous ai pas tout dit. Dans la version 12 d&rsquo;Electron, l&rsquo;intégration de node et l&rsquo;isolation ont des paramètre par défaut pour une bonne raison. Ce sont des portes ouvertes aux logiciels malicieux. Un script peut avoir accès à votre système en passant par le renderer directement. CE N&rsquo;EST PAS BON !</p>
+<h3 id="corrigeons-ça">Corrigeons ça</h3>
+<p>On va désactiver les deux options dans le <code>main.js</code> au niveau du <code>BrowserWindow</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openWindow</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">type</span> ) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">win</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BrowserWindow</span>( {
+        <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">600</span>,
+        <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
+        <span style="color:#a6e22e">webPreferences</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">preload</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>,<span style="color:#e6db74">&#39;preload.js&#39;</span>)
+        },
+    } );
+</code></pre></div><p>Comme vous le voyez on ajoute également un préloader. Ce fichier sera chargé à partir du main et pas de la fenêtre.</p>
+<blockquote>
+<p>Si vous relancez maintenant, plus rien ne fonctionne évidemment.</p>
+</blockquote>
+<p>Ajoutez le fichier <code>preload.js</code> dans le projet.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
+
+window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;DOMContentLoaded&#39;</span>, () =&gt; {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btn1</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;btn&#39;</span>)
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">btn</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>){
+		<span style="color:#a6e22e">btn1</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+			<span style="color:#a6e22e">ipcRenderer</span>.<span style="color:#a6e22e">send</span>( <span style="color:#e6db74">&#39;app:display-image&#39;</span> );
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>( <span style="color:#e6db74">&#39;[message sent]&#39;</span>, <span style="color:#e6db74">&#39;app:display-image&#39;</span> );
+		}
+	}
+  })
+</code></pre></div><p>et on enlève le script de <code>hello.html</code>. Dans le détail, que ce passe-t-il? On ajoute un écouteur à la fenêtre qui déclenche une méthode quand la page est chargée.
+On récupère alors l&rsquo;élément portant l&rsquo;id <code>btn</code>. Je triche un peu pour la suite en vérifiant que l&rsquo;objet n&rsquo;est pas null car je vais utiliser le même préloader pour plusieurs pages.
+Si cet objet n&rsquo;est pas null on fait ce que l&rsquo;on faisait avant directement dans le html dans la balise <code>&lt;script&gt;...&lt;/script&gt;</code>.</p>
+<p>Le même travail est à faire pour <code>image.html</code> donc toujours dans <code>preloader.js</code> nous ajoutons ce qu&rsquo;il manque et nous le supprimons de <code>image.html</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;path&#39;</span> );
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">axios</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;axios&#39;</span> );
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sharp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;sharp&#39;</span> );
+
+
+window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;DOMContentLoaded&#39;</span>, () =&gt; {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btn1</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;btn&#39;</span>)
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btn2</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;btn2&#39;</span>)
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;img&#39;</span>)
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">loading</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;loading&#39;</span>)
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">btn</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>){
+		<span style="color:#a6e22e">btn1</span>.<span style="color:#a6e22e">onclick</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+			<span style="color:#a6e22e">ipcRenderer</span>.<span style="color:#a6e22e">send</span>( <span style="color:#e6db74">&#39;app:display-image&#39;</span> );
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>( <span style="color:#e6db74">&#39;[message sent]&#39;</span>, <span style="color:#e6db74">&#39;app:display-image&#39;</span> );
+		}
+	}
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">img</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">loading</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">null</span>){
+		<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>( <span style="color:#e6db74">&#39;https://source.unsplash.com/random&#39;</span>, {
+		<span style="color:#a6e22e">responseType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;arraybuffer&#39;</span>,
+	} )
+	.<span style="color:#a6e22e">then</span>( ( <span style="color:#a6e22e">response</span> ) =&gt; {
+
+		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buffer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Buffer</span>.<span style="color:#a6e22e">from</span>( <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#39;binary&#39;</span> );
+		<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outPath</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>( <span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;img.jpeg&#39;</span> );
+		<span style="color:#a6e22e">sharp</span>( <span style="color:#a6e22e">buffer</span> )
+		.<span style="color:#a6e22e">resize</span>( <span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">300</span> )
+		.<span style="color:#a6e22e">toFile</span>( <span style="color:#a6e22e">outPath</span> ) 
+		.<span style="color:#a6e22e">then</span>( () =&gt; {
+			<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">setAttribute</span>( <span style="color:#e6db74">&#39;src&#39;</span>, <span style="color:#e6db74">`file://</span><span style="color:#e6db74">${</span> <span style="color:#a6e22e">outPath</span> <span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> );
+			<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">setAttribute</span>( <span style="color:#e6db74">&#39;style&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span> );
+			<span style="color:#a6e22e">loading</span>.<span style="color:#a6e22e">setAttribute</span>( <span style="color:#e6db74">&#39;style&#39;</span>, <span style="color:#e6db74">&#39;display:none;&#39;</span> );
+		} );
+	} );
+	}
+  })
+</code></pre></div><p>Dernière remarque, nous utilisons le même <code>BrowserWindow</code> et de ce fait le même preloader. Il faut donc toujours s&rsquo;assurer que nos objets sont bien récupérés.</p>
+<p>Voilà l&rsquo;application refonctionne et nous respectons les consignes de sécurité.</p>
 
 		</div>
 		<footer class="post__footer">
