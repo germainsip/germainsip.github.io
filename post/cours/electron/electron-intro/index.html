@@ -85,6 +85,7 @@
 </div>
 <div class="content post__content clearfix">
 			<h1 id="electron">Electron</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLDgCz2YzJLyWK7uQvHBnciTrJ_Ed76Vhu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2 id="larchitecture-delectron">L&rsquo;architecture d&rsquo;electron</h2>
 <p>Electron utilise plusieurs processus pour gérer les états de l&rsquo;application et l&rsquo;interface utilisateur. Le processus principal <code>main</code> gère les états de l&rsquo;application pendant que le <code>renderer</code> s&rsquo;occupe de l&rsquo;interface utilisateur.</p>
 <p>Au démarrage d&rsquo;une application Electron un processus <code>main</code> est créé. On ne peut en avoir qu&rsquo;un seul. Ce <code>main</code> a accès aux api de <strong>Node.js</strong> mais pas celles de <strong>chromium</strong>. De ce fait, on peut utiliser les API node comme <code>fs.writeFile()</code>ou <code>require()</code> mais pas  <code>document</code> ou encore <code>window.addEventListener()</code>.</p>
