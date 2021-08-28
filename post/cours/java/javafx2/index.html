@@ -10,10 +10,9 @@
 	<meta property="og:title" content="JavaFX et sauvegarde Partie 2" />
 <meta property="og:description" content="2eme Didacticiel sur la persistance" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/java/javafx2/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-03-19T10:32:50&#43;00:00" />
-<meta property="article:modified_time" content="2020-03-19T10:32:50&#43;00:00" />
-
+<meta property="og:url" content="/post/cours/java/javafx2/" />
+<meta property="article:published_time" content="2020-03-19T10:32:50+00:00" />
+<meta property="article:modified_time" content="2020-03-19T10:32:50+00:00" />
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="JavaFX et sauvegarde Partie 2"/>
@@ -144,7 +143,7 @@ fileChooser<span style="color:#f92672">.</span><span style="color:#a6e22e">getEx
 
 Affichage du popup
 File file <span style="color:#f92672">=</span> fileChooser<span style="color:#f92672">.</span><span style="color:#a6e22e">showSaveDialog</span><span style="color:#f92672">(</span>App<span style="color:#f92672">.</span><span style="color:#a6e22e">getStage</span><span style="color:#f92672">());</span>
-</code></pre></div><p>Si le fichier est bien choisi ou nommé par l&rsquo;utilisateur nous l&rsquo;écrivons grace à un <code>FileWriter</code>.</p>
+</code></pre></div><p>Si le fichier est bien choisi ou nommé par l&rsquo;utilisateur nous l'écrivons grace à un <code>FileWriter</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>file <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">//Si l&#39;extension n&#39;est pas bien renseignée on l&#39;ajoute
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getPath</span><span style="color:#f92672">().</span><span style="color:#a6e22e">endsWith</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;.json&#34;</span><span style="color:#f92672">))</span> file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getPath</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.json&#34;</span><span style="color:#f92672">);</span>
@@ -186,7 +185,7 @@ File file <span style="color:#f92672">=</span> fileChooser<span style="color:#f9
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles

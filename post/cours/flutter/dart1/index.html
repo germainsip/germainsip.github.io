@@ -12,10 +12,9 @@
  En clair, codez une fois et compilez pour tout! (pour exporter vers des ios il est nécessaire d&rsquo;avoir un Mac)
  Environnement de développement La doc de Flutter, en anglais, installer Flutter vous explique la démarche d&rsquo;installation pour les 3 os (Windows, MacOS et Linux)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/flutter/dart1/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-03-04T14:51:21&#43;02:00" />
-<meta property="article:modified_time" content="2021-03-04T14:51:21&#43;02:00" />
-
+<meta property="og:url" content="/post/cours/flutter/dart1/" />
+<meta property="article:published_time" content="2021-03-04T14:51:21+02:00" />
+<meta property="article:modified_time" content="2021-03-04T14:51:21+02:00" />
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Flutter et Dart"/>
@@ -102,9 +101,9 @@
 <h3 id="environnement-de-développement">Environnement de développement</h3>
 <p>La doc de Flutter, en anglais,  <a href="https://flutter.dev/docs/get-started/install">installer Flutter</a> vous explique la démarche d&rsquo;installation pour les 3 os (Windows, MacOS et Linux).</p>
 <blockquote>
-<p>Si vous n&rsquo;êtes pas à l&rsquo;aise avec l&rsquo;anglais demandez une démo à votre formateur.</p>
+<p>Si vous n'êtes pas à l&rsquo;aise avec l&rsquo;anglais demandez une démo à votre formateur.</p>
 </blockquote>
-<p>En ce qui concerne l&rsquo;éditeur, vous pouvez choisir IntelliJ, Android Studio ou Visual studio code. Pour la mise ne place, suivez la doc <a href="https://flutter.dev/docs/get-started/editor?tab=vscode">réglage de l&rsquo;éditeur</a>.</p>
+<p>En ce qui concerne l'éditeur, vous pouvez choisir IntelliJ, Android Studio ou Visual studio code. Pour la mise ne place, suivez la doc <a href="https://flutter.dev/docs/get-started/editor?tab=vscode">réglage de l'éditeur</a>.</p>
 <h2 id="premier-projet-avec-flutter">Premier projet avec Flutter</h2>
 <p>Si vous avez choisi Vscode, placez vous dans votre dossier de travail et affichez le la palette de commande (ctrl+shift+p ou cmd+shift+p) et tapez flutter puis choisissez New Project.</p>
 <p>Il vous sera demandé le dossier de destination pour la création du projet.</p>
@@ -137,11 +136,11 @@
 </code></pre></div><p><img src="/img/flutter/flutt1.png" alt="flut1"></p>
 <p>ou sur ios</p>
 <p><img src="/img/flutter/flutt1ios.png" alt="flutt1"></p>
-<p>On utilise <code>MaterialApp</code> pour construire l&rsquo;application ce qui nous permet d&rsquo;utiliser la bibliothèque d&rsquo;éléments pré-construits.</p>
+<p>On utilise <code>MaterialApp</code> pour construire l&rsquo;application ce qui nous permet d&rsquo;utiliser la bibliothèque d'éléments pré-construits.</p>
 <h2 id="allons-un-peu-plus-loin-avec-des-imports-de-bibliothèques">Allons un peu plus loin avec des imports de bibliothèques</h2>
 <p>Dans <code>pubspec.yaml</code> ajoutez les deux dépendances suivantes</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#f92672">list_french_words</span>: <span style="color:#ae81ff">^0.1.0+1</span>
-  <span style="color:#f92672">recase</span>: <span style="color:#ae81ff">^3.0.0</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">list_french_words</span>: ^<span style="color:#ae81ff">0.1.0+1</span>
+  <span style="color:#66d9ef">recase</span>: ^<span style="color:#ae81ff">3.0.0</span>
 </code></pre></div><p>la première va nous donner une liste de 340000 mots français et l&rsquo;autre va nous permettre de formater les String à notre idée. Le dépot de dart est <a href="https://pub.dev">ici</a></p>
 <p>dans notre <code>main.dart</code> ajoutons un mot français au hasard.</p>
 <p>Créons d&rsquo;abord une classe Mots qui va nous générer tout ça <code>Mots.dart</code>dans un nouveau package model:</p>
@@ -192,10 +191,10 @@
 <p>Pour faire un peu plus propre, nous allons utiliser les <strong>widget</strong>.</p>
 <p>Nous allons utiliser les widget. Les widget sont statefull ou stateless. C&rsquo;est à dire:</p>
 <ul>
-<li><strong>Stateless</strong>: pas d&rsquo;état donc immuable lors de la vie de l&rsquo;application</li>
-<li><strong>Statefull</strong>: ajoute une notion d&rsquo;état qui permet de faire évoluer le widget. Le widget crée un état et qui persiste et le widget peut être supprimé et généré avec l&rsquo;état.</li>
+<li><strong>Stateless</strong>: pas d'état donc immuable lors de la vie de l&rsquo;application</li>
+<li><strong>Statefull</strong>: ajoute une notion d'état qui permet de faire évoluer le widget. Le widget crée un état et qui persiste et le widget peut être supprimé et généré avec l'état.</li>
 </ul>
-<p>A la fin du <code>main.dart</code> tapez simplement <code>stful</code> et l&rsquo;IDE génère le code pour vous. Il ne reste qu&rsquo;à nommer le widget (RandomWords). Ensuite, nous déplaçons le code au bon endroit.</p>
+<p>A la fin du <code>main.dart</code> tapez simplement <code>stful</code> et l&rsquo;IDE génère le code pour vous. Il ne reste qu'à nommer le widget (RandomWords). Ensuite, nous déplaçons le code au bon endroit.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:app_one/model/Mots.dart&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
 
@@ -292,7 +291,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
       ),
     );
   }
-</code></pre></div><p>On modifie maintenant la méthode <code>build</code> du <code>_RandomWordsState</code> pour utiliser ce que nous venons d&rsquo;écrire</p>
+</code></pre></div><p>On modifie maintenant la méthode <code>build</code> du <code>_RandomWordsState</code> pour utiliser ce que nous venons d'écrire</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
     <span style="color:#66d9ef">return</span> _buildSuggestions();
@@ -329,7 +328,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 <blockquote>
 <p>Pour le moment nous n&rsquo;avons pas d&rsquo;interactions.</p>
 </blockquote>
-<p>Pour activer nos coeurs, nous allons ajouter activer <code>onTap</code> pour que l&rsquo;utilisateur puisse toucher le coeur et <code>setState</code> pour sauvegarder l&rsquo;état</p>
+<p>Pour activer nos coeurs, nous allons ajouter activer <code>onTap</code> pour que l&rsquo;utilisateur puisse toucher le coeur et <code>setState</code> pour sauvegarder l'état</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(Mot suggestion) {
     <span style="color:#66d9ef">final</span> alreadySaved <span style="color:#f92672">=</span> _saved.contains(suggestion);
     <span style="color:#66d9ef">return</span> ListTile(
@@ -445,7 +444,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name"></span>
+		<span class="authorbox__name">À propos Germain SIPIERE</span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles

@@ -6,7 +6,11 @@
     <description>Recent content in Jackson on Mes ressources</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>fr</language>
-    <lastBuildDate>Thu, 19 Mar 2020 10:32:50 +0000</lastBuildDate><atom:link href="/tags/jackson/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Mar 2020 10:32:50 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/jackson/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>JavaFX et sauvegarde Partie 2</title>
       <link>/post/cours/java/javafx2/</link>
