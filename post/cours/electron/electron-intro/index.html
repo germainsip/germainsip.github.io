@@ -10,9 +10,10 @@
 	<meta property="og:title" content="Electron Intro" />
 <meta property="og:description" content="Création d&#39;une app desktop avec electron" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/electron/electron-intro/" />
+<meta property="og:url" content="/post/cours/electron/electron-intro/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-04-29T09:41:07+02:00" />
 <meta property="article:modified_time" content="2021-04-29T09:41:07+02:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Electron Intro"/>
@@ -92,7 +93,7 @@
 <p><img src="/img/electron/fen-base.png" alt="fen-base"></p>
 <p>A partir du <code>main.js</code> (processus <code>main</code>) on crée un fenêtre en instanciant <a href="https://www.electronjs.org/docs/api/browser-window"><code>BrowserWindow</code></a> accessible à partir du package <code>electron</code>.</p>
 <p>Cette fenêtre <code>win</code> est vide et on y charge une page web (HTML) avec <code>win.loadFile(path)</code> ou <code>win.loadURL(url)</code> (distant). Avec cet appel <strong>Electron</strong> crée un processus de rendu <code>renderer</code>et affiche la page.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">BrowserWindow</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;electron&#39;</span>)
 
 <span style="color:#75715e">//Création d&#39;une fenêtre
@@ -262,7 +263,7 @@ Certains sont quand même accessibles aux deux comme vous pouvez le voir dans ce
 <p>Alors, on fait comment? Par exemple, on voudrait ouvrir une nouvelle fenêtre avec une balise <code>&lt;button&gt;</code> avec une une image et un contrôle du zoom. C&rsquo;est là que l&rsquo;IPC va nous être util.
 On peut faire communiquer le <code>renderer</code> et le <code>main</code> grace aux module IPC. Le processus <code>main</code> peut accéder à <code>ipcMain</code> et le <code>renderer</code> à <code>ipcRenderer</code>.</p>
 <p>Le <code>ipcMain</code> peut écouter un évenement envoyé par le renderer en utilisant <code>ipcMain.on()</code> ou il peut gérer l&rsquo;exécution de la fonction invoquée par le processus de rendu en utilisant <code>ipcMain.handle()</code>. De même, le module <code>ipcRenderer</code> peut envoyer des messages au processus <code>main</code> en utilisant la méthode <code>ipcRenderer.send()</code> ou appeler une procédure à l&rsquo;intérieur du processus principal en utilisant la méthode <code>ipcRenderer.invoke()</code>.</p>
-<p>Un bon exemple du processus principal dépendant du processus de rendu serait l'état de la connectivité réseau. Nous pouvons écouter les événements en ligne ou hors ligne dans un navigateur (<a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events">documentation</a>). Il est donc possible d’obtenir la connectivité réseau de l’appareil de l’utilisateur dans le processus de rendu, mais nous ne pouvons pas faire de même dans le processus principal. Ainsi, le seul moyen pour le processus principal d&rsquo;obtenir l'état de la connectivité réseau est de demander au processus de rendu. Par conséquent, un processus de rendu peut envoyer un message au processus principal chaque fois que ce statut change (en utilisant les modules ipcMain et ipcRenderer).
+<p>Un bon exemple du processus principal dépendant du processus de rendu serait l&rsquo;état de la connectivité réseau. Nous pouvons écouter les événements en ligne ou hors ligne dans un navigateur (<a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events">documentation</a>). Il est donc possible d’obtenir la connectivité réseau de l’appareil de l’utilisateur dans le processus de rendu, mais nous ne pouvons pas faire de même dans le processus principal. Ainsi, le seul moyen pour le processus principal d&rsquo;obtenir l&rsquo;état de la connectivité réseau est de demander au processus de rendu. Par conséquent, un processus de rendu peut envoyer un message au processus principal chaque fois que ce statut change (en utilisant les modules ipcMain et ipcRenderer).
 Si vous souhaitez communiquer entre deux processus de rendu, vous devez utiliser le processus principal comme pont ou si vous avez accès à l&rsquo;interface <code>webContents</code> d&rsquo;un processus de rendu, vous pouvez utiliser la méthode <code>webContents.send()</code> pour envoyer un message à un autre processus de rendu et utilisez la méthode <code>ipcRenderer.on()</code> pour écouter ce message.</p>
 <h2 id="les-tâches-de-fond">Les Tâches de fond</h2>
 <p>Si vous souhaitez effectuer une tâche gourmande en ressources processeur, vous ne voudriez pas exécuter le code JavaScript de longue durée dans un processus de rendu qui bloquerait l&rsquo;interface utilisateur et la laisserait morte pendant quelques secondes ou minutes. Cependant, si vous le faites, disons par accident, les autres fenêtres ne seront pas affectées car elles s&rsquo;exécutent dans des processus de rendu distincts.</p>
@@ -271,14 +272,14 @@ Si vous souhaitez communiquer entre deux processus de rendu, vous devez utiliser
 Certaines personnes peuvent suggérer d&rsquo;utiliser une fenêtre transparente sans cadre que les utilisateurs ne peuvent pas voir pour effectuer des tâches en arrière-plan et gourmandes en ressources processeur. Voici un <a href="https://www.geeksforgeeks.org/frameless-window-in-electronjs/">article</a> qui décrit exactement cela. Cependant, nous devrions éviter d&rsquo;utiliser de telles astuces lorsque nous avons de meilleures façons de faire les choses.
 Un <code>WebWorker</code> n&rsquo;a pas automatiquement accès à l&rsquo;API Node.js. Nous devons définir la propriété <code>options.webPreferences.nodeIntegrationInWorker</code> sur true lors de la création d&rsquo;un objet <code>BrowswerWindow</code>. Cette propriété fonctionne quelle que soit la propriété <code>nodeIntegration</code>.</p>
 <h2 id="vu-de-plus-haut">Vu de plus haut</h2>
-<p>Ce dont nous avons discuté jusqu’à présent n’est qu’un aperçu de l’architecture d’Electron. Si vous voulez creuser plus profondément, vous voudrez peut-être lire ceci. Résumons ce dont nous avons discuté jusqu'à présent avec un diagramme simplifié.</p>
+<p>Ce dont nous avons discuté jusqu’à présent n’est qu’un aperçu de l’architecture d’Electron. Si vous voulez creuser plus profondément, vous voudrez peut-être lire ceci. Résumons ce dont nous avons discuté jusqu&rsquo;à présent avec un diagramme simplifié.</p>
 <p><img src="/img/electron/diag2-2.png" alt="diag2"></p>
 <!-- TODO: image à refaire -->
 <p>L&rsquo;ensemble du processus et de l&rsquo;architecture de communication d&rsquo;Electron est basé sur l&rsquo;architecture de Chromium. Par exemple, le concept de processus principal et de rendu, ainsi que le mécanisme de communication IPC sont dérivés de l’architecture de Chromium. Pour en savoir plus sur le fonctionnement de Chromium sous le capot, lisez cette <a href="https://www.chromium.org/developers/design-documents/multi-process-architecture">documentation</a> sur chromium.org.</p>
 <h2 id="créons-une-application-electron">Créons une application Electron</h2>
 <p>Créons une application desktop simple qui affiche &ldquo;Je débute avec Electron!&rdquo; dans une fenêtre et un bouton qui ouvre une fenêtre avec une image aléatoire d&rsquo;Internet.</p>
 <p>Créons un répertoire de projet. Pour moi, le nom du répertoire du projet est <code>electron-un</code>. La structure du projet ressemblera à celle ci-dessous, mais nous passerons en revue chacun de ces fichiers un par un.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">electron-un/
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">electron-un/
 ├── main.js
 ├── hello.html
 ├── image.html
@@ -286,7 +287,7 @@ Un <code>WebWorker</code> n&rsquo;a pas automatiquement accès à l&rsquo;API No
 ├── package-lock.json
 └── package.json
 </code></pre></div><p>Désormais, pour créer des applications desktop à l&rsquo;aide d&rsquo;Electron, nous n&rsquo;avons pas besoin d&rsquo;une configuration sophistiquée ni d&rsquo;installer une application. Nous avons juste besoin du package electron que nous pouvons installer à l&rsquo;aide de la commande <code>npm install</code> ou <code>yarn add</code>. Alors initialisons notre projet avec <code>npm init</code>. Et ensuite ajoutons electron.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">npm init -y
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">npm init -y
 npm install --save-dev electron
 npx electron --version
  v11.1.1
@@ -294,7 +295,7 @@ npx electron --version
 <p>le <code>-y</code>  oblige npm à répondre aux questions par lui même.</p>
 </blockquote>
 <p>Voici maintenant un point important que vous ne devez jamais oublier. Le point d&rsquo;entrée d&rsquo;une application Electron est un fichier JavaScript. Ce fichier JavaScript s&rsquo;exécute dans le processus principal et ouvrira les fenêtres d&rsquo;application comme indiqué précédemment. Créons donc le fichier <code>main.js</code> dans le projet.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">app</span>, <span style="color:#a6e22e">BrowserWindow</span>, <span style="color:#a6e22e">ipcMain</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
 
 <span style="color:#75715e">// ouvrir une fenêtre
@@ -336,22 +337,22 @@ npx electron --version
     <span style="color:#a6e22e">openWindow</span>( <span style="color:#e6db74">&#39;image&#39;</span> );
 } )
 </code></pre></div><p>Voyons ce que nous faisons dans ce fichier. Tout d&rsquo;abord, nous importons les modules <code>app</code>, <code>BrowserWindow</code> et <code>ipcMain</code> à partir du package <code>electron</code>. Nous avons déjà discuté des modules <code>BrowserWindow</code> et <code>ipcMain</code>, alors laissons cela de côté un instant et concentrons-nous sur le module <code>app</code>.</p>
-<p>Le module <code>app</code> est une interface pour contrôler le cycle de vie de l&rsquo;application. Si nous voyons la table d&rsquo;accessibilité du module, ce module n&rsquo;est disponible que pour le processus principal. Ce module nous donne la possibilité d'écouter les événements du cycle de vie de l&rsquo;application, d&rsquo;appeler des méthodes pour modifier l'état de l&rsquo;application et de lire l'état de l&rsquo;application via des propriétés statiques.
-Dans le fichier <code>main.js</code> ci-dessus, nous écoutons l'événement <code>ready</code> de l&rsquo;application à l&rsquo;aide de la méthode <code>app.on(event, handler)</code>. Cet événement est déclenché une seule fois lorsque Electron a terminé l&rsquo;initialisation de l&rsquo;application et que les fenêtres peuvent être créées en toute sécurité.</p>
+<p>Le module <code>app</code> est une interface pour contrôler le cycle de vie de l&rsquo;application. Si nous voyons la table d&rsquo;accessibilité du module, ce module n&rsquo;est disponible que pour le processus principal. Ce module nous donne la possibilité d&rsquo;écouter les événements du cycle de vie de l&rsquo;application, d&rsquo;appeler des méthodes pour modifier l&rsquo;état de l&rsquo;application et de lire l&rsquo;état de l&rsquo;application via des propriétés statiques.
+Dans le fichier <code>main.js</code> ci-dessus, nous écoutons l&rsquo;événement <code>ready</code> de l&rsquo;application à l&rsquo;aide de la méthode <code>app.on(event, handler)</code>. Cet événement est déclenché une seule fois lorsque Electron a terminé l&rsquo;initialisation de l&rsquo;application et que les fenêtres peuvent être créées en toute sécurité.</p>
 <blockquote>
 <p>💡 Au lieu de l&rsquo;approche <code>app.on('ready', handler)</code>, vous pouvez également utiliser la méthode <code>app.whenReady()</code> qui renvoie une promesse. Dans le gestionnaire <code>then()</code> de cette promesse, vous pouvez faire ce que nous faisons dans le fichier <code>main.js</code> ci-dessus.</p>
 </blockquote>
-<p>L'événement <code>window-all-closed</code> est émis lorsque la dernière fenêtre ouverte de l&rsquo;application est fermée. Dans le gestionnaire de cet événement, nous devons quitter l&rsquo;application en appelant la méthode <code>app.quit()</code> sauf lorsque le système d&rsquo;exploitation est macOS car il contredit le comportement par défaut de macOS.</p>
+<p>L&rsquo;événement <code>window-all-closed</code> est émis lorsque la dernière fenêtre ouverte de l&rsquo;application est fermée. Dans le gestionnaire de cet événement, nous devons quitter l&rsquo;application en appelant la méthode <code>app.quit()</code> sauf lorsque le système d&rsquo;exploitation est macOS car il contredit le comportement par défaut de macOS.</p>
 <blockquote>
 <p>💡 La variable de processus provient de Node.js puisque le processus principal a toujours accès aux API Node.js. Par conséquent, <code>process.platform</code> donne le nom de la plate-forme sous-jacente (noyau ou OS) sur laquelle Node.js s&rsquo;exécute.</p>
 </blockquote>
-<p>L'événement d&rsquo;activation est spécifique à macOS et il est déclenché lorsque l&rsquo;utilisateur clique sur l&rsquo;icône de l&rsquo;application du dock (et à d&rsquo;autres endroits). Étant donné que la fermeture de toutes les fenêtres dans macOS ne ferme pas l&rsquo;application (processus principal), nous aurions besoin d&rsquo;ouvrir une fenêtre (si aucune n&rsquo;est ouverte) lorsque l&rsquo;application est à nouveau activée.
+<p>L&rsquo;événement d&rsquo;activation est spécifique à macOS et il est déclenché lorsque l&rsquo;utilisateur clique sur l&rsquo;icône de l&rsquo;application du dock (et à d&rsquo;autres endroits). Étant donné que la fermeture de toutes les fenêtres dans macOS ne ferme pas l&rsquo;application (processus principal), nous aurions besoin d&rsquo;ouvrir une fenêtre (si aucune n&rsquo;est ouverte) lorsque l&rsquo;application est à nouveau activée.
 Lorsque l&rsquo;application est prête, nous appelons la fonction <code>openWindow()</code> qui crée une fenêtre de taille 600x300 et ouvre le fichier <code>hello.html</code> par défaut qui se trouve dans le même répertoire que le <code>main.js</code>. Si la valeur de l&rsquo;argument de type est image, cela créera une autre fenêtre et ouvrira le fichier <code>image.html</code> dans cette fenêtre.</p>
-<p>Puisque nous voulons ouvrir la fenêtre d&rsquo;image lorsque l&rsquo;utilisateur appuie sur un bouton dans la fenêtre par défaut, nous devons envoyer un message de la fenêtre par défaut (processus de rendu) au <code>main.js</code> (processus principal). Nous écoutons ce message dans le <code>main.js</code> en utilisant la méthode <code>ipcMain.on()</code>. Lorsque <code>main.js</code> reçoit l'événement <code>app: display-image</code>, il ouvrira la fenêtre d&rsquo;image.</p>
+<p>Puisque nous voulons ouvrir la fenêtre d&rsquo;image lorsque l&rsquo;utilisateur appuie sur un bouton dans la fenêtre par défaut, nous devons envoyer un message de la fenêtre par défaut (processus de rendu) au <code>main.js</code> (processus principal). Nous écoutons ce message dans le <code>main.js</code> en utilisant la méthode <code>ipcMain.on()</code>. Lorsque <code>main.js</code> reçoit l&rsquo;événement <code>app: display-image</code>, il ouvrira la fenêtre d&rsquo;image.</p>
 <blockquote>
-<p>💡 J&rsquo;utilise le format app: <code>&lt;event-name&gt;</code> pour les événements personnalisés mais il n&rsquo;y a pas de convention pour nommer les noms d'événements. Ce devrait être une chaîne, c’est tout.</p>
+<p>💡 J&rsquo;utilise le format app: <code>&lt;event-name&gt;</code> pour les événements personnalisés mais il n&rsquo;y a pas de convention pour nommer les noms d&rsquo;événements. Ce devrait être une chaîne, c’est tout.</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
 &lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fr&#34;</span>&gt;
 &lt;<span style="color:#f92672">head</span>&gt;
 	&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
@@ -384,13 +385,13 @@ Lorsque l&rsquo;application est prête, nous appelons la fonction <code>openWind
 <p>Le style est fait avec tailwindcss et son CDN. Juste un coquetterie de ma part.</p>
 </blockquote>
 <p>Notre fichier hello.html n&rsquo;est qu&rsquo;une simple page Web HTML. Electron recommande d&rsquo;ajouter un en-tête de réponse CSP (Content Security Policy) lors du chargement d&rsquo;une page Web dans une fenêtre. Lors du chargement d&rsquo;un fichier HTML local, l&rsquo;en-tête CSP peut être ajouté via une balise Meta. Cette étape est nécessaire pour ajouter une couche de sécurité supplémentaire aux attaques XSS comme décrit <a href="https://www.electronjs.org/docs/tutorial/security#6-define-a-content-security-policy">ici</a></p>
-<p>L'élément <code>&lt;title&gt;</code> spécifie le titre du document et Electron utilise cette valeur pour le titre de la fenêtre que nous verrons dans une minute. Vous pouvez également fournir le titre de la fenêtre via la propriété title lors de la création d&rsquo;une instance de <code>BrowserWindow</code>.
-Dans notre page, nous avons un &ldquo;Je suis Electron!&rdquo; enveloppé dans un élément <code>&lt;h1&gt;</code> et un bouton avec l&rsquo;ID <code>#btn</code>. L'élément <code>&lt;script&gt;</code> a du JavaScript qui semble un peu différent du JavaScript normal que nous utilisons dans le navigateur.</p>
-<p>Comme indiqué précédemment, le processus de rendu a également accès aux API Node.js, ce qui signifie que tout JavaScript s&rsquo;exécutant dans une fenêtre a également accès à ces API. C&rsquo;est pourquoi nous pouvons utiliser la fonction require de Node dans l'élément <code>&lt;script&gt;</code>. La même règle s&rsquo;applique si nous importons un fichier JavaScript externe à l&rsquo;aide de l'élément <code>&lt;script src = &quot;path-to-file.js&quot;&gt;</code>.
-Dans ce JavaScript, nous importons le module <code>ipcRenderer</code> du package electron pour envoyer le message <code>app: display-image</code> au processus principal lorsque l&rsquo;utilisateur appuie sur le bouton <strong>Cliquez pour voir une image</strong>. Vous pouvez également accéder aux modules Node intégrés tels que <code>fs</code> ou <code>path</code> ainsi qu'à des variables globales telles que <code>process</code> et autres.</p>
+<p>L&rsquo;élément <code>&lt;title&gt;</code> spécifie le titre du document et Electron utilise cette valeur pour le titre de la fenêtre que nous verrons dans une minute. Vous pouvez également fournir le titre de la fenêtre via la propriété title lors de la création d&rsquo;une instance de <code>BrowserWindow</code>.
+Dans notre page, nous avons un &ldquo;Je suis Electron!&rdquo; enveloppé dans un élément <code>&lt;h1&gt;</code> et un bouton avec l&rsquo;ID <code>#btn</code>. L&rsquo;élément <code>&lt;script&gt;</code> a du JavaScript qui semble un peu différent du JavaScript normal que nous utilisons dans le navigateur.</p>
+<p>Comme indiqué précédemment, le processus de rendu a également accès aux API Node.js, ce qui signifie que tout JavaScript s&rsquo;exécutant dans une fenêtre a également accès à ces API. C&rsquo;est pourquoi nous pouvons utiliser la fonction require de Node dans l&rsquo;élément <code>&lt;script&gt;</code>. La même règle s&rsquo;applique si nous importons un fichier JavaScript externe à l&rsquo;aide de l&rsquo;élément <code>&lt;script src = &quot;path-to-file.js&quot;&gt;</code>.
+Dans ce JavaScript, nous importons le module <code>ipcRenderer</code> du package electron pour envoyer le message <code>app: display-image</code> au processus principal lorsque l&rsquo;utilisateur appuie sur le bouton <strong>Cliquez pour voir une image</strong>. Vous pouvez également accéder aux modules Node intégrés tels que <code>fs</code> ou <code>path</code> ainsi qu&rsquo;à des variables globales telles que <code>process</code> et autres.</p>
 <p>Démarrons notre application Electron. Pour démarrer l&rsquo;application Electron, nous devons utiliser la commande <code>electron [options] &lt;path&gt;</code>. Cette commande est fournie par le package <code>electron</code>. Ici path est le chemin de <code>main.js</code> ou un répertoire contenant <code>index.js</code> (qui serait le point d&rsquo;entrée) ou un répertoire contenant <code>package.json</code>. Ce <code>package.json</code> doit avoir le chemin du point d&rsquo;entrée (fichier JavaScript) spécifié par le champ <code>main</code>.
 Dans notre cas, nous exécuterons la commande <code>electron .</code> à partir du répertoire du projet. Puisque nous avons le <code>package.json</code> dans ce répertoire, nous devons spécifier le chemin de <code>main.js</code> qui est le point d&rsquo;entrée de notre application via le champ <code>main</code> du <code>package.json</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;exemple&#34;</span>,
   <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>,
   <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;un simple exemple&#34;</span>,
@@ -407,7 +408,7 @@ Dans notre cas, nous exécuterons la commande <code>electron .</code> à partir 
 }
 </code></pre></div><p>Puisque electron est un package local, nous ne pouvons pas utiliser <code>electron .</code> depuis le terminal. Vous pouvez exécuter <code>npx electron .</code> mais il est plus pratique d&rsquo;ajouter un script dans <code>package.json</code> comme nous l&rsquo;avons fait ci-dessus et d&rsquo;utiliser la commande <code>npm run start</code> pour démarrer l&rsquo;application.</p>
 <p><img src="/img/electron/electron2.png" alt="fen2"></p>
-<p>Lorsque nous utilisons <code>npm run start</code>, Electron exécute le fichier <code>main.js</code> et l'événement <code>ready</code> est déclenché, ce qui ouvre une fenêtre avec le fichier <code>hello.html</code> similaire à celui que vous voyez ci-dessus. Notez le titre de la fenêtre. Cette commande bloquera le terminal à partir duquel cette commande a été exécutée et toutes les instructions <code>console.log</code> exécutées dans le processus principal (<code>main.js</code>) seront enregistrées ici.
+<p>Lorsque nous utilisons <code>npm run start</code>, Electron exécute le fichier <code>main.js</code> et l&rsquo;événement <code>ready</code> est déclenché, ce qui ouvre une fenêtre avec le fichier <code>hello.html</code> similaire à celui que vous voyez ci-dessus. Notez le titre de la fenêtre. Cette commande bloquera le terminal à partir duquel cette commande a été exécutée et toutes les instructions <code>console.log</code> exécutées dans le processus principal (<code>main.js</code>) seront enregistrées ici.
 Comme j&rsquo;utilise macOS, je vais ouvrir le moniteur d&rsquo;activité pour voir quels processus cette application a démarré.</p>
 <p><img src="/img/electron/moniteur.png" alt="moniteur"></p>
 <p>Le processus avec le nom Electron est le processus principal. Le processus nommé Electron Helper (Renderer) est le processus de rendu. Comme nous n&rsquo;avons qu&rsquo;une seule fenêtre ouverte, nous n&rsquo;avons qu&rsquo;un seul processus de rendu. Les autres processus ne sont que des processus auxiliaires du processus principal.
@@ -418,7 +419,7 @@ Cliquons sur le bouton Cliquer pour ouvrir une photo rendue dans la fenêtre et 
 </blockquote>
 <p><img src="/img/electron/devtool.png" alt="devtool"></p>
 <p>Le JavaScript s&rsquo;exécutant dans cette fenêtre a levé une exception. Il dit que la variable require n&rsquo;existe pas à la ligne no. 21 du <code>hello.html</code>. Mais la fonction <code>require()</code> aurait dû être là puisqu&rsquo;elle est fournie par les API Node.js. D&rsquo;une manière ou d&rsquo;une autre, le JavaScript exécuté dans le processus de rendu n&rsquo;a pas accès aux API Node.js. C&rsquo;est parce que nous n&rsquo;avons pas activé l&rsquo;intégration node ni désactivé l&rsquo;isolation de context lors de la création de la fenêtre.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openWindow</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">type</span> ) =&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openWindow</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">type</span> ) =&gt; {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">win</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BrowserWindow</span>( {
         <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">400</span>,
         <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
@@ -430,7 +431,7 @@ Cliquons sur le bouton Cliquer pour ouvrir une photo rendue dans la fenêtre et 
     <span style="color:#75715e">//...
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>Maintenant vous ne devriez plus avoir d&rsquo;erreur en console (mais nous y reviendrons). Voyons à quoi ressemble le fichier <code>image.html</code> avant de cliquer sur le bouton et de créer un désordre.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
 &lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fr&#39;</span>&gt;
     &lt;<span style="color:#f92672">head</span>&gt;
         &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;UTF-8&#39;</span>&gt;
@@ -489,15 +490,15 @@ Cliquons sur le bouton Cliquer pour ouvrir une photo rendue dans la fenêtre et 
     &lt;/<span style="color:#f92672">body</span>&gt;
 &lt;/<span style="color:#f92672">html</span>&gt;
 </code></pre></div><p>Dans <code>image.html</code>, nous récupérons une image aléatoire (jpeg) à partir de l&rsquo;URL <code>https://source.unsplash.com/random</code> à l&rsquo;aide du package <code>axios</code>. Ensuite, nous convertissons cette image en un objet Buffer. L&rsquo;interface Buffer est fournie par Node.js. Ensuite, nous redimensionnons cette image en utilisant un package <code>sharp</code>. Nous devons donc installer ces packages.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">npm install --save axios sharp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">npm install --save axios sharp
 </code></pre></div><p>Comme la variable <code>__dirname</code> fournie par Node.js pointe vers le chemin absolu de <code>image.html</code> sur le système de fichiers, c&rsquo;est pourquoi le chemin outPath est le <code>&lt;project-path&gt;/img.jpeg</code>. Lorsque nous enregistrons cette image en utilisant <code>.toFile(outPath)</code>, elle est enregistrée dans le répertoire du projet.</p>
-<p>Le protocole <code>file://</code> est utilisé pour charger un fichier à partir du système de fichiers local. L&rsquo;URL de l&rsquo;attribut src est <code>file:// &lt;chemin-absolu-vers-img&gt;.jpeg</code>, ce qui signifie que l'élément <code>&lt;img/&gt;</code> affichera le fichier récemment enregistré. Ainsi, lorsque nous cliquons sur le bouton <strong>Cliquez pour voir une image</strong>, une nouvelle fenêtre s&rsquo;ouvrira et rendra le fichier téléchargé. Vous devriez également voir apparaître le fichier <code>img.jpeg</code> dans le répertoire du projet.</p>
+<p>Le protocole <code>file://</code> est utilisé pour charger un fichier à partir du système de fichiers local. L&rsquo;URL de l&rsquo;attribut src est <code>file:// &lt;chemin-absolu-vers-img&gt;.jpeg</code>, ce qui signifie que l&rsquo;élément <code>&lt;img/&gt;</code> affichera le fichier récemment enregistré. Ainsi, lorsque nous cliquons sur le bouton <strong>Cliquez pour voir une image</strong>, une nouvelle fenêtre s&rsquo;ouvrira et rendra le fichier téléchargé. Vous devriez également voir apparaître le fichier <code>img.jpeg</code> dans le répertoire du projet.</p>
 <p><img src="/img/electron/image.png" alt="image"></p>
 <h2 id="ce-nest-pas-fini">Ce n&rsquo;est pas fini</h2>
 <p>Je ne vous ai pas tout dit. Dans la version 12 d&rsquo;Electron, l&rsquo;intégration de node et l&rsquo;isolation ont des paramètre par défaut pour une bonne raison. Ce sont des portes ouvertes aux logiciels malicieux. Un script peut avoir accès à votre système en passant par le renderer directement. CE N&rsquo;EST PAS BON !</p>
 <h3 id="corrigeons-ça">Corrigeons ça</h3>
 <p>On va désactiver les deux options dans le <code>main.js</code> au niveau du <code>BrowserWindow</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openWindow</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">type</span> ) =&gt; {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openWindow</span> <span style="color:#f92672">=</span> ( <span style="color:#a6e22e">type</span> ) =&gt; {
     <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">win</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">BrowserWindow</span>( {
         <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">600</span>,
         <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>,
@@ -510,7 +511,7 @@ Cliquons sur le bouton Cliquer pour ouvrir une photo rendue dans la fenêtre et 
 <p>Si vous relancez maintenant, plus rien ne fonctionne évidemment.</p>
 </blockquote>
 <p>Ajoutez le fichier <code>preload.js</code> dans le projet.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
 
 window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;DOMContentLoaded&#39;</span>, () =&gt; {
 	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">btn1</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;btn&#39;</span>)
@@ -522,10 +523,10 @@ window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e
 	}
   })
 </code></pre></div><p>et on enlève le script de <code>hello.html</code>. Dans le détail, que ce passe-t-il? On ajoute un écouteur à la fenêtre qui déclenche une méthode quand la page est chargée.
-On récupère alors l'élément portant l&rsquo;id <code>btn</code>. Je triche un peu pour la suite en vérifiant que l&rsquo;objet n&rsquo;est pas null car je vais utiliser le même préloader pour plusieurs pages.
+On récupère alors l&rsquo;élément portant l&rsquo;id <code>btn</code>. Je triche un peu pour la suite en vérifiant que l&rsquo;objet n&rsquo;est pas null car je vais utiliser le même préloader pour plusieurs pages.
 Si cet objet n&rsquo;est pas null on fait ce que l&rsquo;on faisait avant directement dans le html dans la balise <code>&lt;script&gt;...&lt;/script&gt;</code>.</p>
 <p>Le même travail est à faire pour <code>image.html</code> donc toujours dans <code>preloader.js</code> nous ajoutons ce qu&rsquo;il manque et nous le supprimons de <code>image.html</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ipcRenderer</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;electron&#39;</span> );
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;path&#39;</span> );
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">axios</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;axios&#39;</span> );
 <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sharp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>( <span style="color:#e6db74">&#39;sharp&#39;</span> );
@@ -563,6 +564,7 @@ window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e
   })
 </code></pre></div><p>Dernière remarque, nous utilisons le même <code>BrowserWindow</code> et de ce fait le même preloader. Il faut donc toujours s&rsquo;assurer que nos objets sont bien récupérés.</p>
 <p>Voilà l&rsquo;application refonctionne et nous respectons les consignes de sécurité.</p>
+<p>Bientôt la suite&hellip;</p>
 
 		</div>
 		<footer class="post__footer">
@@ -583,7 +585,7 @@ window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -604,7 +606,7 @@ window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

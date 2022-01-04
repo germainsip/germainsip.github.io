@@ -10,9 +10,10 @@
 	<meta property="og:title" content="Voyage entre les Intent" />
 <meta property="og:description" content="Les intent d&#39;android" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/android/android3/" />
+<meta property="og:url" content="/post/cours/android/android3/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-03-27T10:57:32+00:00" />
 <meta property="article:modified_time" content="2020-03-27T10:57:32+00:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Voyage entre les Intent"/>
@@ -95,7 +96,7 @@
 <h2 id="cest-partie">C&rsquo;est partie</h2>
 <p>De la manière que nous l&rsquo;avons fait créons un projet nommé DeuxActivites.
 Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à qui on donnera le nom <code>button_main</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
   <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_main&#34;</span>
   <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
   <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
@@ -109,9 +110,9 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
 </code></pre></div><p>Pensez bien à renvoyer le text dans <code>strings.xml</code>. Pour le moment est souligné en rouge car la méthode n&rsquo;existe pas. A l&rsquo;aide de l&rsquo;ampoule rouge créez la méthode dans <code>MainActivity.java</code>.</p>
 <p>Dans <code>MainActivity.java</code> ajoutez <code>Log.d(LOG_TAG,&quot;clique sur bouton&quot;);</code> dans la méthode <code>launchSecondActivity()</code> et ajoutez <code>private static final String LOG_TAG = MainActivity.class.getSimpleName();</code> en haut de la classe.</p>
 <p>Exécutez votre appli. Si tout se déroule bien au clique sur le bouton vous devriez lire dans l&rsquo;onglet run en bas de l&rsquo;IDE</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">D/MainActivity: clique sur bouton
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">D/MainActivity: clique sur bouton
 </code></pre></div><blockquote>
-<p>la méthode log est l'équivalent en Java du println que nous utilisons pour faire des impressions en console. La grosse différence est que nous signons nos événements par une String.</p>
+<p>la méthode log est l&rsquo;équivalent en Java du println que nous utilisons pour faire des impressions en console. La grosse différence est que nous signons nos événements par une String.</p>
 </blockquote>
 <h2 id="créons-la-seconde-activité">Créons la seconde activité</h2>
 <p>Pour android, il ya deux façons de faire du lien entre les activités:</p>
@@ -122,9 +123,9 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
 <p>Cliquez droit sur le dossier <strong>app</strong> puis <strong>new -&gt; activity -&gt; Empty Activity</strong> et nommez la nouvelle activité <code>SecondActivity</code>.</p>
 <p>Dans <strong>AndroidManifest</strong> nous définissons plus précisément notre activité. Ces information seront utilisées pour afficher la navigation en haut dans la barre de navigation.</p>
 <p>dans la Manifest remplacez</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.SecondActivity&#34;</span><span style="color:#f92672">&gt;&lt;/activity&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span> <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.SecondActivity&#34;</span><span style="color:#f92672">&gt;&lt;/activity&gt;</span>
 </code></pre></div><p>par</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;activity</span>
   <span style="color:#a6e22e">android:name=</span><span style="color:#e6db74">&#34;.SecondActivity&#34;</span>
   <span style="color:#a6e22e">android:label=</span><span style="color:#e6db74">&#34;Seconde Activité&#34;</span>
   <span style="color:#a6e22e">android:parentActivityName=</span><span style="color:#e6db74">&#34;.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
@@ -132,7 +133,7 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
 </code></pre></div><p>Puis extrayez le label dans <code>strings.xml</code></p>
 <h2 id="petite-mise-en-page">Petite mise en page</h2>
 <p>dans <code>activity_second.xml</code> faite la mise en page suivante en ajoutant un TextView</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
     <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/text_header&#34;</span>
     <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
     <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
@@ -144,7 +145,7 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
     <span style="color:#a6e22e">app:layout_constraintStart_toStartOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
     <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span><span style="color:#f92672">/&gt;</span>
 </code></pre></div><h2 id="définissons-lintent">Définissons l&rsquo;Intent</h2>
-<p>Enfin dans <code>MainActivity.java</code> créez l&rsquo;<strong>intent</strong> dan la méthode <code>launchSecondActivity()</code></p>
+<p>Enfin dans <code>MainActivity.java</code> créez l'<strong>intent</strong> dan la méthode <code>launchSecondActivity()</code></p>
 <p>L'<code>intent</code> prend deux paramètres, le <code>context</code> et la classe de l&rsquo;activité à charger.</p>
 <p><code>Intent intent = new Intent(this, SecondActivity.class);</code></p>
 <p>Il faut ensuite démarrer l&rsquo;activité: <code>startActivity(intent);</code></p>
@@ -157,26 +158,26 @@ Dans <code>activity_main.xml</code> enlevez le TextView et ajoutez un bouton à 
 
 <hr>
 <hr>
-<p>Notre objet d&rsquo;intention peut transmettre des données à l&rsquo;activité cible de deux manières: dans le champ de données ou dans les extras d&rsquo; intention . Les données d&rsquo;intention sont un URI indiquant les données spécifiques sur lesquelles agir. Si les informations que vous souhaitez transmettre à une activité via une intention ne sont pas un URI, ou si vous avez plusieurs informations à envoyer, vous pouvez mettre ces informations supplémentaires dans les extras à la place.</p>
-<p>Les <strong>extras</strong> d&rsquo; intention sont des paires <strong>clé / valeur</strong> dans un Bundle (paquet). Un <code>Bundle</code> est une collection de données, stockées sous forme de paires <strong>clé / valeur</strong>. Pour transmettre des informations d&rsquo;une activité à une autre, vous mettez des clés et des valeurs dans l&rsquo;extra de l&rsquo;intention de l&rsquo;activité d&rsquo;envoi, puis vous les récupérez dans l&rsquo;activité de réception.</p>
+<p>Notre objet d&rsquo;intention peut transmettre des données à l&rsquo;activité cible de deux manières: dans le champ de données ou dans les extras d' intention . Les données d&rsquo;intention sont un URI indiquant les données spécifiques sur lesquelles agir. Si les informations que vous souhaitez transmettre à une activité via une intention ne sont pas un URI, ou si vous avez plusieurs informations à envoyer, vous pouvez mettre ces informations supplémentaires dans les extras à la place.</p>
+<p>Les <strong>extras</strong> d' intention sont des paires <strong>clé / valeur</strong> dans un Bundle (paquet). Un <code>Bundle</code> est une collection de données, stockées sous forme de paires <strong>clé / valeur</strong>. Pour transmettre des informations d&rsquo;une activité à une autre, vous mettez des clés et des valeurs dans l&rsquo;extra de l&rsquo;intention de l&rsquo;activité d&rsquo;envoi, puis vous les récupérez dans l&rsquo;activité de réception.</p>
 <p>Commencez par ajouter un <code>EditText</code> à notre premier layout et nommez le <code>edit_text_message</code></p>
 <blockquote>
 <p>les indications du champ text sont dans l&rsquo;attribut <code>android:hint=&quot; ... &quot;</code></p>
 </blockquote>
 <p>Définissez la clé &ldquo;Extra&rdquo; de l&rsquo;intent et l'<code>EditText</code> en haut de la classe <code>MainActivity</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String EXTRA_MESSAGE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;deuxActivite.extra.MESSAGE&#34;</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String EXTRA_MESSAGE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;deuxActivite.extra.MESSAGE&#34;</span><span style="color:#f92672">;</span>
 <span style="color:#66d9ef">private</span> EditText mEditTextMessage<span style="color:#f92672">;</span>
 </code></pre></div><p>Dans la méthode <code>onCreate()</code> on va récupérer notre EditText:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> mEditTextMessage <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">edit_text_message</span><span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> mEditTextMessage <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">edit_text_message</span><span style="color:#f92672">);</span>
 </code></pre></div><p>Et dans la méthode <code>launchSecondActivity()</code> on va créer notre message &ldquo;extra&rdquo; et l&rsquo;ajouter à l&rsquo;intent</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String message <span style="color:#f92672">=</span> mEditTextMessage<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String message <span style="color:#f92672">=</span> mEditTextMessage<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">().</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
 Intent intent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Intent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> SecondActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
 intent<span style="color:#f92672">.</span><span style="color:#a6e22e">putExtra</span><span style="color:#f92672">(</span>EXTRA_MESSAGE<span style="color:#f92672">,</span>message<span style="color:#f92672">);</span>
 startActivity<span style="color:#f92672">(</span>intent<span style="color:#f92672">);</span>
 </code></pre></div><h2 id="de-lautre-côté">De l&rsquo;autre côté</h2>
 <p>Dans <code>activity_second.xml</code> ajoutez un <code>TextView</code> afin de pouvoir répondre. Nommez le <code>text_message</code></p>
 <p>Dans <code>SecondActivity.java</code>, dans la méthode onCreate(), récupérons notre intent ainsi que son contenu et mettons le dans le TextView:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Intent intent <span style="color:#f92672">=</span> getIntent<span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Intent intent <span style="color:#f92672">=</span> getIntent<span style="color:#f92672">();</span>
 
 String message <span style="color:#f92672">=</span> intent<span style="color:#f92672">.</span><span style="color:#a6e22e">getStringExtra</span><span style="color:#f92672">(</span>MainActivity<span style="color:#f92672">.</span><span style="color:#a6e22e">EXTRA_MESSAGE</span><span style="color:#f92672">);</span>
 
@@ -194,7 +195,7 @@ textView<span style="color:#f92672">.</span><span style="color:#a6e22e">setText<
 <hr>
 <p>Nous allons maintenant faire le sens retour. Ajoutons un champ <code>EditText</code> et un <code>Button</code> à notre second layout (<code>activity_second.xml</code>).
 Vous pouvez simplement copier coller les deux éléments de la première activité et corriger les id et actions pour obtenir ceci:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Button</span>
         <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_second&#34;</span>
         <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
         <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
@@ -221,7 +222,7 @@ Vous pouvez simplement copier coller les deux éléments de la première activit
 </code></pre></div><blockquote>
 <p><strong>Attention ✋ :</strong> j&rsquo;ai intégré les textes dans <code>strings.xml</code>
 votre strings.xml doit ressembler à :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;resources&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;resources&gt;</span>
    <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;app_name&#34;</span><span style="color:#f92672">&gt;</span>DeuxActivites<span style="color:#f92672">&lt;/string&gt;</span>
    <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;button_main&#34;</span><span style="color:#f92672">&gt;</span>Envoyer<span style="color:#f92672">&lt;/string&gt;</span>
    <span style="color:#f92672">&lt;string</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;activity2_name&#34;</span><span style="color:#f92672">&gt;</span>Seconde Activité<span style="color:#f92672">&lt;/string&gt;</span>
@@ -233,7 +234,7 @@ votre strings.xml doit ressembler à :</p>
 </code></pre></div><p>D&rsquo;ailleurs ce fichier est essentiel si on veut traduire notre application mais on verra ça plus tard.</p>
 </blockquote>
 <p>Dans notre contrôleur nous allons ajouter un <code>Intent</code> et son extra ainsi que l&rsquo;action à effectuer:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SecondActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#f92672">{</span>
 
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String EXTRA_REPLY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;deuxActivite.extra.REPLY&#34;</span><span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> EditText mReply<span style="color:#f92672">;</span>
@@ -271,7 +272,7 @@ votre strings.xml doit ressembler à :</p>
 <h2 id="il-nous-reste-à-recevoir-la-réponse">Il nous reste à recevoir la réponse</h2>
 <p>Ajoutez le <code>Textview</code> pour la réponse par copié collé et modification adéquate.</p>
 <p>Vous devriez obtenir le xml suivant à ajouter dans <code>activity_main.xml</code> :</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;TextView</span>
         <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/text_header_reply&#34;</span>
         <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
         <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
@@ -299,17 +300,17 @@ votre strings.xml doit ressembler à :</p>
 <h2 id="dernière-chose-à-faire">Dernière chose à faire&hellip;</h2>
 <p>Déclarons et activons tout ça dans le <code>MainActivity.java</code></p>
 <p>Les déclarations d&rsquo;usage maintenant en haut de notre classe:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> TextView mReplyHeadTextView<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> TextView mReplyHeadTextView<span style="color:#f92672">;</span>
 <span style="color:#66d9ef">private</span> TextView mReplyTextView<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> TEXT_REQUEST <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
 </code></pre></div><p>en haut de notre classe et une nouveauté <code>TEXT_REQUEST</code> (suspens&hellip;)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">mReplyHeadTextView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_header_reply</span><span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">mReplyHeadTextView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_header_reply</span><span style="color:#f92672">);</span>
 mReplyTextView <span style="color:#f92672">=</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">text_message_reply</span><span style="color:#f92672">);</span>
 </code></pre></div><p>Dans la méthode <code>onCreate()</code>.</p>
 <p>Modifiez la méthode de lancement de l&rsquo;activité de <code>startActivity(intent)</code> en <code>startActivityForResult(intent,TEXT_REQUEST);</code>.</p>
 <p>Maintenant surchargeons la méthode <code>onActivityResult</code> avec nos conditions. C&rsquo;est elle qui va récupérer notre réponse s&rsquo;il y en a une et afficher le message.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onActivityResult</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> requestCode<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> resultCode<span style="color:#f92672">,</span> <span style="color:#a6e22e">@Nullable</span> Intent data<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onActivityResult</span><span style="color:#f92672">(</span>requestCode<span style="color:#f92672">,</span> resultCode<span style="color:#f92672">,</span> data<span style="color:#f92672">);</span>
         <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>requestCode <span style="color:#f92672">==</span> TEXT_REQUEST<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
@@ -343,7 +344,7 @@ mReplyTextView <span style="color:#f92672">=</span> findViewById<span style="col
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -367,7 +368,7 @@ mReplyTextView <span style="color:#f92672">=</span> findViewById<span style="col
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

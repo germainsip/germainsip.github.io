@@ -10,9 +10,10 @@
 	<meta property="og:title" content="Covid_widget" />
 <meta property="og:description" content="Tuto du moment, un widget pour les stats du covid-19" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/java/covid_widget/" />
+<meta property="og:url" content="/post/cours/java/covid_widget/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-04-16T08:10:03+00:00" />
 <meta property="article:modified_time" content="2020-04-16T08:10:03+00:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Covid_widget"/>
@@ -91,7 +92,7 @@
 <p>A l&rsquo;adresse suivant <a href="https://coronavirus-19-api.herokuapp.com">https://coronavirus-19-api.herokuapp.com</a> vous avez une api faite par <a href="https://github.com/javieraviles">Javier Aviles</a> qui nous donne les chiffres du covid-19.
 Son utilisation est simple vous allez voire</p>
 <p>Entrez <a href="https://coronavirus-19-api.herokuapp.com/countries/france">https://coronavirus-19-api.herokuapp.com/countries/france</a> dans insomnia et vous allez recevoir le json suivant:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;country&#34;</span>: <span style="color:#e6db74">&#34;France&#34;</span>,
   <span style="color:#f92672">&#34;cases&#34;</span>: <span style="color:#ae81ff">147863</span>,
   <span style="color:#f92672">&#34;todayCases&#34;</span>: <span style="color:#ae81ff">0</span>,
@@ -112,7 +113,7 @@ Son utilisation est simple vous allez voire</p>
 </div>
 
 <p>Créez un projet Gradle et modifiez le fichier <code>build.gradle</code> comme ceci</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
     id <span style="color:#e6db74">&#39;java&#39;</span>
     id <span style="color:#e6db74">&#39;application&#39;</span>
     id <span style="color:#e6db74">&#39;org.openjfx.javafxplugin&#39;</span> version <span style="color:#e6db74">&#39;0.0.8&#39;</span>
@@ -135,13 +136,13 @@ javafx <span style="color:#f92672">{</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Ce sera grâce aux plugins <code>application</code> et <code>org.openjfx.javafxplugin</code> qui vont nous permettre de faire du javafx ainsi que la déclaration des modules nécessaires au fonctionnement de javaFX.</p>
 <p>Créez un package dans le dossier java et créez y une classe <code>Launch.java</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">java
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">java
 └── main
     └── org
         └── gerblog
             └── Launch.class
 </code></pre></div><p>Comme nous savons le faire, créons une simple fenêtre pour tester que notre application fonctionne.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Launch</span> <span style="color:#66d9ef">extends</span> Application <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Launch</span> <span style="color:#66d9ef">extends</span> Application <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>Stage primaryStage<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
@@ -162,14 +163,14 @@ javafx <span style="color:#f92672">{</span>
 <p><strong>Retrofit</strong> est une librairie qui va nous permettre de récupérer les données de l&rsquo;api simplement.</p>
 <p><strong>Retrofit</strong> gère les appel https et un adapter qui va traduire le Json en objets java (POJO).</p>
 <p>On commence donc par importer <strong>Retrofit</strong> dans notre projet. Ajoutez ces 2 lignes dans <code>build.gradle</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">dependencies <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">dependencies <span style="color:#f92672">{</span>
     <span style="color:#75715e">//...les autres dépendances
 </span><span style="color:#75715e"></span>
     compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:retrofit:2.8.1&#39;</span>
     compile <span style="color:#e6db74">&#39;com.squareup.retrofit2:converter-gson:2.8.1&#39;</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Pour faire fonctionner <strong>Retrofit</strong> nous devons mettre en place le service de consommation de l&rsquo;api. Créez un package <code>datafetch</code> et dans celui ci créez une classe <code>DataProviderService.java</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>String countryName<span style="color:#f92672">){</span>
         Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/&#34;</span><span style="color:#f92672">)</span>
@@ -180,7 +181,7 @@ javafx <span style="color:#f92672">{</span>
 Le builder de <strong>Retrofit</strong> utilise l&rsquo;adresse de base de l&rsquo;api. Et on lui ajout le convertisseur Gson.</p>
 <p>Retrofit a besoin aussi d&rsquo;une interfaces de connexion</p>
 <p>Créez l&rsquo;interface CovidApi.java</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
     <span style="color:#75715e">// la requête get pour avoir toutes les infos
 </span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/all&#34;</span><span style="color:#f92672">)</span>
     Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">();</span>
@@ -189,7 +190,7 @@ Le builder de <strong>Retrofit</strong> utilise l&rsquo;adresse de base de l&rsq
     Call<span style="color:#f92672">&lt;</span>JsonObject<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getCountryData</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@Path</span><span style="color:#f92672">(</span>value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;countryName&#34;</span><span style="color:#f92672">)</span> String countryName<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Retournons dans le service et faisons appel à l&rsquo;interface pour créer l&rsquo;objet de connexion</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
 
 CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span>CovidApi<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
 
@@ -207,7 +208,7 @@ CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="colo
         <span style="color:#f92672">});</span>
 </code></pre></div><p>On a plus qu&rsquo;a tester ça.</p>
 <p>Dans <code>Launch.java</code> ajoutez un appel à notre <code>getData()</code> dans la méthode <code>start()</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
 <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
 <span style="color:#f92672">...</span>
 </code></pre></div><p>Vous devriez avoir en console les chiffres du jour.</p>
@@ -221,7 +222,7 @@ CovidApi covidApi <span style="color:#f92672">=</span> retrofit<span style="colo
 <p>En d&rsquo;autre terme on va créer la correspondance en entre le json et un objet java.
 Trop simple quand on a les bons outils. Je vous invite à utiliser une extension intelliJ (Json2Pojo), mais vous pouvez trouver d&rsquo;autres outils en ligne qui marchent très bien pour convertir un objet json en objet java. (<a href="http://www.jsonschema2pojo.org">http://www.jsonschema2pojo.org</a> ou <a href="https://codebeautify.org/json-to-java-converter">https://codebeautify.org/json-to-java-converter</a> &hellip; il en existe beaucoup).</p>
 <p>Après avoir converti et nettoyé notre objet vous devriez avoir ça pour l&rsquo;objet correspondant à la requête all:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GlobalData</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GlobalData</span> <span style="color:#f92672">{</span>
 
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> cases<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">long</span> deaths<span style="color:#f92672">;</span>
@@ -251,7 +252,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
         <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">recovered</span> <span style="color:#f92672">=</span> recovered<span style="color:#f92672">;</span>
     <span style="color:#f92672">}}</span>
 </code></pre></div><p>et pour la recherche par ville:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CountryData</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CountryData</span> <span style="color:#f92672">{</span>
 
     <span style="color:#66d9ef">private</span> String country<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> Long active<span style="color:#f92672">;</span>
@@ -363,7 +364,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     <span style="color:#f92672">}}</span>
 </code></pre></div><p>Ajoutez à nos deux objets un @override de toString pour que ça nous affiche ce que l&rsquo;on veut et pas la méthode par défaut de java.</p>
 <p>Par exemple, voilà celle de <code>GlobalData.java</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;GlobalData{&#34;</span> <span style="color:#f92672">+</span>
                 <span style="color:#e6db74">&#34;cases=&#34;</span> <span style="color:#f92672">+</span> cases <span style="color:#f92672">+</span>
@@ -373,7 +374,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     <span style="color:#f92672">}</span>
 </code></pre></div><h2 id="récupérons-tout-ça-avec-retrofit">Récupérons tout ça avec Retrofit</h2>
 <p>Nous allons modifier les types dans l&rsquo;interface <code>CovidApi.java</code> en remplaçant les JsonObject par l&rsquo;objet qui correspond.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CovidApi</span> <span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@GET</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/all&#34;</span><span style="color:#f92672">)</span>
     Call<span style="color:#f92672">&lt;</span>GlobalData<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getGlobalData</span><span style="color:#f92672">();</span>
 
@@ -382,7 +383,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Maintenant, le convertisseur va faire le travail pour nous et convertir le Json en POJO (งツ)ว.</p>
 <p>Jusqu&rsquo;ici la méthode getData du DataProviderService était vide, nous alons créer un objet pour réceptionner les valeurs et l&rsquo;appeler <code>CoviDataModel</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> GlobalData globalData<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> CountryData countryData<span style="color:#f92672">;</span>
 
@@ -401,7 +402,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
   <iframe src="https://www.youtube.com/embed/XbIl5VG1CGw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataProviderService</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> CovidDataModel <span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span>String countryName<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://coronavirus-19-api.herokuapp.com/&#34;</span><span style="color:#f92672">)</span>
@@ -446,7 +447,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Pour le model on lui ajoute un constructeur et une méthode toString</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CovidDataModel</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> GlobalData globalData<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> CountryData countryData<span style="color:#f92672">;</span>
 
@@ -472,7 +473,7 @@ Trop simple quand on a les bons outils. Je vous invite à utiliser une extension
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>et le launch&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
 CovidDataModel dataModel <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DataProviderService<span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;France&#34;</span><span style="color:#f92672">);</span>
 System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dataModel<span style="color:#f92672">);</span>
 <span style="color:#f92672">...</span>
@@ -480,7 +481,7 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 <blockquote>
 <p>Le résultat que vous devriez avoir en console</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">CovidDataModel<span style="color:#f92672">{</span>globalData<span style="color:#f92672">=</span>GlobalData<span style="color:#f92672">{</span>cases<span style="color:#f92672">=</span>2661504, deaths<span style="color:#f92672">=</span>185504, recovered<span style="color:#f92672">=</span>730727<span style="color:#f92672">}</span>, countryData<span style="color:#f92672">=</span>CountryData<span style="color:#f92672">{</span>country<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;France&#39;</span>, active<span style="color:#f92672">=</span>97880, cases<span style="color:#f92672">=</span>159877, casesPerOneMillion<span style="color:#f92672">=</span>2449, critical<span style="color:#f92672">=</span>5218, deaths<span style="color:#f92672">=</span>21340, deathsPerOneMillion<span style="color:#f92672">=</span>327, recovered<span style="color:#f92672">=</span>40657, testsPerOneMillion<span style="color:#f92672">=</span>7103, todayCases<span style="color:#f92672">=</span>0, todayDeaths<span style="color:#f92672">=</span>0, totalTests<span style="color:#f92672">=</span>463662<span style="color:#f92672">}}</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">CovidDataModel<span style="color:#f92672">{</span>globalData<span style="color:#f92672">=</span>GlobalData<span style="color:#f92672">{</span>cases<span style="color:#f92672">=</span>2661504, deaths<span style="color:#f92672">=</span>185504, recovered<span style="color:#f92672">=</span>730727<span style="color:#f92672">}</span>, countryData<span style="color:#f92672">=</span>CountryData<span style="color:#f92672">{</span>country<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;France&#39;</span>, active<span style="color:#f92672">=</span>97880, cases<span style="color:#f92672">=</span>159877, casesPerOneMillion<span style="color:#f92672">=</span>2449, critical<span style="color:#f92672">=</span>5218, deaths<span style="color:#f92672">=</span>21340, deathsPerOneMillion<span style="color:#f92672">=</span>327, recovered<span style="color:#f92672">=</span>40657, testsPerOneMillion<span style="color:#f92672">=</span>7103, todayCases<span style="color:#f92672">=</span>0, todayDeaths<span style="color:#f92672">=</span>0, totalTests<span style="color:#f92672">=</span>463662<span style="color:#f92672">}}</span>
 </code></pre></div><h2 id="un-peu-de-design-maintenant">Un peu de design maintenant</h2>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
@@ -490,7 +491,7 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 <p>On a écrit beaucoup de code. Amusons nous avec l&rsquo;apsect graphique du widget.</p>
 <p>Créons un package <code>gui/widget</code>. A l&rsquo;intérieur, créez un fxml <code>widget.fxml</code> et son controlleur <code>Widgetcontroller.java</code></p>
 <p>Voilà le contenu du fxml</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/11.0.1&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/11.0.1&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
    <span style="color:#f92672">&lt;children&gt;</span>
       <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
          <span style="color:#f92672">&lt;children&gt;</span>
@@ -514,13 +515,13 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 </code></pre></div><p>Si vous copiez directement ce code, ça va pas marcher!!!</p>
 <p>Si vous lisez le contenu, vous vous apercevez que j&rsquo;ai ajouté des choses nouvelles. D&rsquo;abord, il y a le <code>FontIcon</code>.</p>
 <p>Il faut ajouter une dépendace à notre projet dans <code>build.gradle</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">  compile <span style="color:#e6db74">&#39;org.kordamp.ikonli:ikonli-javafx:11.4.0&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">  compile <span style="color:#e6db74">&#39;org.kordamp.ikonli:ikonli-javafx:11.4.0&#39;</span>
     compile <span style="color:#e6db74">&#39;org.kordamp.ikonli:ikonli-fontawesome-pack:11.4.0&#39;</span>
 </code></pre></div><p>Cela nous permet d&rsquo;utiliser les fontawesome qui produisent de icones (et ça c&rsquo;est trop cool&hellip;).</p>
 <h2 id="un-peu-de-css">Un peu de CSS</h2>
 <p>C&rsquo;est un peu compliqué de détailler cette partie ici. Je le fais dans la vidéo.</p>
 <p>Vous allez ajouter un package <code>style</code> et un fichier <code>main_style.css</code> dont le contenu sera</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">*</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">*</span> {
     <span style="color:#960050;background-color:#1e0010">-</span>fx-base: <span style="color:#ae81ff">#232323</span>;
     <span style="color:#960050;background-color:#1e0010">-</span>fx-font-family: <span style="color:#e6db74">&#34;Hack Nerd Font&#34;</span>, <span style="color:#e6db74">&#34;Noto Mono&#34;</span>, Arial;
 }
@@ -540,7 +541,7 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
     <span style="color:#960050;background-color:#1e0010">-</span>fx-fill: <span style="color:#66d9ef">white</span>;
 }
 </code></pre></div><p>après avoir affecté les classes et fait quelques changements le fxml devient</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;rootPane&#34;</span> <span style="color:#a6e22e">stylesheets=</span><span style="color:#e6db74">&#34;@main_style.css&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/10.0.2-internal&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;AnchorPane</span> <span style="color:#a6e22e">fx:id=</span><span style="color:#e6db74">&#34;rootPane&#34;</span> <span style="color:#a6e22e">stylesheets=</span><span style="color:#e6db74">&#34;@main_style.css&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://javafx.com/javafx/10.0.2-internal&#34;</span> <span style="color:#a6e22e">xmlns:fx=</span><span style="color:#e6db74">&#34;http://javafx.com/fxml/1&#34;</span> <span style="color:#a6e22e">fx:controller=</span><span style="color:#e6db74">&#34;org.gerblog.gui.widget.WidgetController&#34;</span><span style="color:#f92672">&gt;</span>
    <span style="color:#f92672">&lt;children&gt;</span>
       <span style="color:#f92672">&lt;VBox</span> <span style="color:#a6e22e">AnchorPane.bottomAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.leftAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.rightAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span> <span style="color:#a6e22e">AnchorPane.topAnchor=</span><span style="color:#e6db74">&#34;20.0&#34;</span><span style="color:#f92672">&gt;</span>
          <span style="color:#f92672">&lt;children&gt;</span>
@@ -566,7 +567,7 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
 <p>J&rsquo;en ai profité pour nommer les éléments dont nous aurons besoin.</p>
 </blockquote>
 <p>Il reste alors à ajouter les référeces de nos champs dans le controlleur et implémenter <code>Initializable</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WidgetController</span> <span style="color:#66d9ef">implements</span> Initializable <span style="color:#f92672">{</span>
 
     <span style="color:#a6e22e">@FXML</span>
     <span style="color:#66d9ef">public</span> AnchorPane rootPane<span style="color:#f92672">;</span>
@@ -579,10 +580,10 @@ System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>Dans <code>Launch</code> on fait les modifiations pour le fxml</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>getClass<span style="color:#f92672">().</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/org/gerblog/gui/widget/widget.fxml&#34;</span><span style="color:#f92672">));</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Parent root <span style="color:#f92672">=</span> FXMLLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">load</span><span style="color:#f92672">(</span>getClass<span style="color:#f92672">().</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/org/gerblog/gui/widget/widget.fxml&#34;</span><span style="color:#f92672">));</span>
 Scene scene <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scene<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
 </code></pre></div><p>Et pour que gradle ait accés au css et fxml on ajoute ces 2 lignes à build.gradle</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/java&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.fxml&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;**/*.css&#34;</span><span style="color:#f92672">])</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/java&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.fxml&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;**/*.css&#34;</span><span style="color:#f92672">])</span>
 sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">.</span><span style="color:#a6e22e">resources</span><span style="color:#f92672">.</span><span style="color:#a6e22e">srcDirs</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;src/main/resources&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">includes</span><span style="color:#f92672">.</span><span style="color:#a6e22e">addAll</span><span style="color:#f92672">([</span><span style="color:#e6db74">&#34;**/*.*&#34;</span><span style="color:#f92672">])</span>
 </code></pre></div><h2 id="on-widgetise-la-fenêtre">On widgetise la fenêtre</h2>
 
@@ -591,10 +592,10 @@ sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</
 </div>
 
 <p>Pour enlever la bordure, il suffit d&rsquo;ajouter un réglage au <code>primaryStage</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UNDECORATED</span><span style="color:#f92672">);</span>
 </code></pre></div><p>Testez&hellip; La fenêtre n&rsquo;a plus de bordure mais elle apparait toujours dans la barre des taches.</p>
 <p>La technique pour faire disparaitre tout ça on va ajouter un <code>stage</code> supplémentaire</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>Stage primaryStage<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>Stage primaryStage<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
     <span style="color:#75715e">// le stage fantome
 </span><span style="color:#75715e"></span>        primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">initStyle</span><span style="color:#f92672">(</span>StageStyle<span style="color:#f92672">.</span><span style="color:#a6e22e">UTILITY</span><span style="color:#f92672">);</span>
         primaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setOpacity</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
@@ -610,13 +611,13 @@ sourceSets<span style="color:#f92672">.</span><span style="color:#a6e22e">main</
         secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">show</span><span style="color:#f92672">();</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><p>Affichons le en haut à droite en ajoutant ce code (que je détail dans la vidéo):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//on aligne en haut à droite
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//on aligne en haut à droite
 </span><span style="color:#75715e"></span>        Rectangle2D visualBounds <span style="color:#f92672">=</span> Screen<span style="color:#f92672">.</span><span style="color:#a6e22e">getPrimary</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getVisualBounds</span><span style="color:#f92672">();</span>
         secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setX</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMaxX</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 25 <span style="color:#f92672">-</span> scene<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">());</span>
         secondaryStage<span style="color:#f92672">.</span><span style="color:#a6e22e">setY</span><span style="color:#f92672">(</span>visualBounds<span style="color:#f92672">.</span><span style="color:#a6e22e">getMinY</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> 25<span style="color:#f92672">);</span>
 </code></pre></div><p>Comme vous l&rsquo;avez peut être remarqué, la fenêtre n&rsquo;est plus draggable. On corrige ça:
 Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc récupérer la position initiale et ensuite faire un translation</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//déclaration position de départ
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//déclaration position de départ
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> xOffset<span style="color:#f92672">;</span>
 <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> yOffset<span style="color:#f92672">;</span>
 
@@ -639,11 +640,11 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 
 <p>Nous allons utiliser un planificateur (Scheduler).</p>
 <p>En haut du controlleur définissons notre planificateur</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> ScheduledExecutorService executorService<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> ScheduledExecutorService executorService<span style="color:#f92672">;</span>
 </code></pre></div><p>Dans initialize appelons la méthode d&rsquo;initialisation</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">initializeSchedulerService<span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">initializeSchedulerService<span style="color:#f92672">();</span>
 </code></pre></div><p>et définissons cette méthode (et quelques ajustements&hellip;)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeSchedulerService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeSchedulerService</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         executorService <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newSingleThreadScheduledExecutor</span><span style="color:#f92672">();</span>
         executorService<span style="color:#f92672">.</span><span style="color:#a6e22e">scheduleAtFixedRate</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">::</span>loadData<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span>20<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
@@ -693,7 +694,7 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 <p>Jusqu&rsquo;ici tout est codé en dure dans notre programme. L&rsquo;idée est de permettre de changer le pays et l&rsquo;intervale de temps pour le rafraississement.</p>
 <p>Tout va se faire dans un fichier Json. Nousavons donc besoin d&rsquo;un POJO et d&rsquo;un service que nous allons mettre dans un package <code>config</code></p>
 <p>Classe <code>ConfigModel.java</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigModel</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigModel</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> refreshIntervalInSeconds<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> String countryName<span style="color:#f92672">;</span>
     <span style="color:#66d9ef">private</span> String countryCode<span style="color:#f92672">;</span>
@@ -707,7 +708,7 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
     <span style="color:#75715e">//... plus les Getter et Setter
 </span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 </code></pre></div><p>Classe <code>ConfigurationService</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigrationService</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConfigrationService</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> File SETTINGS_FILE <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;settings.json&#34;</span><span style="color:#f92672">);</span>
     <span style="color:#66d9ef">private</span> Gson gson <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> GsonBuilder<span style="color:#f92672">().</span><span style="color:#a6e22e">create</span><span style="color:#f92672">();</span>
 
@@ -734,7 +735,7 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 <span style="color:#f92672">}</span>
 </code></pre></div><p>En résumé, ce service crée le fichier de configuration s&rsquo;il n&rsquo;existe pas puis le lit et le transforme en objet.</p>
 <p>Enfin on va modifier le controlleur pour prendre en compte ces changements:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">...</span>
  <span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span><span style="color:#f92672">(</span>URL location<span style="color:#f92672">,</span> ResourceBundle resources<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
@@ -771,14 +772,14 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
 
 <p>On va ajouter un menu pour quitter et rafraichir manuellement</p>
 <p>Ajoutez la méthode suivante au controlleur</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">(){</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">(){</span>
         MenuItem exitItem <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuItem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Quitter&#34;</span><span style="color:#f92672">);</span>
         exitItem<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnAction</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);}</span> <span style="color:#f92672">);</span>
 
         <span style="color:#66d9ef">final</span> ContextMenu contextMenu <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ContextMenu<span style="color:#f92672">(</span>exitItem<span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><p>et on le fait apparaitre au clique droit sur le widget</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeContextMenu</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         MenuItem exitItem <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuItem<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Quitter&#34;</span><span style="color:#f92672">);</span>
         exitItem<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnAction</span><span style="color:#f92672">(</span>event <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
             System<span style="color:#f92672">.</span><span style="color:#a6e22e">exit</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
@@ -799,7 +800,7 @@ Le drag s&rsquo;effectue en 2 étapes. On clique, puis on drag. Il faut donc ré
         <span style="color:#f92672">});</span>
     <span style="color:#f92672">}</span>
 </code></pre></div><p>On donne un peu de style à tout ça en ajoutant ces 2 classe au <code>main-style.css</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">context-menu</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">context-menu</span> {
     <span style="color:#960050;background-color:#1e0010">-</span>fx-text-fill: <span style="color:#66d9ef">white</span>;
     <span style="color:#960050;background-color:#1e0010">-</span>fx-font-size: <span style="color:#ae81ff">12</span><span style="color:#66d9ef">pt</span>;
     <span style="color:#960050;background-color:#1e0010">-</span>fx-background-color: <span style="color:#a6e22e">derive</span>(<span style="color:#f92672">-</span>fx<span style="color:#f92672">-</span>base, <span style="color:#ae81ff">40</span><span style="color:#66d9ef">%</span>);
@@ -816,7 +817,7 @@ Déplacez le <code>Launch.java</code> dans le gui et créez une classe <code>App
   <iframe src="https://www.youtube.com/embed/HKFKaf6kVC8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.gerblog<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.gerblog<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> org.gerblog.gui.Launch<span style="color:#f92672">;</span>
 
@@ -859,7 +860,7 @@ Pour créer l&rsquo;installeur: <a href="https://jrsoftware.org/isinfo.php">inno
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -883,7 +884,7 @@ Pour créer l&rsquo;installeur: <a href="https://jrsoftware.org/isinfo.php">inno
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

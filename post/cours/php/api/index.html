@@ -10,9 +10,10 @@
 	<meta property="og:title" content="Une simple Api en PHP" />
 <meta property="og:description" content="Création d&#39;API en php" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/php/api/" />
+<meta property="og:url" content="/post/cours/php/api/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-04-09T09:29:38+00:00" />
 <meta property="article:modified_time" content="2020-04-09T09:29:38+00:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Une simple Api en PHP"/>
@@ -104,11 +105,11 @@
 </ul>
 <h2 id="cest-partie">C&rsquo;est partie</h2>
 <p>On va commencer par créer une base une base de donnée.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> api_db;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> api_db;
 
 USE api_db;
 </code></pre></div><p>Créer la table <code>categories</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>categories<span style="color:#f92672">`</span> (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>categories<span style="color:#f92672">`</span> (
   <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT,
   <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">256</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
   <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span> text <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
@@ -117,7 +118,7 @@ USE api_db;
   <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>)
 ) ENGINE<span style="color:#f92672">=</span>InnoDB  <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>utf8 AUTO_INCREMENT<span style="color:#f92672">=</span><span style="color:#ae81ff">19</span> ;
 </code></pre></div><p>L&rsquo;alimenter</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>categories<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>modified<span style="color:#f92672">`</span>) <span style="color:#66d9ef">VALUES</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>categories<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>modified<span style="color:#f92672">`</span>) <span style="color:#66d9ef">VALUES</span>
 (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Mode&#39;</span>, <span style="color:#e6db74">&#39;Catégorie pour tout ce qui touche à la mode.&#39;</span>, <span style="color:#e6db74">&#39;2019-06-01 00:35:07&#39;</span>, <span style="color:#e6db74">&#39;2019-05-30 17:34:33&#39;</span>),
 (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Electronics&#39;</span>, <span style="color:#e6db74">&#39;Gadgets, drones et plus.&#39;</span>, <span style="color:#e6db74">&#39;2019-06-01 00:35:07&#39;</span>, <span style="color:#e6db74">&#39;2019-05-30 17:34:33&#39;</span>),
 (<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Motors&#39;</span>, <span style="color:#e6db74">&#39;Sports motorisés et plus&#39;</span>, <span style="color:#e6db74">&#39;2019-06-01 00:35:07&#39;</span>, <span style="color:#e6db74">&#39;2019-05-30 17:34:54&#39;</span>),
@@ -125,7 +126,7 @@ USE api_db;
 (<span style="color:#ae81ff">6</span>, <span style="color:#e6db74">&#39;Books&#39;</span>, <span style="color:#e6db74">&#39;Livres Kindle, livres audio et plus encore.&#39;</span>, <span style="color:#e6db74">&#39;2019-01-08 13:27:47&#39;</span>, <span style="color:#e6db74">&#39;2019-01-08 13:27:47&#39;</span>),
 (<span style="color:#ae81ff">13</span>, <span style="color:#e6db74">&#39;Sports&#39;</span>, <span style="color:#e6db74">&#34;Si si le code c&#39;est du sport&#34;</span>, <span style="color:#e6db74">&#39;2019-01-09 02:24:24&#39;</span>, <span style="color:#e6db74">&#39;2019-01-09 01:24:24&#39;</span>);
 </code></pre></div><p>Créer la table <code>products</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>products<span style="color:#f92672">`</span> (
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> <span style="color:#f92672">`</span>products<span style="color:#f92672">`</span> (
   <span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> int(<span style="color:#ae81ff">11</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> AUTO_INCREMENT,
   <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> varchar(<span style="color:#ae81ff">32</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
   <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span> text <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
@@ -136,7 +137,7 @@ USE api_db;
   <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>)
 ) ENGINE<span style="color:#f92672">=</span>InnoDB  <span style="color:#66d9ef">DEFAULT</span> CHARSET<span style="color:#f92672">=</span>latin1 AUTO_INCREMENT<span style="color:#f92672">=</span><span style="color:#ae81ff">65</span> ;
 </code></pre></div><p>Et l&rsquo;alimenter</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>products<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>price<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>category_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>modified<span style="color:#f92672">`</span>) <span style="color:#66d9ef">VALUES</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">`</span>products<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>name<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>description<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>price<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>category_id<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>created<span style="color:#f92672">`</span>, <span style="color:#f92672">`</span>modified<span style="color:#f92672">`</span>) <span style="color:#66d9ef">VALUES</span>
 (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;LG P880 4X HD&#39;</span>, <span style="color:#e6db74">&#39;My first awesome phone!&#39;</span>, <span style="color:#e6db74">&#39;336&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;2014-06-01 01:12:26&#39;</span>, <span style="color:#e6db74">&#39;2014-05-31 17:12:26&#39;</span>),
 (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Google Nexus 4&#39;</span>, <span style="color:#e6db74">&#39;The most awesome phone of 2013!&#39;</span>, <span style="color:#e6db74">&#39;299&#39;</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;2014-06-01 01:12:26&#39;</span>, <span style="color:#e6db74">&#39;2014-05-31 17:12:26&#39;</span>),
 (<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;Samsung Galaxy S4&#39;</span>, <span style="color:#e6db74">&#39;How about no?&#39;</span>, <span style="color:#e6db74">&#39;600&#39;</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;2014-06-01 01:12:26&#39;</span>, <span style="color:#e6db74">&#39;2014-05-31 17:12:26&#39;</span>),
@@ -162,7 +163,7 @@ USE api_db;
 </div>
 
 <p>Notre projet aura cette forme à la fin de cette partie:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">api
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">api
 ├── config
 │   └── database.php
 ├── objects
@@ -173,7 +174,7 @@ USE api_db;
 </code></pre></div><p>Dans le dossier <code>api</code> que vous avez créé dans le dossier de votre serveur. Créons un dossier <code>config</code>.
 Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous connecter.</p>
 <p><strong>database.php</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-PHP" data-lang="PHP"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span> {
    <span style="color:#75715e">// On spécifie les coordonnées de connexion
 </span><span style="color:#75715e"></span>   <span style="color:#66d9ef">private</span> $host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span>;
@@ -203,7 +204,7 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
 <ul>
 <li>Dans le dossier <code>api</code> créez un dossier <code>objects</code> et dans ce dossier créez la classe <code>product.php</code></li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span> {
 
     <span style="color:#75715e">// connexion à la base
@@ -224,16 +225,16 @@ Puis, créons le fichier <code>database.php</code> qui va nous permettre de nous
         $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">conn</span> <span style="color:#f92672">=</span> $db;
     }
 }
-<span style="color:#75715e">?&gt;</span>
-</code></pre></div><p>Il nous faut aussi un fichier pour lire nos objets:</p>
+<span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Il nous faut aussi un fichier pour lire nos objets:</p>
 <p>Ajoutez dans le dossier <code>product</code> un fichier <code>read.php</code></p>
 <p>D&rsquo;abord il nous faut les headers:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">// Les headers dont nous avons besoin
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
 </code></pre></div><p>On prépare la connection en incluant nos import et en instanciant nos objets:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#75715e">// ... le code qui précède dans read.php
 </span><span style="color:#75715e"></span>
@@ -248,7 +249,7 @@ $db <span style="color:#f92672">=</span> $database<span style="color:#f92672">-&
 <span style="color:#75715e">// On initialise product
 </span><span style="color:#75715e"></span>$product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Product</span>($db);
 </code></pre></div><p>On va lire les résultats de la méthode <code>read()</code>de <code>Product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#75715e">// le query
 </span><span style="color:#75715e"></span>$stmt <span style="color:#f92672">=</span> $product<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">read</span>();
@@ -284,7 +285,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 
 }
 </code></pre></div><p>Il nous faut maintenant ajouter la méthode <code>read()</code> à <code>Product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#f92672">...</span>
 
@@ -310,7 +311,7 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 }
 </code></pre></div><p>Et on va avertir l&rsquo;utilisateur si aucun produit n&rsquo;a été trouvé.</p>
 <p>A la suite de notre <code>if</code> dans <code>read.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#75715e">//fin du if
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">else</span> {
 <span style="color:#75715e">// on renvoie le code 404 Not found
@@ -320,12 +321,12 @@ $num <span style="color:#f92672">=</span> $stmt<span style="color:#f92672">-&gt;
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#34;message&#34;</span><span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Aucun produits trouvés.&#34;</span>));
 }
 
-</code></pre></div><p>Il ne vous reste qu'à tester tout ça avec Postman ou Insomnia.</p>
+</code></pre></div><p>Il ne vous reste qu&rsquo;à tester tout ça avec Postman ou Insomnia.</p>
 <p>Dans le client entre l&rsquo;adresse <code>localhost/api/product/read.php</code> et validez par <strong>send</strong></p>
 <h2 id="créons-des-produits-partie-3">Créons des produits (Partie 3)</h2>
 <p>C&rsquo;est le <strong>C</strong> de CRUD.</p>
 <p>L&rsquo;accès va se faire via le fichier <code>create.php</code> dans le dossier <code>product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Content-Type: application/json; charset=UTF-8&#34;</span>);
 <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Methods:POST&#34;</span>);
@@ -380,7 +381,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 </span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">json_encode</span>([<span style="color:#e6db74">&#34;message&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Impossible de créer le produit! les données sont incomplètes!&#34;</span>]);
 }
 </code></pre></div><p>On va aussi ajouter la méthode <code>create()</code> à `product.php</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#f92672">...</span>
 
@@ -414,7 +415,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
     }
 </code></pre></div><p>Verifiez que tout fonctionne avec postman ou insomnia à l&rsquo;adresse <code>localhost/api/product/create.php</code> en ajoutant au body le Json:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Mega oreiller 2.0&#34;</span>,
     <span style="color:#f92672">&#34;price&#34;</span> : <span style="color:#e6db74">&#34;199&#34;</span>,
     <span style="color:#f92672">&#34;description&#34;</span> : <span style="color:#e6db74">&#34;Le meilleur oreiller pour des programmeurs incroyables.&#34;</span>,
@@ -426,7 +427,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 <h2 id="un-seul-objet-partie-4">Un seul objet (Partie 4)</h2>
 <p>Afin de lire un seul enregistrement, on va se donner un accé.
 Créons le fichier <code>read_one.php</code> dans le dossier <code>product</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 
 
@@ -471,9 +472,9 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 
 }
 </code></pre></div><p>En résumé, on récupère l&rsquo;id de l&rsquo;objet dans l&rsquo;URL puis on lance la requête avec la méthode <code>readOne()</code>. Si nous avons trouvé un produit, on met le infos dans un tableau et on renvoie en json.</p>
-<p>Si pas d'éléments trouvés, on avertis l&rsquo;utilisateur.</p>
+<p>Si pas d&rsquo;éléments trouvés, on avertis l&rsquo;utilisateur.</p>
 <p>Il nous manque la méthode <code>readOne()</code> dans <code>product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">readOne</span>() {
   <span style="color:#75715e">// requête pour lire 1 enregistrement
@@ -509,7 +510,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 <h2 id="lupdate-partie-5">L&rsquo;UPDATE (Partie 5)</h2>
 <p>On a fait <strong>CR</strong>, faisons le <strong>U</strong> du Update.</p>
 <p>On ajoute donc <code>update.php</code> à notre dossier <code>product</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 
 <span style="color:#75715e">// les headers
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Access-Control-Allow-Origin: *&#34;</span>);
@@ -551,7 +552,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 }
 </code></pre></div><p>C&rsquo;est sensiblement le même code que pour le Create.</p>
 <p>On ajoute la méthode <code>update()</code> à notre <code>product.php</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
 <span style="color:#f92672">...</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update</span>() {
         $query <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UPDATE
@@ -585,7 +586,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
     }
 </code></pre></div><p>Testez (comme d&rsquo;habitude) avec votre client à l&rsquo;adresse <code>http://localhost/api/product/update.php</code> et ajoutez le json suivant dans le body:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;66&#34;</span>,
     <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Mega oreiller 2.0&#34;</span>,
     <span style="color:#f92672">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Le meilleur oreiller pour des programmeurs incroyables.&#34;</span>,
@@ -630,7 +631,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -654,7 +655,7 @@ $product <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</s
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

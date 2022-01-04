@@ -12,9 +12,10 @@
  En clair, codez une fois et compilez pour tout! (pour exporter vers des ios il est nécessaire d&rsquo;avoir un Mac)
  Environnement de développement La doc de Flutter, en anglais, installer Flutter vous explique la démarche d&rsquo;installation pour les 3 os (Windows, MacOS et Linux)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/flutter/dart1/" />
+<meta property="og:url" content="/post/cours/flutter/dart1/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-03-04T14:51:21+02:00" />
 <meta property="article:modified_time" content="2021-03-04T14:51:21+02:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Flutter et Dart"/>
@@ -101,9 +102,9 @@
 <h3 id="environnement-de-développement">Environnement de développement</h3>
 <p>La doc de Flutter, en anglais,  <a href="https://flutter.dev/docs/get-started/install">installer Flutter</a> vous explique la démarche d&rsquo;installation pour les 3 os (Windows, MacOS et Linux).</p>
 <blockquote>
-<p>Si vous n'êtes pas à l&rsquo;aise avec l&rsquo;anglais demandez une démo à votre formateur.</p>
+<p>Si vous n&rsquo;êtes pas à l&rsquo;aise avec l&rsquo;anglais demandez une démo à votre formateur.</p>
 </blockquote>
-<p>En ce qui concerne l'éditeur, vous pouvez choisir IntelliJ, Android Studio ou Visual studio code. Pour la mise ne place, suivez la doc <a href="https://flutter.dev/docs/get-started/editor?tab=vscode">réglage de l'éditeur</a>.</p>
+<p>En ce qui concerne l&rsquo;éditeur, vous pouvez choisir IntelliJ, Android Studio ou Visual studio code. Pour la mise ne place, suivez la doc <a href="https://flutter.dev/docs/get-started/editor?tab=vscode">réglage de l&rsquo;éditeur</a>.</p>
 <h2 id="premier-projet-avec-flutter">Premier projet avec Flutter</h2>
 <p>Si vous avez choisi Vscode, placez vous dans votre dossier de travail et affichez le la palette de commande (ctrl+shift+p ou cmd+shift+p) et tapez flutter puis choisissez New Project.</p>
 <p>Il vous sera demandé le dossier de destination pour la création du projet.</p>
@@ -113,7 +114,7 @@
 <p>Suivez l&rsquo;article sur <a href="../dart0/">le langage Dart</a> si vous voulez comprendre les différences avec Java.</p>
 <h2 id="écrivez-votre-première-application-flutter">Écrivez votre première application Flutter</h2>
 <p>Après avoir généré un nouveau projet Flutter, remplacez le contenu de <code>main.dart</code> par</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
 
 <span style="color:#66d9ef">void</span> main() <span style="color:#f92672">=&gt;</span> runApp(MyApp());
 
@@ -136,15 +137,15 @@
 </code></pre></div><p><img src="/img/flutter/flutt1.png" alt="flut1"></p>
 <p>ou sur ios</p>
 <p><img src="/img/flutter/flutt1ios.png" alt="flutt1"></p>
-<p>On utilise <code>MaterialApp</code> pour construire l&rsquo;application ce qui nous permet d&rsquo;utiliser la bibliothèque d'éléments pré-construits.</p>
+<p>On utilise <code>MaterialApp</code> pour construire l&rsquo;application ce qui nous permet d&rsquo;utiliser la bibliothèque d&rsquo;éléments pré-construits.</p>
 <h2 id="allons-un-peu-plus-loin-avec-des-imports-de-bibliothèques">Allons un peu plus loin avec des imports de bibliothèques</h2>
 <p>Dans <code>pubspec.yaml</code> ajoutez les deux dépendances suivantes</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">list_french_words</span>: ^<span style="color:#ae81ff">0.1.0+1</span>
-  <span style="color:#66d9ef">recase</span>: ^<span style="color:#ae81ff">3.0.0</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#f92672">list_french_words</span>: <span style="color:#ae81ff">^0.1.0+1</span>
+  <span style="color:#f92672">recase</span>: <span style="color:#ae81ff">^3.0.0</span>
 </code></pre></div><p>la première va nous donner une liste de 340000 mots français et l&rsquo;autre va nous permettre de formater les String à notre idée. Le dépot de dart est <a href="https://pub.dev">ici</a></p>
 <p>dans notre <code>main.dart</code> ajoutons un mot français au hasard.</p>
 <p>Créons d&rsquo;abord une classe Mots qui va nous générer tout ça <code>Mots.dart</code>dans un nouveau package model:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;dart:math&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;dart:math&#39;</span>;
 
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:list_french_words/list_french_words.dart&#39;</span>;
 
@@ -158,7 +159,7 @@
   }
 }
 </code></pre></div><p>Ajoutez cette méthode à la fin du <code>main.dart</code> (en faisant les import qui vont bien) et modifiez le texte à afficher.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:app_one/model/Mots.dart&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:app_one/model/Mots.dart&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
 
 <span style="color:#66d9ef">void</span> main() {
@@ -191,11 +192,11 @@
 <p>Pour faire un peu plus propre, nous allons utiliser les <strong>widget</strong>.</p>
 <p>Nous allons utiliser les widget. Les widget sont statefull ou stateless. C&rsquo;est à dire:</p>
 <ul>
-<li><strong>Stateless</strong>: pas d'état donc immuable lors de la vie de l&rsquo;application</li>
-<li><strong>Statefull</strong>: ajoute une notion d'état qui permet de faire évoluer le widget. Le widget crée un état et qui persiste et le widget peut être supprimé et généré avec l'état.</li>
+<li><strong>Stateless</strong>: pas d&rsquo;état donc immuable lors de la vie de l&rsquo;application</li>
+<li><strong>Statefull</strong>: ajoute une notion d&rsquo;état qui permet de faire évoluer le widget. Le widget crée un état et qui persiste et le widget peut être supprimé et généré avec l&rsquo;état.</li>
 </ul>
-<p>A la fin du <code>main.dart</code> tapez simplement <code>stful</code> et l&rsquo;IDE génère le code pour vous. Il ne reste qu'à nommer le widget (RandomWords). Ensuite, nous déplaçons le code au bon endroit.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:app_one/model/Mots.dart&#39;</span>;
+<p>A la fin du <code>main.dart</code> tapez simplement <code>stful</code> et l&rsquo;IDE génère le code pour vous. Il ne reste qu&rsquo;à nommer le widget (RandomWords). Ensuite, nous déplaçons le code au bon endroit.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:app_one/model/Mots.dart&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:flutter/material.dart&#39;</span>;
 
 <span style="color:#66d9ef">void</span> main() {
@@ -238,7 +239,7 @@
 <h2 id="faisons-une-liste-déroulante">Faisons une liste déroulante</h2>
 <p>D&rsquo;abord, on va créer une méthode qui nous permettra de générer nos mots.
 Modifiez le fichier <code>Mots.dart</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;dart:math&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;dart:math&#39;</span>;
 
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:list_french_words/list_french_words.dart&#39;</span>;
 <span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;package:recase/recase.dart&#39;</span>;
@@ -264,11 +265,11 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 }
 </code></pre></div><p>Nous allons maintenant pouvoir modifier la classe <code>_RandomWordsState</code> pour qu&rsquo;elle génère des mots quand l&rsquo;utilisateur fait défiler la liste.</p>
 <p>On a d&rsquo;abord besoin de 2 constantes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_RandomWordsState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>RandomWords<span style="color:#f92672">&gt;</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_RandomWordsState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>RandomWords<span style="color:#f92672">&gt;</span> {
   <span style="color:#66d9ef">final</span> List<span style="color:#f92672">&lt;</span>Mot<span style="color:#f92672">&gt;</span> _suggestions <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>Mot<span style="color:#f92672">&gt;</span>[];
   ...
 </code></pre></div><p>Puis on ajoute une méthode qui va créer la ListView.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">  Widget _buildSuggestions() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">  Widget _buildSuggestions() {
     <span style="color:#66d9ef">var</span> mot <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Mots();
     <span style="color:#66d9ef">return</span> ListView.builder(
         padding: EdgeInsets.all(<span style="color:#ae81ff">16.0</span>),
@@ -283,7 +284,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
         });
   }
 </code></pre></div><p>La méthode <code>_buildSuggestions</code> fait appelle à la méthode <code>_buildrow</code> qui construit les lignes</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(ReCase suggestion) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(ReCase suggestion) {
     <span style="color:#66d9ef">return</span> ListTile(
       title: Text(
         suggestion.pascalCase,
@@ -291,8 +292,8 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
       ),
     );
   }
-</code></pre></div><p>On modifie maintenant la méthode <code>build</code> du <code>_RandomWordsState</code> pour utiliser ce que nous venons d'écrire</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#960050;background-color:#1e0010">@</span>override
+</code></pre></div><p>On modifie maintenant la méthode <code>build</code> du <code>_RandomWordsState</code> pour utiliser ce que nous venons d&rsquo;écrire</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
     <span style="color:#66d9ef">return</span> _buildSuggestions();
   }
@@ -301,16 +302,16 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 <h2 id="un-peu-plus-de-style-et-des-interactions">Un peu plus de style et des interactions</h2>
 <p>Nous allons ajouter des icônes à notre design et faire un peu de mise en place pour la suite.</p>
 <p>D&rsquo;abord ajoutez la constante pour sauvegarder les interactions</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">...
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">_RandomWordsState</span> <span style="color:#66d9ef">extends</span> State<span style="color:#f92672">&lt;</span>RandomWords<span style="color:#f92672">&gt;</span> {
   <span style="color:#66d9ef">final</span> _suggestions <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>ReCase<span style="color:#f92672">&gt;</span>[];
   <span style="color:#66d9ef">final</span> _saved <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>ReCase<span style="color:#f92672">&gt;</span>{};
 </code></pre></div><p>On ajoute aussi <code>alreadySaved</code> à la méthode <code>_buildRow</code> pour s&rsquo;assurer que la mot n&rsquo;a pas été ajouté aux favoris.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(ReCase suggestion) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(ReCase suggestion) {
     <span style="color:#66d9ef">final</span> alreadySaved <span style="color:#f92672">=</span> _saved.contains(suggestion); <span style="color:#75715e">//ici
 </span><span style="color:#75715e"></span>    ...
 </code></pre></div><p>Enfin, on ajoute les icones qui auront deux états.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">  Widget _buildRow(ReCase suggestion) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">  Widget _buildRow(ReCase suggestion) {
     <span style="color:#66d9ef">final</span> alreadySaved <span style="color:#f92672">=</span>_saved.contains(suggestion);
     <span style="color:#66d9ef">return</span> ListTile(
       title: Text(
@@ -328,8 +329,8 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 <blockquote>
 <p>Pour le moment nous n&rsquo;avons pas d&rsquo;interactions.</p>
 </blockquote>
-<p>Pour activer nos coeurs, nous allons ajouter activer <code>onTap</code> pour que l&rsquo;utilisateur puisse toucher le coeur et <code>setState</code> pour sauvegarder l'état</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(Mot suggestion) {
+<p>Pour activer nos coeurs, nous allons ajouter activer <code>onTap</code> pour que l&rsquo;utilisateur puisse toucher le coeur et <code>setState</code> pour sauvegarder l&rsquo;état</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart">Widget _buildRow(Mot suggestion) {
     <span style="color:#66d9ef">final</span> alreadySaved <span style="color:#f92672">=</span> _saved.contains(suggestion);
     <span style="color:#66d9ef">return</span> ListTile(
       title: Text(
@@ -354,7 +355,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 </code></pre></div><p>Je ne fais pas de screen mais maintenant les cœurs sont cliquables et s&rsquo;affichent en rouge.</p>
 <h2 id="on-ajoute-une-vue-avec-les-éléments-sélectionnés">On ajoute une vue avec les éléments sélectionnés</h2>
 <p>Pour faire ça on va d&rsquo;abord ajouter une action sur notre <code>appBar</code> dans la méthode build de <code>_RandomWordsState</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"> <span style="color:#960050;background-color:#1e0010">@</span>override
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"> <span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
     <span style="color:#66d9ef">return</span> Scaffold(
       appBar: AppBar(
@@ -368,7 +369,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
     );
   }
 </code></pre></div><p>La fonction <code>_pushSaved</code> est donc à créer:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">void</span> _pushSaved() {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">void</span> _pushSaved() {
     Navigator.of(context).push(
       MaterialPageRoute<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">void</span><span style="color:#f92672">&gt;</span>(
         builder: (BuildContext context) {
@@ -400,7 +401,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 </code></pre></div><p>Cette méthode va créer une nouvelle page à partir des mots que nous aurons sélectionnés.</p>
 <h2 id="dernier-make-up">Dernier make-up</h2>
 <p>Nous avons deux barres et une couleur inadaptée. Pour les barres, on va modifier la méthode <code>build</code> de <code>MyApp</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyApp</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyApp</span> <span style="color:#66d9ef">extends</span> StatelessWidget {
   <span style="color:#75715e">// This widget is the root of your application.
 </span><span style="color:#75715e"></span>  <span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
@@ -411,7 +412,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
   }
 }
 </code></pre></div><p>Enfin un peu d&rsquo;esthetique:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#960050;background-color:#1e0010">@</span>override
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dart" data-lang="dart"><span style="color:#960050;background-color:#1e0010">@</span>override
   Widget build(BuildContext context) {
 
     <span style="color:#66d9ef">return</span> MaterialApp(
@@ -444,7 +445,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -468,7 +469,7 @@ Modifiez le fichier <code>Mots.dart</code>.</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>

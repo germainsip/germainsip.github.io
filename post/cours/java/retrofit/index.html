@@ -14,9 +14,10 @@ Nous allons l&rsquo;ajouter a un projet gradle en ajoutant simplement compile &#
 Pour notre exemple, je vais utiliser une api toute faite jsonplaceholder
 Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exemple si vous allez à l&rsquo;adresse https://jsonplaceholder." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/cours/java/retrofit/" />
+<meta property="og:url" content="/post/cours/java/retrofit/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2020-06-07T13:38:13+00:00" />
 <meta property="article:modified_time" content="2020-06-07T13:38:13+00:00" />
+
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Retrofit"/>
@@ -80,7 +81,7 @@ Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exe
 <p>Nous allons l&rsquo;ajouter a un projet gradle en ajoutant simplement <code>compile 'com.squareup.retrofit2:retrofit:2.8.1'</code> à nos dépendances ainsi qu&rsquo;un convertisseur <code>compile 'com.squareup.retrofit2:converter-gson:2.8.1'</code> qui transformera nos objets <code>json</code> en objets Java.</p>
 <p>Pour notre exemple, je vais utiliser une api toute faite <a href="https://jsonplaceholder.typicode.com">jsonplaceholder</a></p>
 <p>Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exemple si vous allez à l&rsquo;adresse <code>https://jsonplaceholder.typicode.com/todos/1</code> vous obtiendrez le todo 1 en json</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
   <span style="color:#f92672">&#34;userId&#34;</span>: <span style="color:#ae81ff">1</span>,
   <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
   <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;delectus aut autem&#34;</span>,
@@ -90,7 +91,7 @@ Ce site permet d&rsquo;intérroger directement une api avec l&rsquo;url. Par exe
 <blockquote>
 <p>pour rappel: votre <code>build.gradle</code> doit ressembler à ça</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gradle" data-lang="gradle">plugins <span style="color:#f92672">{</span>
     id <span style="color:#e6db74">&#39;java&#39;</span>
     id <span style="color:#e6db74">&#39;application&#39;</span>
     id <span style="color:#e6db74">&#39;org.openjfx.javafxplugin&#39;</span> version <span style="color:#e6db74">&#39;0.0.8&#39;</span>
@@ -122,14 +123,14 @@ mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&
 
 </code></pre></div><p>Nous allons d&rsquo;abord créer un <strong>POJO</strong> (objet java) pour réceptionner nos données. J&rsquo;ai d&rsquo;abord choisi les posts.</p>
 <p>L&rsquo;objet que je récupère en json ressemble à ceci:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
     <span style="color:#f92672">&#34;userId&#34;</span>: <span style="color:#ae81ff">1</span>,
     <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
     <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;sunt aut facere repellat provident occaecati excepturi optio reprehenderit&#34;</span>,
     <span style="color:#f92672">&#34;body&#34;</span>: <span style="color:#e6db74">&#34;quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto&#34;</span>
   }
 </code></pre></div><p>Donc mon objet java est:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
 <span style="color:#f92672">package</span> org.afpa.DAL<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> com.google.gson.annotations.SerializedName<span style="color:#f92672">;</span>
@@ -160,7 +161,7 @@ mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&
 <span style="color:#f92672">}</span>
 </code></pre></div><p>J&rsquo;ai placé cet objet dans un package DAL et j&rsquo;ai renommé le membre <code>body</code> en <code>text</code> grace à l&rsquo;annotation <code>@SerializedName(&quot;body&quot;)</code>.</p>
 <p>Retrofit a besoin que l&rsquo;on lui crée une interface où nous mettons notre &ldquo;query&rdquo;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.DAL<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.DAL<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> retrofit2.Call<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> retrofit2.http.GET<span style="color:#f92672">;</span>
@@ -176,7 +177,7 @@ mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&
 <p>Vous avez déjà fais du JavaFX, donc je vais aller un peu plus vite.</p>
 <p>Je crée un fxml et son contrôleur dans un package <code>GUI</code>:</p>
 <p><strong>retroexemple.fxml</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
 
 <span style="color:#75715e">&lt;?import javafx.geometry.*?&gt;</span>
 <span style="color:#75715e">&lt;?import javafx.scene.control.*?&gt;</span>
@@ -218,7 +219,7 @@ mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&
 
 
 </code></pre></div><p><strong>RetroExempleController.java</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.GUI<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> org.afpa.GUI<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> javafx.collections.FXCollections<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> javafx.collections.ObservableList<span style="color:#f92672">;</span>
@@ -260,15 +261,15 @@ mainClassName <span style="color:#f92672">=</span> <span style="color:#e6db74">&
 </code></pre></div><p>Pour le moment nous n&rsquo;avons pas créé la méthode de chargement.
 Que nous faut-il?</p>
 <p>Il faut d&rsquo;abord créer une instance de <code>Retrofit</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/&#34;</span><span style="color:#f92672">)</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span>
 </code></pre></div><p>Dans celle-ci nous indiquons l&rsquo;adresse de l&rsquo;api, le convertisseur qui va convertir les objets json en objet java et on oublie pas le <code>.build()</code>.</p>
 <p>On définie ensuite le <code>Call</code> généré par l&rsquo;interface que nous avons écrite.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call <span style="color:#f92672">=</span> apiService<span style="color:#f92672">.</span><span style="color:#a6e22e">getPosts</span><span style="color:#f92672">();</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call <span style="color:#f92672">=</span> apiService<span style="color:#f92672">.</span><span style="color:#a6e22e">getPosts</span><span style="color:#f92672">();</span>
 </code></pre></div><p>Enfin il nous faut utiliser le <code>.enqueue()</code> de <strong>Retrofit</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">call<span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;()</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">call<span style="color:#f92672">.</span><span style="color:#a6e22e">enqueue</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Callback<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;()</span> <span style="color:#f92672">{</span>
             <span style="color:#a6e22e">@Override</span>
             <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResponse</span><span style="color:#f92672">(</span>Call<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> call<span style="color:#f92672">,</span> Response<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Post<span style="color:#f92672">&gt;&gt;</span> response<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 
@@ -282,7 +283,7 @@ Que nous faut-il?</p>
 </code></pre></div><p>Le <code>enqueue</code> prend en paramètre un <code>Callback</code> et implémente deux méthodes. La première est <code>onResponse</code> si tout se passe comme prévu. C&rsquo;est ici que nous remplissons le tableau à partir du json contenu dans <code>response.body()</code> et en créant une <code>ObservableList&lt;Post&gt; observableList</code>.
 La seconde est <code>onFailure()</code>, si ça se passe mal et on peut par exemple envoyer une alerte à l&rsquo;utilisateur.</p>
 <p>Finalement <code>chargeTableau()</code> ressemble à ça:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">chargeTableau</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">chargeTableau</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
         Retrofit retrofit <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Retrofit<span style="color:#f92672">.</span><span style="color:#a6e22e">Builder</span><span style="color:#f92672">()</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">baseUrl</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/&#34;</span><span style="color:#f92672">)</span>
                 <span style="color:#f92672">.</span><span style="color:#a6e22e">addConverterFactory</span><span style="color:#f92672">(</span>GsonConverterFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">())</span>
@@ -326,7 +327,7 @@ La seconde est <code>onFailure()</code>, si ça se passe mal et on peut par exem
 		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
 	</figure>
 	<div class="authorbox__header">
-		<span class="authorbox__name">À propos Germain SIPIERE</span>
+		<span class="authorbox__name"></span>
 	</div>
 	<div class="authorbox__description">
 		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
@@ -350,7 +351,7 @@ La seconde est <code>onFailure()</code>, si ça se passe mal et on peut par exem
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 Germain SIPIERE.
+			&copy; 2022 Germain SIPIERE.
 			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
 		</div>
 	</div>
