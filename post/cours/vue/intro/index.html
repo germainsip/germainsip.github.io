@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Les bases de Vue - Mes ressources</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Pour bien commencer avec vue 3">
+	<meta property="og:title" content="Les bases de Vue" />
+<meta property="og:description" content="Pour bien commencer avec vue 3" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/cours/vue/intro/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-02-24T10:33:02+01:00" />
+<meta property="article:modified_time" content="2022-02-24T10:33:02+01:00" />
+
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Les bases de Vue"/>
+<meta name="twitter:description" content="Pour bien commencer avec vue 3"/>
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="Mes ressources" rel="home">
+				<div class="logo__title">Mes ressources</div>
+				<div class="logo__tagline">Site de partage de ressources</div>
+			</a>
+		</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Les bases de Vue</h1>
+			<p class="post__lead">Pour bien commencer avec vue 3</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg>
+	<time class="meta__text" datetime="2022-02-24T10:33:02&#43;01:00">24-02-2022</time>
+</div>
+
+<div class="meta__item-categories meta__item">
+	<svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg>
+	<span class="meta__text"><a class="meta__link" href="/categories/vue/" rel="category">Vue</a>
+	</span>
+</div></div>
+		</header>
+		<figure class="post__thumbnail">
+			<img src="/img/vue/vueintro.png" alt="Les bases de Vue">
+		</figure>
+<div class="post__toc toc">
+	<div class="toc__title">Sommaire</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#commencer-avec-vue">Commencer avec Vue</a>
+      <ul>
+        <li><a href="#le-cdn">Le CDN</a></li>
+      </ul>
+    </li>
+    <li><a href="#le-binding">Le binding</a></li>
+    <li><a href="#le-rendu-conditionnel">Le rendu conditionnel</a></li>
+    <li><a href="#afficher-une-liste-déléments">Afficher une liste d&rsquo;éléments</a></li>
+    <li><a href="#les-évènements">Les évènements</a></li>
+    <li><a href="#le-binding-de-classe-et-de-style">Le binding de classe et de style</a></li>
+    <li><a href="#propriétés-calculées">Propriétés calculées</a></li>
+    <li><a href="#les-composants-et-les-props">Les composants et les props</a>
+      <ul>
+        <li><a href="#les-props">Les props</a></li>
+      </ul>
+    </li>
+    <li><a href="#communiquer-en-dehors-du-composant">Communiquer en dehors du composant.</a></li>
+    <li><a href="#petit-clean-up">Petit clean-up</a></li>
+    <li><a href="#les-formulaires">Les formulaires</a></li>
+    <li><a href="#améliorations">Améliorations</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<p>Vue est un framework Javascript destiné à la création d&rsquo;interface utilisateur.
+Vue est conçu pour être &ldquo;progressif&rdquo;. C&rsquo;est à dire qu&rsquo;il conviendra à plusieurs conceptions ou besoins différents comme vous pourrez le lire dans la <a href="https://vuejs.org/guide/extras/ways-of-using-vue.html">documentation</a></p>
+<h2 id="commencer-avec-vue">Commencer avec Vue</h2>
+<h3 id="le-cdn">Le CDN</h3>
+<p>En allant sur la doc de Vue vous trouverez le <a href="https://vuejs.org/guide/quick-start.html#without-build-tools">CDN</a> permettant d&rsquo;intégrer directement vue à une page html.</p>
+<p>Il suffit d&rsquo;ajouter ce script à la page.</p>
+<p>Par exemple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fr&#34;</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Vue avec le CDN&lt;/<span style="color:#f92672">title</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import Styles --&gt;</span>
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/styles.css&#34;</span> /&gt;
+    <span style="color:#75715e">&lt;!-- Import Vue.js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue@3&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+      &lt;<span style="color:#f92672">h1</span>&gt;Les produits seront ici&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import Js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>vous pouvez déjà cloner ce dépot pour partir de ce niveau.</p>
+<p><code>git clone https://github.com/germainsip/vuecdn.git &amp;&amp; cd vuecdn.git</code></p>
+<p>puis <code>git checkout 1-intro-debut</code></p>
+<p>Nous avons déjà un style.css un main.js et des images dans notre projet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-zsh" data-lang="zsh">vuecdn
+├── assets
+│   ├── images
+│   │   ├── socks_blue.jpg
+│   │   └── socks_green.jpg
+│   └── styles.css
+├── index.html
+└── main.js
+</code></pre></div><p>Ouvrons le <code>main.js</code> et modifions le pour créer une application vue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussettes&#39;</span>
+
+        }
+    }
+})
+</code></pre></div><p>Nous avons ici à l&rsquo;aide de la méthode de vue <code>createApp()</code> créé une application vue. Cette méthode prend en paramètre une fonction <code>data()</code>
+qui renvoie un objet <code>{product: 'Chaussettes'}</code>.</p>
+<p>Pour le moment, notre index.html ne connait pas l&rsquo;appli. Il faut a monter à l&rsquo;emplacement de notre choix:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Vue avec le CDN&lt;/<span style="color:#f92672">title</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import Styles --&gt;</span>
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/styles.css&#34;</span> /&gt;
+    <span style="color:#75715e">&lt;!-- Import Vue.js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue@3.0.11/dist/vue.global.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+      &lt;<span style="color:#f92672">h1</span>&gt;Les {{product}} seront ici&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import App --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!--Mount App--&gt;</span>
+    &lt;<span style="color:#f92672">script</span>&gt;
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mountedApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>)
+    &lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>A ce stade, si vous ouvrez le fichier <code>index.html</code> (<em>via live server</em>) vous devriez avoir:</p>
+<p><img src="/img/vue/firstvue.png" alt="firstvue"></p>
+<p>Vous voyez que les &ldquo;moustaches&rdquo; <code>{{product}}</code> ont été remplacées par la valeur contenue dans l&rsquo;objet. Vous pouvez également mettre des expressions javascript dans ces &ldquo;moustaches&rdquo;.</p>
+<p>Par exemple, <code>{{product.toUpperCase()}}</code> mettra Chaussettes en majuscule.</p>
+<p>En guise d&rsquo;application, ajoutez sous titre (<code>&lt;h2&gt;</code>) avec une description dans l&rsquo;application vue.</p>
+<p><img src="/img/vue/secvue.png" alt="secvue"></p>
+<p>Vous aurez la solution en accédant à la branche <code>1-intro-fin</code>.</p>
+<h2 id="le-binding">Le binding</h2>
+<p>Pour ceux qui voudraient commencer à partir du même point. Passez sur la branche <code>2-binding-debut</code>.</p>
+<p>J&rsquo;ai ajouté une balise dans notre html:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Vue avec le CDN&lt;/<span style="color:#f92672">title</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import Styles --&gt;</span>
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/styles.css&#34;</span> /&gt;
+    <span style="color:#75715e">&lt;!-- Import Vue.js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue@next&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+        
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+              <span style="color:#75715e">&lt;!-- image goes here --&gt;</span>
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+              &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import App --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!--Mount App--&gt;</span>
+    &lt;<span style="color:#f92672">script</span>&gt;
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mountedApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#39;#app&#39;</span>)
+    &lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Nous avons déjà des images dans le dossier <code>assets</code> ajoutons cet attribut dans notre <code>app</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussettes&#39;</span>,
+            <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>
+        }
+    }
+})
+</code></pre></div><p>Afin d&rsquo;ajouter cette valeur à une balise <code>&lt;img&gt;</code> nous allons utiliser l&rsquo;attribut <code>v-bind:</code> dans <code>index.html</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!--...--&gt;</span>
+ &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+        
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+              &lt;<span style="color:#f92672">img</span>  <span style="color:#a6e22e">v-bind:src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chaussettes&#34;</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+              &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+ &lt;/<span style="color:#f92672">div</span>&gt;
+<span style="color:#75715e">&lt;!--...--&gt;</span>
+</code></pre></div><p>Ce qui nous donne ça:</p>
+<p><img src="/img/vue/img-bind.png" alt="img-bind"></p>
+<p>Nous avons ici connecté l&rsquo;attribut <code>src</code> de <code>&lt;img&gt;</code> à la propriété image de notre application.</p>
+<p>On peut raccourcir l&rsquo;écriture en écrivant uniquement <code>:src</code>.</p>
+<p>En guise d&rsquo;exercice, ajoutez une propriété url dans l&rsquo;application et bindez la dans un lien (<code>&lt;a href&gt;</code>).</p>
+<p>solution à la branche <code>2-binding-fin</code>.</p>
+<h2 id="le-rendu-conditionnel">Le rendu conditionnel</h2>
+<p>Avec Vue, nous pouvons faire du &ldquo;rendue conditionnel&rdquo;. C&rsquo;est à dire afficher quelque chose en fonction d&rsquo;une condition.</p>
+<p>Par exmple, nous pourrions afficher si la chaussette choisie est en stock ou non.</p>
+<p>Ajoutons les deux propositions dans l&rsquo;html:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"> &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+              &lt;<span style="color:#f92672">img</span>  <span style="color:#a6e22e">v-bind:src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chaussettes&#34;</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+              &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+              &lt;<span style="color:#f92672">p</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+              &lt;<span style="color:#f92672">p</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Côté javascript, ajoutons un booléen:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussettes&#39;</span>,
+            <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,
+            <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        }
+    }
+})
+</code></pre></div><p>Pour Vue, nous avons une directive qui permet de faire ce que nous avons envie de faire. Il s&rsquo;agit de <code>v-if</code> et <code>v-else</code>. Modifions donc <code>index.html</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+  &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+  &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Dès l&rsquo;ors si vous changez la valeur de <code>inStock</code> l&rsquo;affichage sera mis à jour avec respectivement &ldquo;En stock&rdquo; ou &ldquo;Rupture&rdquo;.</p>
+<blockquote>
+<p>Rq: <code>v-else</code> n&rsquo;est pas obligatoire si vous n&rsquo;avez pas de valeur alternative à afficher.</p>
+</blockquote>
+<p>Dans le cas où il ne s&rsquo;agit que de faire apparaitre ou disparaitre un élément nous pouvons utiliser <code>v-show</code> qui agira sur la visibilité d&rsquo;un élément (<code>style= &quot;display: none&quot;</code>).</p>
+<p>Nous pouvons faire plus élaboré. Notre texte pourrait changer selon certaines valeurs.</p>
+<p>Changeons la propriété dans <code>mains.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+  <span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussettes&#39;</span>,
+      <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,
+      <span style="color:#a6e22e">inventory</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">100</span>
+    }
+  }
+})
+</code></pre></div><p>Et dans <code>index.html</code> nous pouvons ajouter une étape:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#66d9ef">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span>{{ <span style="color:#a6e22e">product</span> }}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inventory &gt; 10&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">En</span> <span style="color:#a6e22e">stock</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">else</span><span style="color:#f92672">-</span><span style="color:#66d9ef">if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inventory &lt;= 10 &amp;&amp; inventory &gt; 0&#34;</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Petites</span> <span style="color:#a6e22e">quantités</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
+  <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">p</span> <span style="color:#a6e22e">v</span><span style="color:#f92672">-</span><span style="color:#66d9ef">else</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Rupture</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/p&gt;</span>
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</code></pre></div><h2 id="afficher-une-liste-déléments">Afficher une liste d&rsquo;éléments</h2>
+<blockquote>
+<p>Nous en sommes à la branche <code>4-list-debut</code></p>
+</blockquote>
+<p>Dans <code>main.js</code> nous avons la propriété <code>details: ['50% coton', '30% laine', '20% polyester']</code> qui est une liste de valeurs.</p>
+<p>Afin de les afficher, nous allons utiliser une autre directive <code>v-for</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+    &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;Détail:&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">ul</span>&gt;
+      &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detail in details&#34;</span>&gt;{{detail}}&lt;/<span style="color:#f92672">li</span>&gt;
+    &lt;/<span style="color:#f92672">ul</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Nous pouvons également utiliser une liste d&rsquo;objets:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussette&#39;</span>,
+            <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,
+            <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+            <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;50% coton&#39;</span>, <span style="color:#e6db74">&#39;30% laine&#39;</span>, <span style="color:#e6db74">&#39;20% polyester&#39;</span>],
+            <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>},
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>}
+            ]
+        }
+    }
+})
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!--index.html--&gt;</span>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+  &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+  &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Détail:&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">ul</span>&gt;
+    &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detail in details&#34;</span>&gt;{{detail}}&lt;/<span style="color:#f92672">li</span>&gt;
+  &lt;/<span style="color:#f92672">ul</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Existe en:&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant in variants&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span>&gt;{{variant.color}}&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p><img src="/img/vue/list.png" alt="list"></p>
+<blockquote>
+<p>Rq: <code>:key=&quot;variant.id&quot;</code> est fortement conseillé car il donne une clé unique à chaque élément du DOM.</p>
+</blockquote>
+<h2 id="les-évènements">Les évènements</h2>
+<p>Partons de la branche <code>5-action-debut</code> <a href="https://github.com/germainsip/vuecdn/tree/5-action-debut">ici</a></p>
+<p>Comme vous pouvez le constater, j&rsquo;ai ajouté un bouton et un compteur.</p>
+<p><img src="/img/vue/action.png" alt="action"></p>
+<p>Afin d&rsquo;écouter l&rsquo;évènement <code>click</code> et d&rsquo;ajouter une paire de chaussette au panier nous allons utiliser la directive <code>v-on</code> et lui affecter une action.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+        
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cart&#34;</span>&gt;Panier({{ cart }})&lt;/<span style="color:#f92672">div</span>&gt;
+
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+              &lt;<span style="color:#f92672">img</span>  <span style="color:#a6e22e">v-bind:src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chaussettes&#34;</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+              &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+              &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+              &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+              &lt;<span style="color:#f92672">p</span>&gt;Détail:&lt;/<span style="color:#f92672">p</span>&gt;
+              &lt;<span style="color:#f92672">ul</span>&gt;
+                &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detail in details&#34;</span>&gt;{{detail}}&lt;/<span style="color:#f92672">li</span>&gt;
+              &lt;/<span style="color:#f92672">ul</span>&gt;
+              &lt;<span style="color:#f92672">p</span>&gt;Existe en:&lt;/<span style="color:#f92672">p</span>&gt;
+              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant in variants&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span>&gt;{{variant.color}}&lt;/<span style="color:#f92672">div</span>&gt;
+              <span style="color:#75715e">&lt;!-- ICI --&gt;</span>
+              &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">v-on:click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cart += 1&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;Ajouter au panier&lt;/<span style="color:#f92672">button</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Maintenant, à chaque clique, la propriété <code>cart</code> et augmenté de 1. Vue ne va alors rafraichir que la balise <code>&lt;div class=&quot;cart&quot;&gt;Panier({{ cart }})&lt;/div&gt;</code>.</p>
+<p>Ca fonctionne mais ce serait mieux d&rsquo;avoir un fonction (méthode) pour ça.</p>
+<p>Ajoutons la méthode <code>addToCart()</code> dans <code>main.js</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussette&#39;</span>,
+            <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,
+            <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+            <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;50% coton&#39;</span>, <span style="color:#e6db74">&#39;30% laine&#39;</span>, <span style="color:#e6db74">&#39;20% polyester&#39;</span>],
+            <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>},
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>}
+            ]
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>() {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        }
+    }
+})
+</code></pre></div><p>et remplaçons dans <code>index.html</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">v-on:click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addToCart&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>&gt;Ajouter au panier&lt;<span style="color:#f92672">button</span>&gt;
+</code></pre></div><p>De même que pour le <code>v-bind</code> nous avons un raccourcit. Ici <code>v-on:click</code> peut être remplacé par <code>@click</code>.</p>
+<p>Nous avons vu un évènement, mais il y en a d&rsquo;autres. Par exemple, <code>on hover</code> quand on survole un éléments. Mettons en place le changement d&rsquo;image au survole de la couleur.</p>
+<p>Commençons par ajouter les urls dans la liste <code>variants</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+            {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>},
+            {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_green.jpg&#39;</span>}
+            ]
+</code></pre></div><p>Ajoutons également la méthode <code>changeImg()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">changeImg</span>(<span style="color:#a6e22e">variantImage</span>) {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">image</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">variantImage</span>
+        }
+</code></pre></div><p>et enfin ajoutons l&rsquo;évènement à nos balises:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant in variants&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">mouseOver</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;changeImg(variant.image)&#34;</span>&gt;{{variant.color}}&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Et voilà:</p>
+<p><img src="/img/vue/over.gif" alt="over"></p>
+<p>Pour améliorer notre panier, vous pouvez ajouter un bouton pour enlever un élément du panier. (solution à <code>5-action-fin</code>)</p>
+<h2 id="le-binding-de-classe-et-de-style">Le binding de classe et de style</h2>
+<p>Plutôt que d&rsquo;avoir bleu et vert, nous allons mettre des pastilles de couleurs.
+Commençons par ajouter une classe à notre balise:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color-circle&#34;</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant in variants&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">mouseOver</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;changeImg(variant.image)&#34;</span>&gt;{{variant.color}}&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>cette classe est déjà écrite dans le <code>style.css</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">color-circle</span> {
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#d8d8d8</span>;
+  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>;
+}
+</code></pre></div><p>Remplaçons, maintenant, le texte par un background grâce à la directive <code>:style</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> 
+<span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color-circle&#34;</span> 
+<span style="color:#a6e22e">:style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{backgroundColor: variant.back}&#34;</span> 
+<span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant in variants&#34;</span> <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span> 
+<span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">mouseOver</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;changeImg(variant.image)&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Et dans <code>main.js</code> ajoutons nos valeurs dans <code>variants</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+            {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#38475F&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>},
+            {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#4F9869&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_green.jpg&#39;</span>}
+            ]
+</code></pre></div><p>Dorénavant nos couleurs apparaissent sous forme de pastilles.</p>
+<p>Nous pouvons aussi agir sur d&rsquo;autres attributs. Par exemple, désactivons les boutons si le stock est en rupture.
+Pour nos deux boutons cela donnerait:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span> 
+ <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+ <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{disabledButton: !inStock}&#34;</span>
+ <span style="color:#a6e22e">:disabled</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!inStock&#34;</span> 
+ <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addToCart&#34;</span> &gt;
+  Ajouter au panier
+&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;<span style="color:#f92672">button</span> 
+ <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+ <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{disabledButton: !inStock}&#34;</span>
+ <span style="color:#a6e22e">:disabled</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!inStock&#34;</span> 
+ <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;remFromCart&#34;</span> &gt;
+  Enlever du panier
+&lt;/<span style="color:#f92672">button</span>&gt;
+</code></pre></div><p>Ici nous faisons deux choses. D&rsquo;une part, si <code>inStock=false</code> les boutons passent à <code>disabled</code> et la classe passe à <code>disabledButton</code> décrite dans le css par:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">disabledButton</span> {
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#d8d8d8</span>;
+  <span style="color:#66d9ef">cursor</span>: <span style="color:#66d9ef">not-allowed</span>;
+}
+</code></pre></div><h2 id="propriétés-calculées">Propriétés calculées</h2>
+<p>Nous pouvons avoir des propriétés calculées (compilé). C&rsquo;est à dire, qu&rsquo;elles nécessites un traitement. Par exemple, ajoutons des quantités dans notre liste et gérons le stock ainsi que l&rsquo;image par calcul.</p>
+<p>Modifions déjà l&rsquo;html:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cart&#34;</span>&gt;Panier({{ cart }})&lt;/<span style="color:#f92672">div</span>&gt;
+
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">v-bind:src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chaussettes&#34;</span> /&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+            &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+            &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">p</span>&gt;Détail:&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">ul</span>&gt;
+              &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detail in details&#34;</span>&gt;{{detail}}&lt;/<span style="color:#f92672">li</span>&gt;
+            &lt;/<span style="color:#f92672">ul</span>&gt;
+            &lt;<span style="color:#f92672">p</span>&gt;Existe en:&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">div</span> 
+              <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(variant, index) in variants&#34;</span> 
+              <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span> 
+              <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">mouseover</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;updateVariant(index)&#34;</span> 
+              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color-circle&#34;</span> 
+              <span style="color:#a6e22e">:style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{ backgroundColor: variant.back }&#34;</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">button</span>
+              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+              <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{disabledButton: !inStock}&#34;</span>
+              <span style="color:#a6e22e">:disabled</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!inStock&#34;</span>
+              <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addToCart&#34;</span>
+            &gt;
+              Ajouter au panier
+            &lt;/<span style="color:#f92672">button</span>&gt;
+            &lt;<span style="color:#f92672">button</span>
+              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+              <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{disabledButton: !inStock}&#34;</span>
+              <span style="color:#a6e22e">:disabled</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!inStock&#34;</span>
+              <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;remFromCart&#34;</span>
+            &gt;
+              Enlever du panier
+            &lt;/<span style="color:#f92672">button</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>La méthode <code>changeImg</code> est remplacée par <code>updateVariant</code> et le <code>v-for</code> prend <code>(variant,index)</code> afin d&rsquo;avoir l&rsquo;index de l&rsquo;élément dans le tableau.</p>
+<p>Côté javascript, on va faire plus de modifications. D&rsquo;abords, ajoutons la méthode <code>updateVariant</code> et modifions les propriétés pour avoir <code>selectedVariant</code> mais pas <code>image</code> et <code>inStock</code> qui vont être calculées.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussette&#39;</span>,
+            <span style="color:#a6e22e">selectedVariant</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;50% coton&#39;</span>, <span style="color:#e6db74">&#39;30% laine&#39;</span>, <span style="color:#e6db74">&#39;20% polyester&#39;</span>],
+            <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#38475F&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>},
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#4F9869&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_green.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>}
+            ]
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>() {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        },
+        <span style="color:#a6e22e">remFromCart</span>() {
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            }
+            
+        }, 
+        <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>
+        }
+    }
+})
+
+</code></pre></div><p>Retrouvons nos propriétés dans <code>computed</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussette&#39;</span>,
+            <span style="color:#a6e22e">selectedVariant</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;50% coton&#39;</span>, <span style="color:#e6db74">&#39;30% laine&#39;</span>, <span style="color:#e6db74">&#39;20% polyester&#39;</span>],
+            <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#38475F&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>},
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#4F9869&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_green.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>}
+            ]
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>() {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        },
+        <span style="color:#a6e22e">remFromCart</span>() {
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            }
+            
+        }, 
+        <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>
+        }
+    },
+    <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">image</span>() {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">image</span>
+        },
+        <span style="color:#a6e22e">inStock</span>() {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">quantity</span>
+        }
+    }
+})
+</code></pre></div><p>Cette fois, quand on survole les pastilles, l&rsquo;image, le stock et les boutons sont mis à jour.</p>
+<h2 id="les-composants-et-les-props">Les composants et les props</h2>
+<p>Les frameworks comme vue, react, angular&hellip; sont conçu pour fonctionner par composants. L&rsquo;idée est de séparer la page en éléments indépendants et réutilisables.</p>
+<p>Nous allons découper notre application en composants.
+Tout d&rsquo;abord, créez un dossier <code>components</code> et ajoutez y un fichier <code>ProductDisplay.js</code></p>
+<p>Dans ce fichier nous allons créer la partie qui affiche le produit. Déplaçons toute la partie display:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// ProductDisplay.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;product-display&#39;</span>, {
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span>
+    <span style="color:#75715e">/*html*/</span>
+    <span style="color:#e6db74">`&lt;div class=&#34;product-display&#34;&gt;
+</span><span style="color:#e6db74">        &lt;div class=&#34;product-container&#34;&gt;
+</span><span style="color:#e6db74">          &lt;div class=&#34;product-image&#34;&gt;
+</span><span style="color:#e6db74">            &lt;img v-bind:src=&#34;image&#34; alt=&#34;chaussettes&#34; /&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">          &lt;div class=&#34;product-info&#34;&gt;
+</span><span style="color:#e6db74">            &lt;h1&gt;{{ product }}&lt;/h1&gt;
+</span><span style="color:#e6db74">            &lt;p v-if=&#34;inStock&#34;&gt;En stock&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;p v-else&gt;Rupture&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;Détail:&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;ul&gt;
+</span><span style="color:#e6db74">              &lt;li v-for=&#34;detail in details&#34;&gt;{{detail}}&lt;/li&gt;
+</span><span style="color:#e6db74">            &lt;/ul&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;Existe en:&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;div 
+</span><span style="color:#e6db74">              v-for=&#34;(variant, index) in variants&#34; 
+</span><span style="color:#e6db74">              :key=&#34;variant.id&#34; 
+</span><span style="color:#e6db74">              @mouseover=&#34;updateVariant(index)&#34; 
+</span><span style="color:#e6db74">              class=&#34;color-circle&#34; 
+</span><span style="color:#e6db74">              :style=&#34;{ backgroundColor: variant.back }&#34;&gt;
+</span><span style="color:#e6db74">            &lt;/div&gt;
+</span><span style="color:#e6db74">            &lt;button
+</span><span style="color:#e6db74">              class=&#34;button&#34;
+</span><span style="color:#e6db74">              :class=&#34;{disabledButton: !inStock}&#34;
+</span><span style="color:#e6db74">              :disabled=&#34;!inStock&#34;
+</span><span style="color:#e6db74">              @click=&#34;addToCart&#34;
+</span><span style="color:#e6db74">            &gt;
+</span><span style="color:#e6db74">              Ajouter au panier
+</span><span style="color:#e6db74">            &lt;/button&gt;
+</span><span style="color:#e6db74">            &lt;button
+</span><span style="color:#e6db74">              class=&#34;button&#34;
+</span><span style="color:#e6db74">              :class=&#34;{disabledButton: !inStock}&#34;
+</span><span style="color:#e6db74">              :disabled=&#34;!inStock&#34;
+</span><span style="color:#e6db74">              @click=&#34;remFromCart&#34;
+</span><span style="color:#e6db74">            &gt;
+</span><span style="color:#e6db74">              Enlever du panier
+</span><span style="color:#e6db74">            &lt;/button&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;/div&gt;
+</span><span style="color:#e6db74">      &lt;/div&gt;`</span>,
+      <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chaussette&#39;</span>,
+            <span style="color:#a6e22e">selectedVariant</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;50% coton&#39;</span>, <span style="color:#e6db74">&#39;30% laine&#39;</span>, <span style="color:#e6db74">&#39;20% polyester&#39;</span>],
+            <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;bleu&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#38475F&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_blue.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>},
+                {<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span> , <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;vert&#39;</span>, <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#4F9869&#39;</span>, <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./assets/images/socks_green.jpg&#39;</span>,<span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>}
+            ]
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>() {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        },
+        <span style="color:#a6e22e">remFromCart</span>() {
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            }
+            
+        }, 
+        <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>
+        }
+    },
+    <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">image</span>() {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">image</span>
+        },
+        <span style="color:#a6e22e">inStock</span>() {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">quantity</span>
+        }
+    }
+})
+</code></pre></div><p>Dans <code>index.html</code> nous pouvons maintenant importer notre composant et utiliser la balise qui porte sont nom.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Vue avec le CDN&lt;/<span style="color:#f92672">title</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import Styles --&gt;</span>
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/styles.css&#34;</span> /&gt;
+    <span style="color:#75715e">&lt;!-- Import Vue.js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue@next&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cart&#34;</span>&gt;Panier({{ cart }})&lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;<span style="color:#f92672">product-display</span>&gt;&lt;/<span style="color:#f92672">product-display</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import App --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import ProductDisplay --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./components/ProductDisplay.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!--Mount App--&gt;</span>
+    &lt;<span style="color:#f92672">script</span>&gt;
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mountedApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#34;#app&#34;</span>);
+    &lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Nous pourrions ajouter autant de versions indépendantes de ce composant.</p>
+<h3 id="les-props">Les props</h3>
+<p>Notre composant doit pouvoir communiquer avec le reste de l&rsquo;application. Les <code>props</code> sont là pour ça.</p>
+<p>Pour illustrer cette <code>prop</code> ajoutons une propriété <code>premium</code> au <code>main.js</code>. Cette propriété dit si l&rsquo;usager a un compte premium ou non. Dans le composant nous afficherons les frais de port (gratuit pour premium, 5 € pour les autres).</p>
+<p>Dans <code>main.js</code> ça donne:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">premium</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {}
+})
+</code></pre></div><p>Et dans le composant <code>ProductDisplay.js</code>:</p>
+<ul>
+<li>On ajoute la prop en entré en spécifiant son type.</li>
+<li>On ajoute une balise <code>&lt;p&gt;</code> avec les frais de ports qui dépendent de la méthode <code>shipping</code>.</li>
+<li>Que nous ajoutons également.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#34;product-display&#34;</span>, {
+  <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">premium</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> Boolean,
+      <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+    },
+  },
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span>
+    <span style="color:#75715e">/*html*/</span>
+    <span style="color:#e6db74">`&lt;div class=&#34;product-display&#34;&gt;
+</span><span style="color:#e6db74">        &lt;div class=&#34;product-container&#34;&gt;
+</span><span style="color:#e6db74">          &lt;div class=&#34;product-image&#34;&gt;
+</span><span style="color:#e6db74">            &lt;img v-bind:src=&#34;image&#34; alt=&#34;chaussettes&#34; /&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">          &lt;div class=&#34;product-info&#34;&gt;
+</span><span style="color:#e6db74">            &lt;h1&gt;{{ product }}&lt;/h1&gt;
+</span><span style="color:#e6db74">            &lt;p v-if=&#34;inStock&#34;&gt;En stock&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;p v-else&gt;Rupture&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;Frais de port: {{shipping}}&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;Détail:&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;ul&gt;
+</span><span style="color:#e6db74">              &lt;li v-for=&#34;detail in details&#34;&gt;{{detail}}&lt;/li&gt;
+</span><span style="color:#e6db74">            &lt;/ul&gt;
+</span><span style="color:#e6db74">            &lt;p&gt;Existe en:&lt;/p&gt;
+</span><span style="color:#e6db74">            &lt;div 
+</span><span style="color:#e6db74">              v-for=&#34;(variant, index) in variants&#34; 
+</span><span style="color:#e6db74">              :key=&#34;variant.id&#34; 
+</span><span style="color:#e6db74">              @mouseover=&#34;updateVariant(index)&#34; 
+</span><span style="color:#e6db74">              class=&#34;color-circle&#34; 
+</span><span style="color:#e6db74">              :style=&#34;{ backgroundColor: variant.back }&#34;&gt;
+</span><span style="color:#e6db74">            &lt;/div&gt;
+</span><span style="color:#e6db74">            &lt;button
+</span><span style="color:#e6db74">              class=&#34;button&#34;
+</span><span style="color:#e6db74">              :class=&#34;{disabledButton: !inStock}&#34;
+</span><span style="color:#e6db74">              :disabled=&#34;!inStock&#34;
+</span><span style="color:#e6db74">              @click=&#34;addToCart&#34;
+</span><span style="color:#e6db74">            &gt;
+</span><span style="color:#e6db74">              Ajouter au panier
+</span><span style="color:#e6db74">            &lt;/button&gt;
+</span><span style="color:#e6db74">            &lt;button
+</span><span style="color:#e6db74">              class=&#34;button&#34;
+</span><span style="color:#e6db74">              :class=&#34;{disabledButton: !inStock}&#34;
+</span><span style="color:#e6db74">              :disabled=&#34;!inStock&#34;
+</span><span style="color:#e6db74">              @click=&#34;remFromCart&#34;
+</span><span style="color:#e6db74">            &gt;
+</span><span style="color:#e6db74">              Enlever du panier
+</span><span style="color:#e6db74">            &lt;/button&gt;
+</span><span style="color:#e6db74">          &lt;/div&gt;
+</span><span style="color:#e6db74">        &lt;/div&gt;
+</span><span style="color:#e6db74">      &lt;/div&gt;`</span>,
+  <span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Chaussette&#34;</span>,
+      <span style="color:#a6e22e">selectedVariant</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+      <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;50% coton&#34;</span>, <span style="color:#e6db74">&#34;30% laine&#34;</span>, <span style="color:#e6db74">&#34;20% polyester&#34;</span>],
+      <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+        {
+          <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span>,
+          <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;bleu&#34;</span>,
+          <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#38475F&#34;</span>,
+          <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./assets/images/socks_blue.jpg&#34;</span>,
+          <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>,
+        },
+        {
+          <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span>,
+          <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vert&#34;</span>,
+          <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#4F9869&#34;</span>,
+          <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./assets/images/socks_green.jpg&#34;</span>,
+          <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        },
+      ],
+    };
+  },
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">addToCart</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+    },
+    <span style="color:#a6e22e">remFromCart</span>() {
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span> <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+      }
+    },
+    <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>;
+    },
+  },
+  <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">image</span>() {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">image</span>;
+    },
+    <span style="color:#a6e22e">inStock</span>() {
+      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">quantity</span>;
+    },
+    <span style="color:#a6e22e">shipping</span>() {
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">premium</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Gratuit&#34;</span>;
+      }
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;5 €&#34;</span>;
+    },
+  },
+});
+</code></pre></div><h2 id="communiquer-en-dehors-du-composant">Communiquer en dehors du composant.</h2>
+<p>Nous avons factorisé notre code en composant, mais les boutons ne fonctionnent plus.
+Comment réparer ça?</p>
+<p>Nous devons faire sortir l&rsquo;évènement du composant avec un <code>$emit</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//ProductDisplay.js
+</span><span style="color:#75715e"></span>...
+<span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">addToCart</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;add-to-cart&#34;</span>)
+    },
+    <span style="color:#a6e22e">remFromCart</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;rem-from-cart&#34;</span>)
+    },
+    <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>;
+    },
+  },
+...
+</code></pre></div><p>Quand les boutons seront cliqués, ils enverront un évènement (resp <code>add-to-cart</code> et <code>rem-from-cart</code>). Il faut les écouter dans <code>index.html</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+  &lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;Vue avec le CDN&lt;/<span style="color:#f92672">title</span>&gt;
+    <span style="color:#75715e">&lt;!-- Import Styles --&gt;</span>
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./assets/styles.css&#34;</span> /&gt;
+    <span style="color:#75715e">&lt;!-- Import Vue.js --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/vue@next&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;nav-bar&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cart&#34;</span>&gt;Panier({{ cart }})&lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;<span style="color:#f92672">product-display</span> <span style="color:#a6e22e">:premium</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;premium&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">add-to-cart</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addToCart&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">rem-from-cart</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;remFromCart&#34;</span>&gt;&lt;/<span style="color:#f92672">product-display</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import App --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./main.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!-- Import Import ProductDisplay --&gt;</span>
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./components/ProductDisplay.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+
+    <span style="color:#75715e">&lt;!--Mount App--&gt;</span>
+    &lt;<span style="color:#f92672">script</span>&gt;
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mountedApp</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">mount</span>(<span style="color:#e6db74">&#34;#app&#34;</span>);
+    &lt;/<span style="color:#f92672">script</span>&gt;
+  &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Et mettons à jour les méthodes dans <code>main.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+            <span style="color:#a6e22e">premium</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>(){
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span><span style="color:#f92672">++</span>
+        },
+        <span style="color:#a6e22e">remFromCart</span>(){
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){
+                <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span><span style="color:#f92672">--</span>
+            }
+        }
+    }
+})
+</code></pre></div><!-- aller plus loin avec https://vuejs.org/guide/components/events.html -->
+<h2 id="petit-clean-up">Petit clean-up</h2>
+<p>En réalité, ce serait beaucoup mieux pour le panier d&rsquo;avoir un tableau qui liste les éléments achetés.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//main.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Vue</span>.<span style="color:#a6e22e">createApp</span>({
+    <span style="color:#a6e22e">data</span>() {
+        <span style="color:#66d9ef">return</span> {
+            <span style="color:#a6e22e">cart</span><span style="color:#f92672">:</span> [],
+            <span style="color:#a6e22e">premium</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        }
+    },
+    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">addToCart</span>(<span style="color:#a6e22e">id</span>){
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">cart</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">id</span>)
+        },
+        <span style="color:#a6e22e">remFromCart</span>(<span style="color:#a6e22e">id</span>){
+            <span style="color:#75715e">// TODO
+</span><span style="color:#75715e"></span>        }
+    }
+})
+</code></pre></div><p>Modifions également <code>ProductDisplay.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">...
+<span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">addToCart</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;add-to-cart&#34;</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">id</span>)
+    },
+    <span style="color:#a6e22e">remFromCart</span>() {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;rem-from-cart&#34;</span>)
+    },
+    <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>;
+    },
+  },
+...
+</code></pre></div><p>Pensez à passer la quantité de chaussettes vertes à 20 et testez.</p>
+<p>Le panier devrait afficher la liste des <code>id</code>.</p>
+<p>Corrigez en modifiant <code>&lt;div class=&quot;cart&quot;&gt;Panier({{ cart }})&lt;/div&gt;</code> en <code>&lt;div class=&quot;cart&quot;&gt;Panier({{ cart.length }})&lt;/div&gt;</code></p>
+<p><strong>Exercice:</strong> complétez <code>remFromCart(id)</code> dans <code>main.js</code> pour que le bouton &ldquo;Enlever du panier&rdquo; refonctionne. Et faites en sorte que le stock soit actualisé.</p>
+<p><strong>Correction:</strong> branche <code>9-emit-fin</code></p>
+<h2 id="les-formulaires">Les formulaires</h2>
+<p>Depuis le début, nous avons parlé de &ldquo;binder&rdquo; (lier) dans le sens donné vers la vue.
+Pour un formulaire, nous allons lier &ldquo;binder&rdquo; dans les deux sens.
+Et pour ça nous utiliserons <code>v-model</code>.</p>
+<p>Créons un nouveau composant <code>components/ReviewForm.js</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#34;review-form&#34;</span>, {
+  <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span>
+    <span style="color:#75715e">/*html*/</span>
+    <span style="color:#e6db74">`&lt;form class=&#34;review-form&#34;&gt;
+</span><span style="color:#e6db74">    &lt;h3&gt;Laissez un avis&lt;/h3&gt;
+</span><span style="color:#e6db74">    &lt;label for=&#34;name&#34;&gt;Nom:&lt;/label&gt;
+</span><span style="color:#e6db74">    &lt;input id=&#34;name&#34; type=&#34;text&#34; /&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;label for=&#34;review&#34;&gt;Avis:&lt;/label&gt;
+</span><span style="color:#e6db74">    &lt;textarea id=&#34;review&#34;&gt;&lt;/textarea&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;label for=&#34;rating&#34;&gt;Note:&lt;/label&gt;
+</span><span style="color:#e6db74">    &lt;select id=&#34;rating&#34;&gt;
+</span><span style="color:#e6db74">    &lt;option &gt;5&lt;/option&gt;
+</span><span style="color:#e6db74">    &lt;option &gt;4&lt;/option&gt;
+</span><span style="color:#e6db74">    &lt;option &gt;3&lt;/option&gt;
+</span><span style="color:#e6db74">    &lt;option &gt;2&lt;/option&gt;
+</span><span style="color:#e6db74">    &lt;option &gt;1&lt;/option&gt;
+</span><span style="color:#e6db74">    &lt;/select&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &lt;input type=&#34;submit&#34; class=&#34;button&#34; value=&#34;Envoyer&#34;/&gt;
+</span><span style="color:#e6db74">    &lt;/form&gt;`</span>,
+  <span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#a6e22e">review</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#a6e22e">rating</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+    };
+  },
+});
+
+</code></pre></div><p>Un simple formulaire avec 3 valeurs. Nous les retrouvons dans les <code>data</code>.
+Nous devons les relier ensembles avec <code>v-model</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;review-form&#34;</span>&gt;
+    &lt;<span style="color:#f92672">h3</span>&gt;Laissez un avis&lt;/<span style="color:#f92672">h3</span>&gt;
+    &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>&gt;Nom:&lt;/<span style="color:#f92672">label</span>&gt;
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> /&gt;
+
+    &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;review&#34;</span>&gt;Avis:&lt;/<span style="color:#f92672">label</span>&gt;
+    &lt;<span style="color:#f92672">textarea</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;review&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;review&#34;</span>&gt;&lt;/<span style="color:#f92672">textarea</span>&gt;
+
+    &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rating&#34;</span>&gt;Note:&lt;/<span style="color:#f92672">label</span>&gt;
+    &lt;<span style="color:#f92672">select</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rating&#34;</span> <span style="color:#a6e22e">v-model</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">number</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;rating&#34;</span>&gt;
+    &lt;<span style="color:#f92672">option</span> &gt;5&lt;/<span style="color:#f92672">option</span>&gt;
+    &lt;<span style="color:#f92672">option</span> &gt;4&lt;/<span style="color:#f92672">option</span>&gt;
+    &lt;<span style="color:#f92672">option</span> &gt;3&lt;/<span style="color:#f92672">option</span>&gt;
+    &lt;<span style="color:#f92672">option</span> &gt;2&lt;/<span style="color:#f92672">option</span>&gt;
+    &lt;<span style="color:#f92672">option</span> &gt;1&lt;/<span style="color:#f92672">option</span>&gt;
+    &lt;/<span style="color:#f92672">select</span>&gt;
+
+    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Envoyer&#34;</span>/&gt;
+    &lt;/<span style="color:#f92672">form</span>&gt;
+</code></pre></div><p>Pour envoyer nos données, nous allons créer une méthode:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">onSubmit</span>() {
+          <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">productReview</span> <span style="color:#f92672">=</span> {
+              <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span>,
+              <span style="color:#a6e22e">review</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">review</span>,
+              <span style="color:#a6e22e">rating</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rating</span>
+          }
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#39;review-submitted&#39;</span>, <span style="color:#a6e22e">productReview</span>);
+
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">review</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>
+          <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">rating</span><span style="color:#f92672">=</span><span style="color:#66d9ef">null</span>
+      }
+  }
+</code></pre></div><p>et ajouter un écouteur à <code>&lt;form&gt;</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;review-form&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">submit-prevent</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;onSubmit&#34;</span>&gt;
+</code></pre></div><p>Côté <code>ProductDisplay.js</code> ajoutons simplement la balise <code>&lt;review-form&gt;</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">...
+template:
+    /*html*/
+    `&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-display&#34;</span>&gt;
+        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-container&#34;</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-image&#34;</span>&gt;
+            &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">v-bind:src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chaussettes&#34;</span> /&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-info&#34;</span>&gt;
+            &lt;<span style="color:#f92672">h1</span>&gt;{{ product }}&lt;/<span style="color:#f92672">h1</span>&gt;
+            &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-if</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inStock&#34;</span>&gt;En stock&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">v-else</span>&gt;Rupture&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">p</span>&gt;Frais de port: {{shipping}}&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">p</span>&gt;Détail:&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">ul</span>&gt;
+              &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detail in details&#34;</span>&gt;{{detail}}&lt;/<span style="color:#f92672">li</span>&gt;
+            &lt;/<span style="color:#f92672">ul</span>&gt;
+            &lt;<span style="color:#f92672">p</span>&gt;Existe en:&lt;/<span style="color:#f92672">p</span>&gt;
+            &lt;<span style="color:#f92672">div</span> 
+              <span style="color:#a6e22e">v-for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;(variant, index) in variants&#34;</span> 
+              <span style="color:#a6e22e">:key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;variant.id&#34;</span> 
+              <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">mouseover</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;updateVariant(index)&#34;</span> 
+              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;color-circle&#34;</span> 
+              <span style="color:#a6e22e">:style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{ backgroundColor: variant.back }&#34;</span>&gt;
+            &lt;/<span style="color:#f92672">div</span>&gt;
+            &lt;<span style="color:#f92672">button</span>
+            <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+            <span style="color:#a6e22e">:class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{disabledButton: !inStock}&#34;</span>
+            <span style="color:#a6e22e">:disabled</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;!inStock&#34;</span>
+            <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addToCart&#34;</span>
+          &gt;
+            Ajouter au panier
+          &lt;/<span style="color:#f92672">button</span>&gt;
+          &lt;<span style="color:#f92672">button</span>
+            <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+            <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;remFromCart&#34;</span>
+          &gt;
+            Enlever du panier
+          &lt;/<span style="color:#f92672">button</span>&gt;
+          &lt;/<span style="color:#f92672">div</span>&gt;
+          <span style="color:#75715e">&lt;!--ICI--&gt;</span>
+          &lt;<span style="color:#f92672">review-form</span>&gt;&lt;/<span style="color:#f92672">review-form</span>&gt;
+
+        &lt;/<span style="color:#f92672">div</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;`,
+...
+</code></pre></div><p>Il va falloir récupérer l&rsquo;évènement et l&rsquo;ajouter à notre vue.</p>
+<p>l&rsquo;écouteur:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">    &lt;<span style="color:#f92672">review-form</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">review-submitted</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;addReview&#34;</span>&gt;&lt;/<span style="color:#f92672">review-form</span>&gt;
+</code></pre></div><p>Ajoutons la méthode et le tableau qui va receptionner les avis:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//ProductDisplay.js
+</span><span style="color:#75715e"></span>...
+<span style="color:#a6e22e">data</span>() {
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Chaussette&#34;</span>,
+      <span style="color:#a6e22e">selectedVariant</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+      <span style="color:#a6e22e">details</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;50% coton&#34;</span>, <span style="color:#e6db74">&#34;30% laine&#34;</span>, <span style="color:#e6db74">&#34;20% polyester&#34;</span>],
+      <span style="color:#a6e22e">variants</span><span style="color:#f92672">:</span> [
+        {
+          <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1234</span>,
+          <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;bleu&#34;</span>,
+          <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#38475F&#34;</span>,
+          <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./assets/images/socks_blue.jpg&#34;</span>,
+          <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">50</span>,
+        },
+        {
+          <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3245</span>,
+          <span style="color:#a6e22e">color</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;vert&#34;</span>,
+          <span style="color:#a6e22e">back</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;#4F9869&#34;</span>,
+          <span style="color:#a6e22e">image</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./assets/images/socks_green.jpg&#34;</span>,
+          <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">20</span>,
+        },
+      ],
+      <span style="color:#a6e22e">reviews</span><span style="color:#f92672">:</span> [],
+    };
+  },
+  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">addToCart</span>() {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">quantity</span><span style="color:#f92672">--</span>
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;add-to-cart&#34;</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">id</span>)
+    },
+    <span style="color:#a6e22e">remFromCart</span>() {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">quantity</span><span style="color:#f92672">++</span>
+
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#34;rem-from-cart&#34;</span>,<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variants</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span>].<span style="color:#a6e22e">id</span>)
+    },
+    <span style="color:#a6e22e">updateVariant</span>(<span style="color:#a6e22e">index</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">selectedVariant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span>;
+    },
+    <span style="color:#a6e22e">addReview</span>(<span style="color:#a6e22e">review</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">reviews</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">review</span>)
+    }
+  },
+  ...
+</code></pre></div><p>Pour afficher les avis nous allons créer un composant <code>ReviewList.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">component</span>(<span style="color:#e6db74">&#39;review-list&#39;</span>,
+{
+    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">reviews</span><span style="color:#f92672">:</span> {
+            <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> Array,
+            <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+        }
+    },
+    <span style="color:#a6e22e">template</span><span style="color:#f92672">:</span>
+    <span style="color:#75715e">/*html*/</span>
+    <span style="color:#e6db74">`&lt;div class=&#34;review-container&#34;&gt;
+</span><span style="color:#e6db74">    &lt;h3&gt;Avis:&lt;/h3&gt;
+</span><span style="color:#e6db74">    &lt;ul&gt;
+</span><span style="color:#e6db74">    &lt;li v-for=&#34;(review, index) in reviews&#34; :key=&#34;index&#34;&gt;
+</span><span style="color:#e6db74">    {{review.name}} a donné {{ &#39;&amp;#9733&#39;.repeat(review.rating) }} 
+</span><span style="color:#e6db74">    &lt;br /&gt;
+</span><span style="color:#e6db74">    &#34;{{review.review}}&#34;
+</span><span style="color:#e6db74">    &lt;/li&gt;
+</span><span style="color:#e6db74">    &lt;/ul&gt;
+</span><span style="color:#e6db74">    &lt;/div&gt;`</span>
+})
+</code></pre></div><p>Enfin ajoutons cette liste au dessus du formulaire dans <code>ProductDisplay.js</code> et sans oublier d&rsquo;importer notre composant dans <code>index.html</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">review</span><span style="color:#f92672">-</span><span style="color:#a6e22e">list</span> <span style="color:#f92672">:</span><span style="color:#a6e22e">reviews</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reviews&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/review-list&gt;</span>
+</code></pre></div><h2 id="améliorations">Améliorations</h2>
+<ul>
+<li>Ajoutez une condition dans la balise <code>&lt;review-list&gt;</code> pour que les avis ne s&rsquo;affichent que lorsqu&rsquo;il y en a.</li>
+<li>Ajoutez des conditions dans la méthode <code>onSubmit</code> pour vérifier que le tous les champs ont bien été remplis.</li>
+</ul>
+<p><a href="https://github.com/germainsip/vuecdn/tree/10-form-fin">La correction</a></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link btn" href="/tags/javascript/" rel="tag">javascript</a></li>
+		<li class="tags__item"><a class="tags__link btn" href="/tags/vue/" rel="tag">Vue</a></li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Germain SIPIERE avatar" src="/img/moi.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		Germain SIPIERE, formateur en conception et développement d&#39;applications à l&#39;AFPA. J&#39;utilise différentes technologies et j&#39;adore en découvrir continuellement de nouvelles
+	</div>
+</div>
+
+<nav class="post-nav flex">
+	<div class="post-nav__item post-nav__item--prev">
+		<a class="post-nav__link" href="/post/cours/electron/electron-intro/" rel="prev"><span class="post-nav__caption">«&thinsp;Précédent</span><p class="post-nav__post-title">Electron Intro</p></a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2022 Germain SIPIERE.
+			<span class="footer__copyright-credits">Produit par <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> et le thème <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
