@@ -14,9 +14,8 @@
       
       <guid>/post/cours/vue/intro/</guid>
       <description>Vue est un framework Javascript destiné à la création d&amp;rsquo;interface utilisateur. Vue est conçu pour être &amp;ldquo;progressif&amp;rdquo;. C&amp;rsquo;est à dire qu&amp;rsquo;il conviendra à plusieurs conceptions ou besoins différents comme vous pourrez le lire dans la documentation
-Commencer avec Vue Le CDN En allant sur la doc de Vue vous trouverez le CDN permettant d&amp;rsquo;intégrer directement vue à une page html.
-Il suffit d&amp;rsquo;ajouter ce script à la page.
-Par exemple:</description>
+Commencer avec Vue   Le CDN En allant sur la doc de Vue vous trouverez le CDN permettant d&amp;rsquo;intégrer directement vue à une page html.
+Il suffit d&amp;rsquo;ajouter ce script à la page.</description>
     </item>
     
   </channel>
